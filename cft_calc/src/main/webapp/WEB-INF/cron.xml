@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <!-- cron>
+    <url>/dispatcher?action=ShouldCreateWaveFrontendHandler</url>
+    <description>Check if a new wave should be generated</description>
+    <schedule>every 1 minutes</schedule>
+  </cron>
+    <cron>
+    <url>/dispatcher?action=ShouldAddParticipantFrontendHandler</url>
+    <description>Check if a new participant should be added to a wave</description>
+    <schedule>every 10 hours</schedule>
+  </cron-->
+  
+  <cron>
+    <url>/calcAveragesAndGrades</url>
+    <description>calc averages and grades</description>
+    <schedule>every 1 hours</schedule>
+  </cron>  
+</cronentries>
