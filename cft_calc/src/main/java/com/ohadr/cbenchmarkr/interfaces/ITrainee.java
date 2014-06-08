@@ -4,16 +4,15 @@ import java.util.Map;
 
 import com.ohadr.cbenchmarkr.Workout;
 
-public interface IPerson extends Comparable<IPerson>
+public interface ITrainee extends Comparable<ITrainee>
 {
-
 	String getId();
 
 	Map<String, Integer> getResultsMap();
 	
 	void addWorkout(Workout workout);
 
-	void setTotalGrade(double grade);
+//	void setTotalGrade(double grade);
 
 	double getTotalGrade();
 
