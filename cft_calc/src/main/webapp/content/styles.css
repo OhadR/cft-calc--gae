@@ -1,0 +1,764 @@
+/*#region Override background color theme */
+
+/*For Bootstrap 3*/
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+body {
+  font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #404040;
+}
+
+.navbar-inverse {
+    background-color: #333;
+}
+
+.sidebar-widget form {
+    margin: 0em -1em;
+}
+
+.sidebar .navi > li > a {
+    background-color: #333 !important;
+}
+
+.sidebar .navi li ul li a {
+    color: #fff;
+}
+
+    .sidebar .navi li ul li a:hover {
+        color: #52b9e9;
+    }
+
+    .sidebar .navi li ul li a:disabled {
+        color: #999;
+    }
+
+.navbar-inverse .btn-navbar {
+    background-color: #333;
+}
+
+    .navbar-inverse .btn-navbar:hover {
+        background-color: #333;
+    }
+
+.sidebar {
+    margin-top: -2px;
+}
+
+    .sidebar .sidebar-inner {
+        background-color: #333;
+    }
+
+.sidebar-filler {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #333;
+    width: 230px;
+}
+
+/*#endregion */
+
+/* #region Main Styles */
+
+.ng-cloak {
+    display: none !important;
+ }
+
+select > option {
+    color: black;
+}
+
+input.form-control,
+select.form-control,
+textarea.form-control {
+    /*width: 205px;*/
+    width: 60%;
+    display: inline;
+    display: block;
+}
+
+.widget .padd {
+    /*margin-bottom: 0;*/
+    /*padding: 1em 0;*/
+    height: 12em;
+}
+
+    .widget .padd.padd-tight {
+        padding: 6px;
+    }
+
+.list-flow.list-flow-tight {
+    width: 90px;
+}
+
+
+.map {
+    height: 228px;
+}
+
+.btn > i {
+    margin-right: 8px;
+}
+
+.btn {
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+    .btn.btn-notext > i {
+        margin-right: 0;
+    }
+
+.btn-group{
+    margin: .2em;
+}
+
+
+small {
+    font-size: 14px;
+}
+
+.text-subtle {
+    color: #b7b7b7;
+}
+
+.page-title-subtle {
+    color: white;
+}
+
+.page-title {
+    color: #EEE;
+    margin-right: 12px;
+}
+
+.right {
+    clear: right;
+    float: right;
+}
+
+.widget-content .padd:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #52b9e9;
+}
+
+    .widget-content .padd:hover * {
+        color: white;
+    }
+
+.list-flow {
+    margin: 6px;
+    float: left;
+    width: 110px;
+    height: 120px;
+    border-bottom: solid 0 transparent;
+    padding: 1.5% .5%;
+}
+
+.name-stack h5 {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 18px !important;
+}
+
+
+.search-query {
+    margin: 2px auto 8px auto !important;
+}
+
+.fa-search {
+    color: #FFFFFF;
+}
+
+.form-search {
+    min-height: 2em;
+}
+
+.input-group[class*="col-"] {
+    width: 80%;
+    margin: 0 1.5em;}
+
+.user .user-pic {
+    display: block;
+    margin: auto;
+}
+
+.user .user-details {
+    margin-left: 100px;
+    margin-right: 10px;
+}
+
+.widget-content {
+    padding: 1em;
+    margin: 0;
+}
+
+.stacked {
+    float: none !important;
+    display: block;
+    margin: auto;
+}
+
+.navbar .navbar-brand {
+    background: url(/content/images/icon.png) no-repeat left center !important;
+    margin: 0 1em;
+}
+
+.navbar .brand-title {
+    margin-left: 2em;
+    color: #FFFFFF;
+}
+
+.navbar-logo img {
+    height: 20px;
+}
+
+.today-datas li {
+    padding: 20px 14px;
+}
+
+/*#region Splash */
+#splash-page {
+    z-index: 99999 !important;
+}
+
+    #splash-page .bar {
+        width: 100%;
+    }
+
+.page-splash {
+    z-index: 99999 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    opacity: .9;
+    pointer-events: auto;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: opacity 0.3s linear;
+    -moz-transition: opacity 0.3s linear;
+    -o-transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
+}
+
+.page-splash-message {
+    text-align: center;
+    margin: 20% auto 0 auto;
+    font-size: 400%;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    -webkit-text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #F58A00;
+    padding: 0;
+}
+
+    .page-splash-message.page-splash-message-subtle {
+        margin: 30% auto 0 auto;
+        font-size: 200%;
+    }
+
+.fa-asterisk.fa-asterisk-large {
+    font-size: 180%;
+    vertical-align: middle;
+    color: #F58A00;
+}
+
+.fa-asterisk.fa-asterisk-alert {
+    color: #F58A00;
+}
+
+.fa-asterisk-inline {
+    padding: 0 4px 0 0;
+}
+
+
+.progress,
+.page-progress-bar {
+    margin: 30px 10% !important;
+}
+
+.spinner {
+    margin: 20% auto 0 auto;
+    left: auto;
+    top: auto !important;
+}
+/*#endregion*/
+
+table th > a {
+    font-weight: bold;
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+    cursor: pointer;
+}
+
+
+.widget-content.referrer {
+    border-width: 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+/* #endregion */
+
+/*#region wrapper for angular ng-include and ng-view animations*/
+.view-container {
+    position: relative;
+    overflow: hidden;
+}
+/*#endregion */
+
+/*#region Angular ng-include, ng-view, ng-repeat shuffle animations*/
+
+.shuffle-animation.ng-enter,
+.shuffle-animation.ng-leave {
+    position: relative;
+}
+
+.shuffle-animation.ng-enter {
+    -moz-transition: ease-out all 0.3s 0.4s;
+    -o-transition: ease-out all 0.3s 0.4s;
+    -webkit-transition: ease-out all 0.3s 0.4s;
+    transition: ease-out all 0.3s 0.4s;
+    left: 2em;
+    opacity: 0;
+}
+
+    .shuffle-animation.ng-enter.ng-enter-active {
+        left: 0;
+        opacity: 1;
+    }
+
+.shuffle-animation.ng-leave {
+    -moz-transition: 0.3s ease-out all;
+    -o-transition: 0.3s ease-out all;
+    -webkit-transition: 0.3s ease-out all;
+    transition: 0.3s ease-out all;
+    left: 0;
+    opacity: 1;
+}
+
+    .shuffle-animation.ng-leave.ng-leave-active {
+        left: 2em;
+        opacity: 0;
+    }
+/*#endregion*/
+
+/*#region Angular ng-include, ng-view, ng-repeat fader animation */
+.fader-animation.ng-enter,
+.fader-animation.ng-leave,
+.fader-animation.ng-move {
+    position: relative;
+}
+
+.fader-animation.ng-enter,
+.fader-animation.ng-leave {
+    -webkit-transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    -moz-transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    -o-transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    opacity: 1;
+}
+
+.fader-animation.ng-enter,
+.fader-animation.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+    .fader-animation.ng-enter.ng-enter-active {
+        opacity: 1;
+    }
+
+.fader-animation.ng-move {
+  opacity:0.5;
+}
+.fader-animation.ng-move.ng-move-active {
+  opacity:1;
+}
+
+/*#endregion*/
+
+/*#region Angular ng-show dissolve animation */
+.dissolve-animation.ng-hide-remove {
+    display: inline!important;
+}
+
+.dissolve-animation.ng-hide-remove,
+.dissolve-animation.ng-hide-add {
+    -webkit-transition: 0.8s linear all;
+    -moz-transition: 0.8s linear all;
+    -o-transition: 0.8s linear all;
+    transition: 0.8s linear all;
+}
+
+    .dissolve-animation.ng-hide-remove.ng-hide-remove-active,
+    .dissolve-animation.ng-hide-add {
+        opacity: 1;
+    }
+
+        .dissolve-animation.ng-hide-add.ng-hide-add-active,
+        .dissolve-animation.ng-hide-remove {
+            opacity: 0;
+        }
+/*#endregion */
+
+/*#region toastr */
+#toast-container.toast-top-full-width > div, #toast-container.toast-bottom-full-width > div {
+    margin: 4px auto;
+}
+/*#endregion */
+
+/*#region Responsive */
+
+@media (max-width: 979px) {
+    .sidebar-filler {
+        width: 200px;
+    }
+
+    .nav-collapse {
+        clear: none;
+    }
+
+        .nav-collapse .nav > li {
+            float: left;
+        }
+
+    .navbar .btn-navbar {
+        display: none;
+    }
+
+    .nav-collapse,
+    .nav-collapse.collapse {
+        height: inherit;
+        overflow: inherit;
+    }
+
+    .page-splash-message {
+        font-size: 300%;
+    }
+
+    .btn-group.pull-right {
+        float: none !important;
+        display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar-filler {
+        display: none;
+    }
+
+    .nav-collapse {
+        clear: both;
+    }
+
+        .nav-collapse .nav > li {
+            float: none;
+        }
+
+    .navbar .btn-navbar {
+        display: block;
+    }
+
+    .nav-collapse,
+    .nav-collapse.collapse {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .page-splash-message {
+        font-size: 200%;
+        margin: 40% auto 0 auto;
+    }
+
+        .page-splash-message.page-splash-message-subtle {
+            font-size: 150%;
+        }
+
+    .sidebar .sidebar-inner {
+        height: inherit;
+    }
+}
+
+@media (max-width: 320px) {
+    .today-datas li {
+        padding: 1em .5em;
+        line-height: 1em;
+    }
+
+        .today-datas li i {
+            font-size: 2em;
+        }
+
+        .today-datas li .datas-text span {
+            font-size: 1em;
+        }
+
+    .btn {
+        margin: .2em;
+        width: 7em;
+    }
+
+    .btn-group > .btn {
+        display: block;
+        width: 7em;
+    }
+
+    .btn-group.pull-right {
+        margin: .2em 0;
+    }
+
+    input,
+    select {
+        width: 85% !important;
+    }
+
+    textarea {
+        width: 80%;
+    }
+
+    .img-polaroid.user-pic {
+        width: 5em;
+    }
+
+    .user .user-details {
+        margin-left: 7em;
+        margin-right: .5em;
+    }
+
+    h3 {
+        font-size: 1.5em !important;
+        line-height: 1.2em !important;
+    }
+}
+
+/* login dialog */
+
+body, .login-submit, .login-submit:before, .login-submit:after {
+  background: #373737 url("../content/images/bg.png") 0 0 repeat;
+}
+
+.login a {
+  color: #00a1d2;
+  text-decoration: none;
+}
+.login a:hover {
+  text-decoration: underline;
+}
+
+.login {
+  position: relative;
+  margin: 80px auto;
+  width: 450px;
+  padding-right: 32px;
+  font-weight: 300;
+  color: #a8a7a8;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+.login p {
+  margin: 0 0 10px;
+}
+
+.new-user {
+    width: 600px !important;    
+}
+
+.login input, button, label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.login input[type=text], input[type=email], input[type=password] {
+  padding: 0 10px;
+  width: 279px;
+  height: 40px;
+  color: #bbb;
+  text-shadow: 1px 1px 1px black;
+  background: rgba(0, 0, 0, 0.16);
+  border: 0;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.login input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+  color: white;
+  background: rgba(0, 0, 0, 0.1);
+  outline: 0;
+}
+
+.login label {
+  float: left;
+  width: 80px;
+  line-height: 40px;
+  padding-right: 10px;
+  font-weight: 100;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+.new-user label {
+  width: 120px !important;
+}
+
+.forgot-password {
+  padding-left: 100px;
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.login h1 {
+    background: transparent;
+    color: #eeeeee;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.login-submit {
+  position: absolute;
+  top: 85px;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
+  border-radius: 32px;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+}
+
+.forgot-password-submit {
+    top: 25px;
+}
+
+.login-submit:before, .login-submit:after {
+  content: '';
+  z-index: 1;
+  position: absolute;
+}
+.login-submit:before {
+  top: 28px;
+  left: -4px;
+  width: 4px;
+  height: 10px;
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+}
+.login-submit:after {
+  top: -4px;
+  bottom: -4px;
+  right: -4px;
+  width: 36px;
+}
+
+.login-button {
+  position: relative;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  padding: 0 0 48px;
+  /* Fix wrong positioning in Firefox 9 & older (bug 450418) */
+  text-indent: 120%;
+  white-space: nowrap;
+  overflow: hidden;
+  background: none;
+  border: 0;
+  border-radius: 24px;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px rgba(255, 255, 255, 0.1);
+  /* Must use another pseudo element for the gradient background because Webkit */
+  /* clips the background incorrectly inside elements with a border-radius.     */
+}
+.login-button:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  background: #00a2d3;
+  border-radius: 24px;
+  background-image: -webkit-linear-gradient(top, #00a2d3, #0d7796);
+  background-image: -moz-linear-gradient(top, #00a2d3, #0d7796);
+  background-image: -o-linear-gradient(top, #00a2d3, #0d7796);
+  background-image: linear-gradient(to bottom, #00a2d3, #0d7796);
+  -webkit-box-shadow: inset 0 0 0 1px #00a2d3, 0 0 0 5px rgba(0, 0, 0, 0.16);
+  box-shadow: inset 0 0 0 1px #00a2d3, 0 0 0 5px rgba(0, 0, 0, 0.16);
+}
+.login-button:active:before {
+  background: #0591ba;
+  background-image: -webkit-linear-gradient(top, #0591ba, #00a2d3);
+  background-image: -moz-linear-gradient(top, #0591ba, #00a2d3);
+  background-image: -o-linear-gradient(top, #0591ba, #00a2d3);
+  background-image: linear-gradient(to bottom, #0591ba, #00a2d3);
+}
+.login-button:after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  width: 25px;
+  height: 19px;
+  background: url("../content/images/arrow.png") 0 0 no-repeat;
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.lt-ie9 input[type=text], input[type=email], .lt-ie9 input[type=password] {
+  line-height: 40px;
+  background: #282828;
+}
+.lt-ie9 .login-submit {
+  position: absolute;
+  top: 12px;
+  right: -28px;
+  padding: 4px;
+}
+.lt-ie9 .login-submit:before, .lt-ie9 .login-submit:after {
+  display: none;
+}
+.lt-ie9 .login-button {
+  line-height: 48px;
+}
+.lt-ie9 .about {
+  background: #313131;
+}
+
+.password-sent {
+    color: #1e90ff;
+}
+
+.password-recovery-error {
+    color: #ff1A00;
+}
+
+.logged-in-user {
+    margin-right: 20px;
+}
+
+/*#endregion */

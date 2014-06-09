@@ -1,0 +1,21 @@
+﻿<nav class="navbar navbar-fixed-top navbar-inverse" ng-controller="topnav as vm">
+    <div class="navbar-header">
+        <a href="/" class="navbar-brand"><span class="brand-title">Cross Fit Calculator</span></a>
+        <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <div class="pull-right navbar-logo">
+            <ul class="nav navbar-nav pull-right logged-in-user">
+                <li ng-show="vm.auth.isUserLoggedIn">
+                    <a href="#" ng-click="vm.signOut()">
+                        Hello {{vm.auth.currentUser}}, click to sign out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
