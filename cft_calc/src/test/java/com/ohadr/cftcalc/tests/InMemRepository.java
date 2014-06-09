@@ -3,15 +3,14 @@ package com.ohadr.cftcalc.tests;
 import java.awt.Window;
 import java.util.*;
 
-import com.ohadr.cftcalc.CftCalcConstants;
-import com.ohadr.cftcalc.Person;
-import com.ohadr.cftcalc.Workout;
-import com.ohadr.cftcalc.interfaces.IPerson;
-import com.ohadr.cftcalc.interfaces.IRepository;
+import com.ohadr.cbenchmarkr.Workout;
+import com.ohadr.cbenchmarkr.interfaces.IRepository;
+import com.ohadr.cbenchmarkr.interfaces.ITrainee;
+import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public class InMemRepository implements IRepository
 {
-	private List<IPerson> persons = new ArrayList<IPerson>();
+	private List<ITrainee> persons = new ArrayList<ITrainee>();
 
 	private Set<String> workoutsNames = new HashSet<String>();
 
@@ -24,7 +23,7 @@ public class InMemRepository implements IRepository
 	{
 	}
 
-	public List<IPerson> getAllPersons()
+	public List<ITrainee> getAllPersons()
 	{
 		return persons;
 	}
@@ -40,7 +39,7 @@ public class InMemRepository implements IRepository
 		return workoutsNames;
 	}
 
-	public void addPerson(IPerson person)
+	public void addPerson(ITrainee person)
 	{
 		persons.add( person );
 	}
@@ -48,6 +47,35 @@ public class InMemRepository implements IRepository
 	public void addWorkout(String workout)
 	{
 		workoutsNames.add( workout );
+	}
+
+	@Override
+	public Collection<ITrainee> getAllTrainees()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addWorkoutForTrainee(String trainee, Workout workout)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<TimedResult> getWorkoutHistoryForTrainee(String trainee,
+			String workoutName)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateGradesForTrainees(Map<String, Double> gradesPerTrainee)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }
