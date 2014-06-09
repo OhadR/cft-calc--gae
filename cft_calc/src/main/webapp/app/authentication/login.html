@@ -1,0 +1,22 @@
+﻿<section data-ng-controller="login as vm">
+    <div class="login">
+        <form ng-submit="vm.loginUser()">
+            <h1>Login to the application</h1>
+            <p class="row">
+                <label for="login">Email:</label>
+                <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter you Email address" required>
+            </p>
+            <p class="row">
+                <label for="password">Password:</label>
+                <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your Password" required>
+            </p>
+            <p class="login-submit pull-right">
+                <button type="submit" class="login-button">Login</button>
+            </p>
+            <p class="forgot-password">
+                <a ng-click="vm.fotgotPassword()">Forgot your password?</a>
+                <a class="pull-right" ng-click="vm.newUser()">New user? click here to join us!</a>
+            </p>
+        </form>
+    </div>
+</section>
