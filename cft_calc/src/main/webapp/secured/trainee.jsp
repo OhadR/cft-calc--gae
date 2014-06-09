@@ -10,6 +10,7 @@
     <title></title>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="./benchmarkr.js"></script>
+	<script src="./gradesTable.js"></script>
 </head>
 <body>
 	<div>
@@ -41,7 +42,17 @@
 			</select>
 			<button name="showHistory" onclick="OnShowHistory();" id="showHistory">show history</button>
 </div>
-		
+	
+	
+	<div>
+		<TABLE id="dataTable" width="350px" border="1">
+	        <TR>
+	            <TD> 1 </TD>
+	            <TD> <INPUT type="text" /> </TD>
+	            <TD> <INPUT type="text" /> </TD>
+	        </TR>
+	    </TABLE>
+	</div>	
 
 </body>
 </html>

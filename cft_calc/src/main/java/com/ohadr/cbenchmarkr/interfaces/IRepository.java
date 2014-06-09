@@ -3,10 +3,11 @@ package com.ohadr.cbenchmarkr.interfaces;
 import java.util.*;
 
 import com.ohadr.cbenchmarkr.Workout;
+import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public interface IRepository
 {
-	Collection<IPerson> getAllTrainees();
+	Collection<ITrainee> getAllTrainees();
 
 	/**
 	 * get all workouts 
@@ -18,9 +19,18 @@ public interface IRepository
 	 * when a new user activates his new account, call this method and add a new entry for this user
 	 * @param personA
 	 */
-	void addPerson(IPerson person);
+	void addPerson(ITrainee person);
 
 	void addWorkoutForTrainee(String trainee, Workout workout);
-
+	
+	/**
+	 * 
+	 * @param trainee
+	 * @param workoutName: the requested workout's name.
+	 * @return list of TimedResult elements. Per the requested workout, each element reperesents the date and the result.
+	 */
+	List<TimedResult> getWorkoutHistoryForTrainee(String trainee, String workoutName);
+	
+	void updateGradesForTrainees( Map<String, Double> gradesPerTrainee );
 	
 }

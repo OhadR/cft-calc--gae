@@ -5,11 +5,15 @@ function OnShowGrades()
 		url: "/secured/getSortedTraineesByGrade",
 //		data: JSON.stringify(requestData),
 		type: 'GET',
-		dataType: 'text',
+		dataType: 'json',
 		contentType: 'application/json',
-		success: function(data, textStatus, jqXHR)
+		success: function(result, textStatus, jqXHR)
 		{
-			alert('data: ' + data);
+			for(var i = 0; i < result.length; ++i)
+			{
+				addRow( 'dataTable', result[i].id, result[i].totalGrade  );
+//				alert('data: ' + result[i].id );
+			}
 		},
 		error: function(jqXHR, textStatus, errorThrown)
 		{

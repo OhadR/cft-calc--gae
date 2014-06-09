@@ -4,9 +4,9 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
-import com.ohadr.cbenchmarkr.interfaces.IPerson;
+import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 
-public class Trainee implements IPerson
+public class Trainee implements ITrainee
 {
 	private static Logger log = Logger.getLogger(Trainee.class);
 
@@ -45,11 +45,14 @@ public class Trainee implements IPerson
 	 * @param id
 	 * @param results
 	 */
-	public Trainee(String id, Map<String, Integer> results)
+	public Trainee(String id, 
+			Map<String, Integer> results,
+			double totalGrade)
 	{
 		this.id = id;
 		history = new HashMap<String, List<Workout>>();
 		this.results = results;
+		this.totalGrade = totalGrade;
 		
 	}
 
@@ -82,16 +85,11 @@ public class Trainee implements IPerson
 		return totalGrade;
 	}
 
-	public void setTotalGrade(double totalGrade)
-	{
-		this.totalGrade = totalGrade;
-	}
-
 	/**
 	 * we comare two trainees by their total-grade:
 	 */
 	@Override
-	public int compareTo(IPerson o)
+	public int compareTo(ITrainee o)
 	{
 		double comparison = totalGrade - o.getTotalGrade();
 		if( comparison > 0 )

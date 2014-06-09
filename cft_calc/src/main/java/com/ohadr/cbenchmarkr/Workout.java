@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.ohadr.cbenchmarkr.utils.Utils;
+
 
 public class Workout
 {
@@ -58,29 +60,4 @@ public class Workout
 	{
 		return name + "/" + result + " (" + date + ")";
 	}
-	
-	
-	/**
-     *  Create Workout instance out of Json
-     *  Example for valid json:   {"date":1402071766642,"result":120,"name":"CINDY"}
-     * @param json
-     */
-    static public Workout parseJson(String json) throws IOException 
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        
-/*        //test
-        ByteArrayOutputStream bis = new ByteArrayOutputStream();
-
-        Workout dummy = new Workout("CINDY", 120);
-        mapper.writeValue(bis, dummy);
-        String jsonDummy = bis.toString();
-        System.err.println( jsonDummy );
-
-        mapper.setDateFormat(new DateFormat());
-        */
-
-        Workout workout = mapper.readValue(json, Workout.class);
-        return workout;
-    }
 }
