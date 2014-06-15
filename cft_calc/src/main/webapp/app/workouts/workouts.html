@@ -1,0 +1,28 @@
+﻿<section class="mainbar" data-ng-controller="workouts as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <table class="table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Result</th>
+                                <th>Date</th>
+                            </tr>
+                            <tr ng-repeat="workout in vm.workouts">
+                                <td> {{workout.name}} </td>
+                                <td> {{workout.result}} </td>
+                                <td> {{workout.date}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

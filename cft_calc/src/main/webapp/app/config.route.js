@@ -30,13 +30,13 @@
                     }
                 }
             }, {
-                url: '/admin',
+                url: '/workouts',
                 config: {
-                    title: 'admin',
-                    templateUrl: 'app/admin/admin.html',
+                    title: 'workouts',
+                    templateUrl: 'app/workouts/workouts.html',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-lock"></i> Admin'
+                        content: '<i class="fa fa-lock"></i> Workouts'
                     }
                 }
             }, {

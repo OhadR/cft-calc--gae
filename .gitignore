@@ -64,3 +64,4 @@ cft_calc/target/cft_calc-1.0-SNAPSHOT/WEB-INF/appengine-web.xml
 cft_calc/src/main/webapp/bin/
 cft_calc/src/main/webapp/packages/
 cft_calc/src/main/webapp/obj/
+cft_calc/src/main/webapp/cft-calc.csproj.user
