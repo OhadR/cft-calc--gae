@@ -3,7 +3,7 @@
     var controllerId = 'workouts';
     angular.module('app').controller(controllerId, ['$location', 'common', 'datacontext', workouts]);
 
-    function workouts($location, common, datacontext, ngTableParams) {
+    function workouts($location, common, datacontext) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -13,7 +13,6 @@
         vm.addWorkout = addWorkout;
 
         activate();
-
 
         function activate() {
             common.activateController([loadWorkouts()], controllerId);
