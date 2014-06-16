@@ -40,6 +40,13 @@
                     }
                 }
             }, {
+                url: '/addworkout',
+                config: {
+                    title: 'add workout',
+                    templateUrl: 'app/workouts/addworkout.html',
+                    settings: { }
+                }
+            }, {
                  url: '/login',
                  config: {
                      title: 'login',

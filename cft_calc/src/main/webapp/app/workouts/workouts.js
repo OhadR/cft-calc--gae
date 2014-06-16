@@ -1,16 +1,16 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'workouts';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', workouts]);
+    angular.module('app').controller(controllerId, ['$location', 'common', 'datacontext', workouts]);
 
-    function workouts(common, datacontext, ngTableParams) {
+    function workouts($location, common, datacontext, ngTableParams) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
         var vm = this;
         vm.title = 'My workouts';
         vm.workouts = [];
-        vm.addWorkout = addWorkout();
+        vm.addWorkout = addWorkout;
 
         activate();
 
@@ -26,7 +26,7 @@
         }
 
         function addWorkout() {
-            
+            $location.path('/addworkout');
         }
     }
 })();

@@ -85,6 +85,8 @@
     <Content Include="app\services\authentication.js" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
+    <Content Include="app\workouts\addworkout.html" />
+    <Content Include="app\workouts\addworkout.js" />
     <Content Include="app\workouts\workouts.html" />
     <Content Include="app\workouts\workouts.js" />
     <Content Include="Content\bootstrap-theme.css" />
