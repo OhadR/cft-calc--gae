@@ -40,13 +40,13 @@
 	<sec:http pattern="/createAccount" security="none" />
 
 	<sec:http authentication-manager-ref="authenticationManager">
-	    <sec:intercept-url pattern="/secured/**" access="ROLE_USER" />
-	    <sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" />
+	    <sec:intercept-url pattern="/secured/**" access="ROLE_USER" requires-channel="https"/>
+	    <sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" requires-channel="https"/>
 	    	    	    
 		<sec:anonymous />
 
 		<sec:form-login login-page="/login/login.htm"
-			authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-success-handler-ref="authenticationSuccessHandlerREST"
 			authentication-failure-handler-ref="authenticationFailureHandler" />
 		<sec:logout logout-success-url="/secured/trainee.jsp" />
 
