@@ -1,6 +1,5 @@
 package com.ohadr.cftcalc.tests;
 
-import java.awt.Window;
 import java.util.*;
 
 import com.ohadr.cbenchmarkr.Workout;
@@ -21,11 +20,6 @@ public class InMemRepository implements IRepository
 	
 	private void init()
 	{
-	}
-
-	public List<ITrainee> getAllPersons()
-	{
-		return persons;
 	}
 
 	public List<Workout> getAllWorkouts()
@@ -52,8 +46,7 @@ public class InMemRepository implements IRepository
 	@Override
 	public Collection<ITrainee> getAllTrainees()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return persons;
 	}
 
 	@Override
