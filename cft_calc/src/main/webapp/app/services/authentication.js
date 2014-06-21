@@ -33,6 +33,9 @@
             service.currentUser = '';
             service.isUserLoggedIn = false;
 
+            sessionStorage.userName = '';
+            sessionStorage.password = '';
+
             return $q.when(true);
         }
 

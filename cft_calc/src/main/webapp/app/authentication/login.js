@@ -20,6 +20,16 @@
 
         activate();
 
+        var userName = sessionStorage.userName;
+        var password = sessionStorage.password;
+
+        if (userName && password) {
+            vm.userInfo.userName = userName;
+            vm.userInfo.password = password;
+            vm.loginUser();
+        }
+            
+
         function activate() {
             common.activateController([], controllerId);
         }
@@ -28,6 +38,8 @@
             log("user info - " + vm.userInfo.userName + ": " + vm.userInfo.password);
             auth.login(vm.userInfo.userName, vm.userInfo.password).then(function(data) {
                 $location.path('/');
+                sessionStorage.userName = vm.userInfo.userName;
+                sessionStorage.password = vm.userInfo.password;
             });
         }
 
