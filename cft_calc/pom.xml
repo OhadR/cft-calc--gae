@@ -22,7 +22,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<ohadr.spring.version>3.1.0.RELEASE</ohadr.spring.version>
 		<ohadr.spring.security.version>3.1.0.RELEASE</ohadr.spring.security.version>
-    </properties>
+		<ohadr.flows.version>1.6.1-SNAPSHOT</ohadr.flows.version>
+	</properties>
 
     <dependencies>
         <!-- Compile/runtime dependencies -->
@@ -35,7 +36,7 @@
         <dependency>
 			<groupId>com.ohadr</groupId>
 			<artifactId>authentication-flows</artifactId>
-			<version>1.6.0-RELEASE</version>
+			<version>${ohadr.flows.version}</version>
 			<exclusions>
 			    <exclusion>
 					<groupId>javax.mail</groupId>
