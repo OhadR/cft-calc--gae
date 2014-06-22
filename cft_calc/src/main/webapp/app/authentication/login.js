@@ -40,6 +40,8 @@
                 $location.path('/');
                 sessionStorage.userName = vm.userInfo.userName;
                 sessionStorage.password = vm.userInfo.password;
+            }, function(error) {
+                alert("failed - " + error);
             });
         }
 
