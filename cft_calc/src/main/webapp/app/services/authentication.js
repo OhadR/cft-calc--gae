@@ -2,9 +2,9 @@
     'use strict';
 
     var serviceId = 'auth';
-    angular.module('app').factory(serviceId, ['common', auth]);
+    angular.module('app').factory(serviceId, ['$http', '$q', 'common', auth]);
 
-    function auth(common) {
+    function auth($http, $q, common) {
         var $q = common.$q;
 
         var loggedInUser = undefined;
@@ -22,11 +22,22 @@
         return service;
 
         function login(userName, password) {
-            // TEMP
-            service.currentUser = userName;
-            service.isUserLoggedIn = true;
+            var d = $q.defer();
 
-            return $q.when(true);
+            $http({
+                method: 'POST',
+                url: 'http://cbenchmarkr.appspot.com/j_spring_security_check',
+                data:  $.param({ j_username: userName, j_password: password }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) {
+                service.isUserLoggedIn = true;
+                service.currentUser = userName;
+                d.resolve();
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+            return d.promise;
         }
 
         function signOut() {
@@ -39,8 +50,21 @@
             return $q.when(true);
         }
 
-        function createUser(userName, password, firstName, lastName) {
-            return $q.when(true);
+        function createUser(userName, password) {
+            var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: 'http://cbenchmarkr.appspot.com/rest/createAccount',
+                data:  $.param({ email: userName, password: password, confirm_password: password }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) {
+                d.resolve();
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+            return d.promise;
         }
 
         function getMessageCount() { return $q.when(72); }

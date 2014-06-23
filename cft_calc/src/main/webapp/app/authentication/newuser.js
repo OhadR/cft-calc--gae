@@ -9,8 +9,9 @@
 
         var vm = this;
         vm.title = 'Create new user';
+        vm.failedCreatingUser = false;
         vm.userInfo = {
-            email: '',
+            userName: '',
             password: '',
             firstName: '',
             lastName: '',
@@ -25,10 +26,12 @@
         }
         
         function createUser() {
-            auth.createUser(vm.userInfo.email, vm.userInfo.password, vm.userInfo.firstName, vm.userInfo.lastName).then(function(newUserData) {
-                auth.login(vm.userInfo.email, vm.userInfo.password).then(function(loginData) {
+            auth.createUser(vm.userInfo.userName, vm.userInfo.password).then(function(newUserData) {
+                auth.login(vm.userInfo.userName, vm.userInfo.password).then(function (loginData) {
                     $location.path('/');
                 });
+            }, function(error) {
+                vm.failedCreatingUser = true;
             });
         }
     }
