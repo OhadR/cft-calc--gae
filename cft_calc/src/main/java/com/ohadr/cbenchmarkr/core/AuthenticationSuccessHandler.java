@@ -23,7 +23,7 @@ import com.ohadr.crypto.service.CryptoService;
  * @author OhadR
  *
  */
-@Service("authenticationSuccessHandlerREST")
+@Service("RESTauthenticationSuccessHandler")
 public class AuthenticationSuccessHandler extends MySavedRequestAwareAuthenticationSuccessHandler
 {
 	@Autowired

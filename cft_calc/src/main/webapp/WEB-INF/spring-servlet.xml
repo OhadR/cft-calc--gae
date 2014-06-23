@@ -45,7 +45,7 @@
 		<sec:anonymous />
 
 		<sec:form-login login-page="/login/login.htm"
-			authentication-success-handler-ref="authenticationSuccessHandlerREST"
+			authentication-success-handler-ref="RESTauthenticationSuccessHandler"
 			authentication-failure-handler-ref="authenticationFailureHandler" />
 		<!-- sec:logout /-->
 
@@ -100,7 +100,7 @@
     
 	<bean id="restLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
 	    <constructor-arg>
-	        <bean class="com.ohadr.cbenchmarkr.core.NoRedirectLogoutSuccessHandler" />
+	        <bean class="com.ohadr.auth_flows.web.rest.NoRedirectLogoutSuccessHandler" />
 	    </constructor-arg>
 	    <constructor-arg>
 	        <list>
