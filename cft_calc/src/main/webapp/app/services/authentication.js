@@ -13,6 +13,7 @@
             isUserLoggedIn: false,
             login: login,
             createUser: createUser,
+            restorePassword: restorePassword,
             signOut: signOut,
             currentUser: loggedInUser,
             getPeople: getPeople,
@@ -57,6 +58,23 @@
                 method: 'POST',
                 url: 'http://cbenchmarkr.appspot.com/rest/createAccount',
                 data:  $.param({ email: userName, password: password, confirm_password: password }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) {
+                d.resolve();
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+            return d.promise;
+        }
+
+        function restorePassword( email ) {
+            var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: 'http://cbenchmarkr.appspot.com/rest/forgotPasswordPage',
+                data:  $.param({ email: email  }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {
                 d.resolve();

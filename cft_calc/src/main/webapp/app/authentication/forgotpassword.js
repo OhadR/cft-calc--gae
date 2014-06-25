@@ -31,6 +31,13 @@
                 return;
             }
 
+            auth.restorePassword( vm.userInfo.userName ).then(function (loginData) {
+                    $location.path('/');
+                });
+            }, function(error) {
+                vm.failedCreatingUser = true;
+            });
+
             vm.hasError = false;
             //temp
             vm.passwordSent = true;
