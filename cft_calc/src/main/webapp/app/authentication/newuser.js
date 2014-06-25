@@ -3,8 +3,8 @@
     var controllerId = 'newuser';
     angular.module('app').controller(controllerId, ['$location', 'common', 'auth', newUser]);
 
-    function newUser($location, common, auth) {
         var getLogFn = common.logger.getLogFn;
+        function newUser($location, common, auth) {
         var log = getLogFn(controllerId);
 
         var vm = this;

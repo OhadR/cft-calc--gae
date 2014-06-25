@@ -73,7 +73,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://cbenchmarkr.appspot.com/rest/forgotPasswordPage',
+                url: 'http://cbenchmarkr.appspot.com/rest/forgotPassword',
                 data:  $.param({ email: email  }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {

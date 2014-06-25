@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.title = 'Forgot password';
-        vm.sendPassword = sendPassword;
+        vm.onForgotPassword = onForgotPassword;
         vm.passwordSent = false;
         vm.hasError = false;
         vm.error = '';
@@ -24,16 +24,17 @@
             common.activateController([], controllerId);
         }
 
-        function sendPassword() {
-            if (!vm.userInfo.email) {
+        function onForgotPassword() {
+            if ( !vm.userInfo.email ) 
+            {
                 vm.error = 'Email address is empty';
                 vm.hasError = true;
                 return;
             }
 
-            auth.restorePassword( vm.userInfo.userName ).then(function (loginData) {
+            auth.restorePassword( vm.userInfo.email ).then(function (loginData) 
+            {
                     $location.path('/');
-                });
             }, function(error) {
                 vm.failedCreatingUser = true;
             });
