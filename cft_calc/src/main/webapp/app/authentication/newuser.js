@@ -25,14 +25,17 @@
             common.activateController([], controllerId);
         }
         
-        function createUser() {
-            auth.createUser(vm.userInfo.userName, vm.userInfo.password).then(function(newUserData) {
-                auth.login(vm.userInfo.userName, vm.userInfo.password).then(function (loginData) {
-                    $location.path('/');
-                });
-            }, function(error) {
-                vm.failedCreatingUser = true;
-            });
+        function createUser() 
+        {
+            //do not try to login, instead show a "message was sent" page
+        	auth.createUser(vm.userInfo.userName, vm.userInfo.password).then(function (loginData) {
+        		log( "account created" );    
+        		$location.path('/');
+                }),
+             function(error) {
+                log( "error creating account" );
+        		vm.failedCreatingUser = true;
+            };
         }
     }
 })();

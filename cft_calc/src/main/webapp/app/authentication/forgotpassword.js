@@ -34,14 +34,16 @@
 
             auth.restorePassword( vm.userInfo.email ).then(function (loginData) 
             {
-                    $location.path('/');
-            }, function(error) {
-                vm.failedCreatingUser = true;
+                log( "password sent to user " + vm.userInfo.email );
+                vm.passwordSent = true;
+//                $location.path('/');
+            }, function(error) 
+            {
+                log( "error: " + error );
+                vm.hasError = true;
+            	vm.failedCreatingUser = true;
             });
 
-            vm.hasError = false;
-            //temp
-            vm.passwordSent = true;
         }
     }
 })();
