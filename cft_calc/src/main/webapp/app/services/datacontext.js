@@ -41,14 +41,13 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) 
             {
-                d.resolve();
+                d.resolve(data);
                 var people = data;
                 $q.when(people);
             }).error(function (data, status, headers, config) {
                 d.reject(status);
             });
 
-//            return $q.when(people);
             return d.promise;
         }
 
