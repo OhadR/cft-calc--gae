@@ -2,9 +2,9 @@
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+    angular.module('app').factory(serviceId, ['$http', '$q', 'common', datacontext]);
 
-    function datacontext(common) {
+    function datacontext($http, $q, common) {
         var $q = common.$q;
 
         var service = {
@@ -17,7 +17,7 @@
 
         function getMessageCount() { return $q.when(72); }
 
-        function getPeople() {
+        function getPeople2() {
             var people = [
                 { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
                 { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
@@ -28,6 +28,28 @@
                 { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
             ];
             return $q.when(people);
+        }
+
+        function getPeople()
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/secured/getSortedTraineesByGrade',
+                data:  $.param({ json: 'json' }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve();
+                var people = data;
+                $q.when(people);
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+//            return $q.when(people);
+            return d.promise;
         }
 
         function getWorkouts() {

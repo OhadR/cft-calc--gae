@@ -16,7 +16,7 @@
             restorePassword: restorePassword,
             signOut: signOut,
             currentUser: loggedInUser,
-            getPeople: getPeople,
+//            getPeople: getPeople,
             getMessageCount: getMessageCount
         };
 
@@ -27,7 +27,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://cbenchmarkr.appspot.com/j_spring_security_check',
+                url: '/j_spring_security_check',
                 data:  $.param({ j_username: userName, j_password: password }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {
@@ -56,7 +56,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://cbenchmarkr.appspot.com/rest/createAccount',
+                url: '/rest/createAccount',
                 data:  $.param({ email: userName, password: password, confirm_password: password }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {
@@ -87,7 +87,7 @@
 
         function getMessageCount() { return $q.when(72); }
 
-        function getPeople() {
+/*        function getPeople() {
             var people = [
                 { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
                 { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
@@ -99,5 +99,5 @@
             ];
             return $q.when(people);
         }
-    }
+*/    }
 })();

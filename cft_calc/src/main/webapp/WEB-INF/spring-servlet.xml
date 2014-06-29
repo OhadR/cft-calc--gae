@@ -39,7 +39,8 @@
 	<sec:http pattern="/createAccount" security="none" />
 
 	<sec:http authentication-manager-ref="authenticationManager">
-	    <sec:intercept-url pattern="/secured/**" access="ROLE_USER" requires-channel="https"/>
+	    <sec:intercept-url pattern="/secured/**" access="ROLE_USER" />
+	    <!-- sec:intercept-url pattern="/secured/**" access="ROLE_USER" requires-channel="https"/-->
 	    <sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" requires-channel="https"/>
 	    	    	    
 		<sec:anonymous />
