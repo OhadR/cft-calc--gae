@@ -1,12 +1,6 @@
 package com.ohadr.cbenchmarkr;
 
-import java.io.IOException;
 import java.util.Date;
-
-import org.codehaus.jackson.map.ObjectMapper;
-
-import com.ohadr.cbenchmarkr.utils.Utils;
-
 
 public class Workout
 {

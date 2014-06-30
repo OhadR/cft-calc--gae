@@ -10,25 +10,13 @@
         var service = {
             getPeople: getPeople,
             getMessageCount: getMessageCount,
-            getWorkouts: getWorkouts
+            getWorkouts: getWorkouts,
+            addWorkout: addWorkout
         };
 
         return service;
 
         function getMessageCount() { return $q.when(72); }
-
-        function getPeople2() {
-            var people = [
-                { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
-                { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
-                { firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
-                { firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
-                { firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
-                { firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
-                { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
-            ];
-            return $q.when(people);
-        }
 
         function getPeople()
         {
@@ -39,6 +27,29 @@
                 url: '/secured/getSortedTraineesByGrade',
                 data:  $.param({ json: 'json' }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                var people = data;
+                $q.when(people);
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+            return d.promise;
+        }
+
+        function addWorkout(workoutName, result, timestamp)
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/secured/addWorkoutForTrainee',
+                data:  $.param({ name: workoutName, result: result, date: timestamp }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+
+//                data:  '{"date":1402071766642,"result":' + result + ',"name":"cindy"}',
             }).success(function (data, status, headers, config) 
             {
                 d.resolve(data);

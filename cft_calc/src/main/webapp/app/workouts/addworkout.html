@@ -1,6 +1,6 @@
-﻿<section class="mainbar" data-ng-controller="addworkout as vm">
+<section class="mainbar" data-ng-controller="addworkout as vm">
     <section class="matter">
-        <form ng-submit="vm.saveWorkout()">
+        <form ng-submit="vm.onSaveWorkout()">
             <div class="container">
                 <div class="row">
                     <div class="widget wviolet">
@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="row">
                                     <label>Date: </label>
-                                    <datepicker ng-model="vm.workout.date" show-weeks="true" class="well well-sm" />
+                                    <datepicker ng-model="vm.workout.date" show-weeks="false" class="well well-sm" />
                                 </div>
                             </div>
                             <div class="container-fluid">

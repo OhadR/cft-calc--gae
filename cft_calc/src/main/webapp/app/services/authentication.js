@@ -16,7 +16,6 @@
             restorePassword: restorePassword,
             signOut: signOut,
             currentUser: loggedInUser,
-//            getPeople: getPeople,
             getMessageCount: getMessageCount
         };
 
@@ -73,7 +72,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://cbenchmarkr.appspot.com/rest/forgotPassword',
+                url: '/rest/forgotPassword',
                 data:  $.param({ email: email  }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {

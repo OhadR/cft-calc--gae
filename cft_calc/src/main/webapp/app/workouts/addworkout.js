@@ -10,7 +10,7 @@
         var vm = this;
         vm.title = "Add Workout";
         vm.workout = { };
-        vm.saveWorkout = saveWorkout;
+        vm.onSaveWorkout = onSaveWorkout;
 
         activate();
 
@@ -19,7 +19,29 @@
             common.activateController([], controllerId);
         }
 
-        function saveWorkout() {
+        function onSaveWorkout() 
+        {
+            if ( !vm.workout.name ) 
+            {
+                vm.error = 'workout name is empty';
+                vm.hasError = true;
+                return;
+            }
+
+
+            //call backend:
+            datacontext.addWorkout( vm.workout.name, vm.workout.result, vm.workout.date ).
+            then(function (loginData) 
+            {
+                log( "workout " + vm.workout.name + " : " + vm.workout.result + " added");
+//                vm.passwordSent = true;
+//                $location.path('/');
+            }, function(error) 
+            {
+                log( "error: " + error );
+                vm.hasError = true;
+//            	vm.failedAddi = true;
+            });
         }
     }
 })();
