@@ -33,7 +33,7 @@
                 var people = data;
                 $q.when(people);
             }).error(function (data, status, headers, config) {
-                d.reject(status);
+                d.reject( data, status );
             });
 
             return d.promise;
@@ -56,7 +56,7 @@
                 var people = data;
                 $q.when(people);
             }).error(function (data, status, headers, config) {
-                d.reject(status);
+                d.reject( data, status );
             });
 
             return d.promise;

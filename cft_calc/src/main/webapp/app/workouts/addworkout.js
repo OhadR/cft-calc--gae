@@ -28,19 +28,16 @@
                 return;
             }
 
-
             //call backend:
             datacontext.addWorkout( vm.workout.name, vm.workout.result, vm.workout.date ).
             then(function (loginData) 
             {
                 log( "workout " + vm.workout.name + " : " + vm.workout.result + " added");
-//                vm.passwordSent = true;
 //                $location.path('/');
             }, function(error) 
             {
-                log( "error: " + error );
+            	log( "error: " + error );
                 vm.hasError = true;
-//            	vm.failedAddi = true;
             });
         }
     }

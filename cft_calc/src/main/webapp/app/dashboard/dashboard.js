@@ -9,12 +9,12 @@
 
         var vm = this;
         vm.news = {
-            title: 'Hot Towel Angular',
+            title: 'my area',
             description: 'Hot Towel Angular is a SPA template for Angular developers.'
         };
         vm.messageCount = 0;
         vm.people = [];
-        vm.title = 'Dashboard';
+        vm.title = 'Leaderboard';
 
         activate();
 

@@ -1,6 +1,7 @@
 package com.ohadr.cbenchmarkr.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.WorkoutMetadata;
@@ -41,6 +43,7 @@ public class WebController
      * @param result
      * @param date
      * @param response
+     * @throws IOException 
      * @throws Exception
      */
     @RequestMapping(value = "/secured/addWorkoutForTrainee", method = RequestMethod.POST)
@@ -48,25 +51,28 @@ public class WebController
     		@RequestParam("name")    String name,
     		@RequestParam("result")  int    result,
     		@RequestParam("date")    Date   date,
-            HttpServletResponse response) throws Exception
+            HttpServletResponse response) throws IOException 
     {
+    	PrintWriter writer = response.getWriter();
+    	
     	Workout workout = new Workout( name, result );
     	workout.setDate( date );
         log.info( "adding workout: " + workout);
 
-//        try
+        try
         {
         	manager.addWorkoutForTrainee( getAuthenticatedUsername(), workout );
         }
-/*        catch (Throwable throwable)
+        catch (BenchmarkrRuntimeException be)
         {
             //todo return error status to the AJAX
-            log.error( "error handling user's order", throwable);
-    		response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+            log.error( "error handling user's order", be);
+            writer.println( be.getMessage() );
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     		return;
 
         }
-*/
+
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
 

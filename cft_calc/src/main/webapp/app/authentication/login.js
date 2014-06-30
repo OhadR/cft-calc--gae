@@ -35,13 +35,13 @@
         }
 
         function loginUser() {
-            log("user info - " + vm.userInfo.userName + ": " + vm.userInfo.password);
+            log( "user info - " + vm.userInfo.userName );
             auth.login(vm.userInfo.userName, vm.userInfo.password).then(function(data) {
                 $location.path('/');
                 sessionStorage.userName = vm.userInfo.userName;
                 sessionStorage.password = vm.userInfo.password;
             }, function(error) {
-                alert("failed - " + error);
+            	log( "login failed for user " + vm.userInfo.userName + ": " + error );
             });
         }
 

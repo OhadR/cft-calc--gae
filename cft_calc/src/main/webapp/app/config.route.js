@@ -26,17 +26,17 @@
                     title: 'dashboard',
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-dashboard"></i> Dashboard'
+                        content: '<i class="fa fa-dashboard"></i> Leaderboard'
                     }
                 }
             }, {
                 url: '/workouts',
                 config: {
-                    title: 'workouts',
+                    title: 'my workouts',
                     templateUrl: 'app/workouts/workouts.html',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-lock"></i> Workouts'
+                        content: '<i class="fa fa-lock"></i> My Workouts'
                     }
                 }
             }, {
@@ -44,7 +44,10 @@
                 config: {
                     title: 'add workout',
                     templateUrl: 'app/workouts/addworkout.html',
-                    settings: { }
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-lock"></i> Add Workout'
+                    }
                 }
             }, {
                  url: '/login',

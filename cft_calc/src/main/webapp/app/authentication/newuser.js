@@ -27,15 +27,16 @@
         
         function createUser() 
         {
+    		log( "trying to create account..." );    
             //do not try to login, instead show a "message was sent" page
         	auth.createUser(vm.userInfo.userName, vm.userInfo.password).then(function (loginData) {
         		log( "account created" );    
         		$location.path('/');
-                }),
+             },
              function(error) {
-                log( "error creating account" );
-        		vm.failedCreatingUser = true;
-            };
+            	 log( "error creating account: " + error );
+            	 vm.failedCreatingUser = true;
+            });
         }
     }
 })();
