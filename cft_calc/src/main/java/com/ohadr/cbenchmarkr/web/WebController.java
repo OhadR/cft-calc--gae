@@ -65,8 +65,7 @@ public class WebController
         }
         catch (BenchmarkrRuntimeException be)
         {
-            //todo return error status to the AJAX
-            log.error( "error handling user's order", be);
+            log.error( "error adding workout for user", be);
             writer.println( be.getMessage() );
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     		return;
@@ -106,9 +105,26 @@ public class WebController
             @RequestParam String json,
             HttpServletResponse response) throws IOException 
     {  
-    	List<TimedResult> workouts = manager.getWorkoutHistoryForTrainee( getAuthenticatedUsername(), json);
+    	PrintWriter writer = response.getWriter();
+
+    	List<TimedResult> workouts = null;
+		try
+		{
+			workouts = manager.getWorkoutHistoryForTrainee( getAuthenticatedUsername(), json);
+		} 
+		catch (BenchmarkrRuntimeException be)
+		{
+            log.error( "error getting history for user", be);
+            writer.println( be.getMessage() );
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+		}
     	String jsonResponse = Utils.convertToJson( workouts );
-    	response.getWriter().println( jsonResponse );
+        
+    	response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+
+		writer.println( jsonResponse );
     }
 
     /**
@@ -190,12 +206,25 @@ public class WebController
 	 * called by a cron job.
 	 * @param request
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/calcAveragesAndGrades")
-	protected void calcAveragesAndGrades(HttpServletResponse response)
+	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
 	{
 		log.info( "calc averages and grades" );
-		manager.calcAveragesAndGrades();
+    	PrintWriter writer = response.getWriter();
+
+    	try
+		{
+			manager.calcAveragesAndGrades();
+		} 
+		catch (BenchmarkrRuntimeException be)
+		{
+            log.error( "error calcAveragesAndGrades", be);
+            writer.println( be.getMessage() );
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+		}
 
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);

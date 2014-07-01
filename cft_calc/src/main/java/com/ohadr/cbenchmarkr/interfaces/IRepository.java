@@ -2,6 +2,7 @@ package com.ohadr.cbenchmarkr.interfaces;
 
 import java.util.*;
 
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
@@ -31,6 +32,6 @@ public interface IRepository
 	 */
 	List<TimedResult> getWorkoutHistoryForTrainee(String trainee, String workoutName);
 	
-	void updateGradesForTrainees( Map<String, Double> gradesPerTrainee );
+	void updateGradesForTrainees( Map<String, Double> gradesPerTrainee ) throws BenchmarkrRuntimeException;
 	
 }
