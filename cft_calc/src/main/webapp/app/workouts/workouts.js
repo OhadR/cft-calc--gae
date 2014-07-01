@@ -19,7 +19,7 @@
         }
 
         function loadWorkouts() {
-            datacontext.getWorkouts().then(function(data) {
+            datacontext.getWorkoutHistoryForTrainee( 'cindy' ).then(function(data) {
                 vm.workouts = data;
             });
         }

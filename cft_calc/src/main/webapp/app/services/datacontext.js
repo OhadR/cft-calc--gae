@@ -10,7 +10,7 @@
         var service = {
             getPeople: getPeople,
             getMessageCount: getMessageCount,
-            getWorkouts: getWorkouts,
+            getWorkoutHistoryForTrainee: getWorkoutHistoryForTrainee,
             addWorkout: addWorkout
         };
 
@@ -38,6 +38,7 @@
 
             return d.promise;
         }
+        
 
         function addWorkout(workoutName, result, timestamp)
         {
@@ -62,8 +63,28 @@
             return d.promise;
         }
 
-        function getWorkouts() {
-            var workouts = [
+        /**
+         * example to a GET call with params
+         */
+        function getWorkoutHistoryForTrainee( workoutName ) 
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/secured/getWorkoutHistoryForTrainee',
+                params:  { json: workoutName },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;
+
+/*            var workouts = [
                 { date: '1402071766642', result: 100, name: 'aaa' },
                 { date: '1402071766642', result: 200, name: 'bbb' },
                 { date: '1402071766642', result: 300, name: 'ccc' },
@@ -76,7 +97,7 @@
                 { date: '1402071766642', result: 100, name: '2323' },
             ];
 
-            return $q.when(workouts);
+            return $q.when(workouts);*/
         }
     }
 })();
