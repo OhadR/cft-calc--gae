@@ -6,13 +6,14 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.GradesCalculator;
 
 public class CalculatorTest
 {
 
 	@Test
-	public void testAverage()
+	public void testAverage() throws BenchmarkrRuntimeException
 	{
 		//TODO fix the test !!
 	   	ApplicationContext context = 
