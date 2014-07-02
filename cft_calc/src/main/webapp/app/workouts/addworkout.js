@@ -6,23 +6,26 @@
     function addworkout(common, datacontext) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
+        var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
         vm.title = "Add Workout";
         vm.workout = { };
         vm.onSaveWorkout = onSaveWorkout;
+        vm.workoutNames = [];
 
         activate();
 
 
         function activate() {
-            common.activateController([], controllerId);
+            common.activateController( [loadWorkoutNames()], controllerId );
         }
 
         function onSaveWorkout() 
         {
             if ( !vm.workout.name ) 
             {
+            	log_error( 'workout name is empty' );
                 vm.error = 'workout name is empty';
                 vm.hasError = true;
                 return;
@@ -36,9 +39,20 @@
 //                $location.path('/');
             }, function(error) 
             {
-            	log( "error: " + error );
+            	log_error( "error: " + error );
                 vm.hasError = true;
             });
         }
+
+        function loadWorkoutNames() {
+            datacontext.getAllWorkoutsNames().
+            then(function(data) {
+                vm.workoutNames = data;
+
+                //set a value, so we will not see an empty line:
+                vm.workout.name = vm.workoutNames[0];		
+            });
+        }
+        
     }
 })();

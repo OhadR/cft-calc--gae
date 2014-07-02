@@ -11,6 +11,7 @@
             getPeople: getPeople,
             getMessageCount: getMessageCount,
             getWorkoutHistoryForTrainee: getWorkoutHistoryForTrainee,
+            getAllWorkoutsNames: getAllWorkoutsNames,
             addWorkout: addWorkout
         };
 
@@ -98,6 +99,25 @@
             ];
 
             return $q.when(workouts);*/
+        }
+        
+        function getAllWorkoutsNames()
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/getAllWorkoutsNames',
+//                params:  { json: workoutName },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;        
         }
     }
 })();

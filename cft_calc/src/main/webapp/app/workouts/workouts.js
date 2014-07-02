@@ -10,22 +10,28 @@
         var vm = this;
         vm.title = 'My workouts';
         vm.workouts = [];
-        vm.addWorkout = addWorkout;
+        vm.workoutNames = [];
 
         activate();
 
         function activate() {
-            common.activateController([loadWorkouts()], controllerId);
+            common.activateController( [loadWorkoutNames()], controllerId );
         }
 
         function loadWorkouts() {
-            datacontext.getWorkoutHistoryForTrainee( 'cindy' ).then(function(data) {
+            datacontext.getWorkoutHistoryForTrainee( vm.workout.name ).then(function(data) {
                 vm.workouts = data;
             });
         }
 
-        function addWorkout() {
-            $location.path('/addworkout');
+        function loadWorkoutNames() {
+            datacontext.getAllWorkoutsNames().
+            then(function(data) {
+                vm.workoutNames = data;
+                //set a value, so we will not see an empty line:
+                vm.workout.name = vm.workoutNames[0];		
+            });
         }
+
     }
 })();
