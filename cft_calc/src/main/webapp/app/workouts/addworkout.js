@@ -10,7 +10,7 @@
 
         var vm = this;
         vm.title = "Add Workout";
-        vm.workout = { };
+        vm.workout = { };		//input object from the form.
         vm.onSaveWorkout = onSaveWorkout;
         vm.workoutNames = [];
 

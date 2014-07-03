@@ -31,6 +31,7 @@ public class Utils
             log.error("error converting " + objectToConvert.getClass().getSimpleName() + " to JSON");
         }
 
+        log.debug("convertToJson() result: " + json);
         return json;
     }
 

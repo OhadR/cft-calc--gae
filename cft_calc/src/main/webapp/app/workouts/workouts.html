@@ -7,24 +7,29 @@
                     <div class="widget-content user">
 						<div class="row">
 							<label>Workout Name: </label>
-							<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames" />
+							<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames" ng-change='vm.onWorkoutChanged()' >
+							</select>
 						</div>
                         <!-- div class="row">
                             <button ng-click="vm.addWorkout()" class="btn left">Add</button>
                         </div-->
                         <div>
-                            <table class="table">
+							<ul>
+							        <li ng-repeat="workout in vm.workouts">{{workout.result}} : {{workout.timestamp}}</li>
+							        <li ng-show="!vm.workouts.length">No records</li>
+							</ul>
+                            <!-- table class="table">
                                 <tr>
                                     <th>Name</th>
                                     <th>Result</th>
                                     <th>Date</th>
                                 </tr>
                                 <tr ng-repeat="workout in vm.workouts">
-                                    <td> {{workout.name}} </td>
                                     <td> {{workout.result}} </td>
                                     <td> {{workout.timestamp}} </td>
                                 </tr>
-                            </table>
+								<tr ng-show="!vm.workouts.length">No records</tr>                                    
+                            </table-->
                         </div>
                     </div>
                     <div class="widget-foot">

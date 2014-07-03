@@ -9,8 +9,10 @@
 
         var vm = this;
         vm.title = 'My workouts';
-        vm.workouts = [];
+        vm.workout = { };
+        vm.workouts = [];		//objects to the UI. each contains name, result and timestamp
         vm.workoutNames = [];
+        vm.onWorkoutChanged = onWorkoutChanged;
 
         activate();
 
@@ -31,6 +33,11 @@
                 //set a value, so we will not see an empty line:
                 vm.workout.name = vm.workoutNames[0];		
             });
+        }
+        
+        function onWorkoutChanged()
+        {
+        	loadWorkouts();
         }
 
     }
