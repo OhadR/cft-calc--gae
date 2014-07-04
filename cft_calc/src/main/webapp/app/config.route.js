@@ -49,7 +49,19 @@
                         content: '<i class="fa fa-lock"></i> Add Workout'
                     }
                 }
-            }, {
+            }, 
+            {
+                url: '/admin',
+                config: {
+                    title: 'Administration',
+                    templateUrl: 'app/admin/admin.html',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="fa fa-lock"></i> Administration'
+                    }
+                }
+            },
+            {
                  url: '/login',
                  config: {
                      title: 'login',
