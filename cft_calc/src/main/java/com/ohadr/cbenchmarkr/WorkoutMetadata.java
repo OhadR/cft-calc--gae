@@ -1,5 +1,7 @@
 package com.ohadr.cbenchmarkr;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 public class WorkoutMetadata
 {
 	private String    name;
@@ -11,6 +13,9 @@ public class WorkoutMetadata
 	 */
 	private boolean	  repititionBased;
 
+	
+	//for serialization (from JSON) "JsonMappingException: No suitable constructor found"
+	public WorkoutMetadata() {}
 	
 	public WorkoutMetadata(String name, 
 			String description,
@@ -54,4 +59,9 @@ public class WorkoutMetadata
 		this.repititionBased = repititionBased;
 	}
 */
+	
+	public String toString()
+	{
+		return name + ": repetitionBased? " + repititionBased;
+	}
 }

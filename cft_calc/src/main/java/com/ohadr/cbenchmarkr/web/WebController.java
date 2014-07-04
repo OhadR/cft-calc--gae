@@ -170,10 +170,18 @@ public class WebController
         }
         else
         {
-        	WorkoutMetadata workoutMetadata = null;/*= WorkoutMetadata.parseJson(workoutMetadataJson)*/;
-           	manager.addWorkout( workoutMetadata );
-
-    		response.setStatus(HttpServletResponse.SC_OK);
+        	WorkoutMetadata workoutMetadata = Utils.convertFromJson( workoutMetadataJson, WorkoutMetadata.class );
+        	if( workoutMetadata == null )
+        	{
+                log.error( "cannot convert workout metadata from JSON" );
+        		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        	}
+        	else
+        	{
+                log.info( workoutMetadata );
+               	manager.addWorkout( workoutMetadata );
+        		response.setStatus(HttpServletResponse.SC_OK);
+        	}
         }
     }
     

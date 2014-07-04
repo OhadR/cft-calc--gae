@@ -1,7 +1,10 @@
 package com.ohadr.cbenchmarkr;
 
+import com.google.appengine.api.datastore.*;
+
 import java.util.*;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.ohadr.cbenchmarkr.interfaces.IWorkoutMetadataRepository;
@@ -9,52 +12,80 @@ import com.ohadr.cbenchmarkr.interfaces.IWorkoutMetadataRepository;
 @Component
 public class WorkoutMetadataContainer implements IWorkoutMetadataRepository
 {
-	private Map<String, WorkoutMetadata> workouts = new HashMap<String, WorkoutMetadata>();
+	private static Logger log = Logger.getLogger(WorkoutMetadataContainer.class);
+
+	private static final String WORKOUTS_DB_KIND = "Workouts";
+
+	private DatastoreService datastore;
+
+	//cache:
+	private Map<String, WorkoutMetadata> workouts = null;
 	
+	
+	public WorkoutMetadataContainer()
+	{
+		datastore = DatastoreServiceFactory.getDatastoreService();
+	}
+	
+	private Map<String, WorkoutMetadata> getWorkouts()
+	{
+		if( workouts == null )
+		{
+			workouts = loadWorkoutsMetadataFromDB();
+		}
+		
+		return workouts;
+	}
 	
 	public WorkoutMetadata getWorkoutMetadataByName(String workoutName)
 	{
-		return workouts.get( workoutName );
+		return getWorkouts().get( workoutName );
 	}
 
 	@Override
 	public Set<String> getAllWorkoutsNames()
 	{
-		return workouts.keySet();
+		return getWorkouts().keySet();
 	}
 
 	@Override
 	public void addWorkoutMetadata(WorkoutMetadata workoutMetadata)
 	{
-		workouts.put( workoutMetadata.getName(), workoutMetadata );
+		getWorkouts().put( workoutMetadata.getName(), workoutMetadata );
+		updateDB( workoutMetadata );
 	}
 
 
 	
 	
-	/*********************** workouts table in GAE ************************ /
-	public Set<String> getAllWorkoutsNames()
+	/*********************** workouts table in GAE ************************/
+	private Map<String, WorkoutMetadata> loadWorkoutsMetadataFromDB()
 	{
-		log.debug("getAllWorkoutsNames()");
-		Query q = new Query(WORKOUTS_DB_KIND);
+		log.debug("getting All Workouts From DB");
+		Query q = new Query( WORKOUTS_DB_KIND );
 		PreparedQuery pq = datastore.prepare(q);  
 
-		Set<String> retVal = new HashSet<String>();
+		Map<String, WorkoutMetadata> retVal = new HashMap<String, WorkoutMetadata>();
 		
 		for (Entity entity : pq.asIterable()) 
 		{
 			String workoutName = (String) entity.getKey().getName();
+			boolean isRepititionBased = (Boolean) entity.getProperty( "isRepititionBased" );
+			String workoutDescription = (String) entity.getProperty( "description" );
 
-			retVal.add( workoutName );
+			retVal.put( workoutName, new WorkoutMetadata( workoutName, workoutDescription, isRepititionBased ) );
 		}		
 
 		return retVal;
 	}
 
-	public void addWorkoutMetadata(String workoutName) 
+	private void updateDB( WorkoutMetadata workoutMetadata ) 
 	{
-		Entity workoutEntity = new Entity(WORKOUTS_DB_KIND, workoutName );
+		log.info("updating DB with workout: " + workoutMetadata );
+		
+		Entity workoutEntity = new Entity( WORKOUTS_DB_KIND, workoutMetadata.getName() );
+		workoutEntity.setProperty( "isRepititionBased", workoutMetadata.isRepititionBased() );
 		datastore.put(workoutEntity);
 		
-	}*/
+	}
 }

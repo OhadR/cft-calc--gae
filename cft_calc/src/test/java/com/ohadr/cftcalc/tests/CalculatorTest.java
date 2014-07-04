@@ -21,7 +21,7 @@ public class CalculatorTest
 	 
 	   	GradesCalculator calc = (GradesCalculator) context.getBean("gradesCalculator");
 
-		calc.calcAveragesAndGrades();
+//		calc.calcAveragesAndGrades();
 
 //		fail("Not yet implemented");
 	}
