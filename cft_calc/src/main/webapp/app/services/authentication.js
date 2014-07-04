@@ -16,7 +16,6 @@
             restorePassword: restorePassword,
             signOut: signOut,
             currentUser: loggedInUser,
-            getMessageCount: getMessageCount
         };
 
         return service;
@@ -83,8 +82,6 @@
 
             return d.promise;
         }
-
-        function getMessageCount() { return $q.when(72); }
 
     }
 })();

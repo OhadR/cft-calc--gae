@@ -17,7 +17,17 @@
 
         return service;
 
-        function getMessageCount() { return $q.when(72); }
+        function getMessageCount() 
+        { 
+            var d = $q.defer();
+
+            var x = getPeople().
+        	then(function (data) 
+        	{
+                d.resolve( data.length );
+        	});
+            return d.promise;
+        }
 
         function getPeople()
         {
@@ -31,8 +41,7 @@
             }).success(function (data, status, headers, config) 
             {
                 d.resolve(data);
-                var people = data;
-                $q.when(people);
+                $q.when( data );
             }).error(function (data, status, headers, config) {
                 d.reject( data, status );
             });
@@ -54,9 +63,8 @@
 //                data:  '{"date":1402071766642,"result":' + result + ',"name":"cindy"}',
             }).success(function (data, status, headers, config) 
             {
-                d.resolve(data);
-                var people = data;
-                $q.when(people);
+                d.resolve( data );
+                $q.when( data );
             }).error(function (data, status, headers, config) {
                 d.reject( data, status );
             });
