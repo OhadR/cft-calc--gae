@@ -63,6 +63,7 @@ public class WebController
         try
         {
         	manager.addWorkoutForTrainee( getAuthenticatedUsername(), workout );
+			manager.calcAveragesAndGrades();
         }
         catch (BenchmarkrRuntimeException be)
         {
@@ -121,6 +122,13 @@ public class WebController
     		return;
 		}
     	String jsonResponse = Utils.convertToJson( workouts );
+    	
+    	//TODO: remove to Utils?
+        log.error( "*********************" + jsonResponse + "*");
+    	if( jsonResponse == "null" )
+    	{
+    		jsonResponse = "[]";
+    	}
         
     	response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
@@ -209,7 +217,7 @@ public class WebController
 	 * @return
 	 * @throws IOException 
 	 */
-	@RequestMapping("/calcAveragesAndGrades")
+//	@RequestMapping("/calcAveragesAndGrades")
 	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
 	{
 		log.info( "calc averages and grades" );
