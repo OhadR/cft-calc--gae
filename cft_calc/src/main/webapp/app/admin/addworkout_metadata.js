@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    var controllerId = 'addworkout';
+    var controllerId = 'adminAddWorkoutMetadata';
     angular.module('app').controller(controllerId, ['common', 'datacontext', addworkout]);
 
     function addworkout(common, datacontext) {
@@ -9,19 +9,18 @@
         var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
-        vm.title = "Add Workout";
+        vm.title = "Add Workout Metadata";
         vm.workout = { };		//input object from the form.
-        vm.onSaveWorkout = onSaveWorkout;
-        vm.workoutNames = [];
+        vm.onSaveWorkoutMetadata = onSaveWorkoutMetadata;
 
         activate();
 
 
         function activate() {
-            common.activateController( [loadWorkoutNames()], controllerId );
+            common.activateController( [], controllerId );
         }
 
-        function onSaveWorkout() 
+        function onSaveWorkoutMetadata() 
         {
             if ( !vm.workout.name ) 
             {
@@ -32,7 +31,7 @@
             }
 
             //call backend:
-            datacontext.addWorkout( vm.workout.name, vm.workout.result, vm.workout.date ).
+            datacontext.addWorkoutMetadata( vm.workout.name, vm.workout.repetitionBased, vm.workout.description ).
             then(function (loginData) 
             {
                 log( "workout " + vm.workout.name + " : " + vm.workout.result + " added");
@@ -43,16 +42,6 @@
                 vm.hasError = true;
             });
         }
-
-        function loadWorkoutNames() {
-            datacontext.getAllWorkoutsNames().
-            then(function(data) {
-                vm.workoutNames = data;
-
-                //set a value, so we will not see an empty line:
-                vm.workout.name = vm.workoutNames[0];		
-            });
-        }
-        
+   
     }
 })();

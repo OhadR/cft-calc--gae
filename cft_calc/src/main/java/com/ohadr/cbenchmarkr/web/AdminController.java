@@ -38,35 +38,29 @@ public class AdminController
     private Manager manager;
 
 
-
     @RequestMapping(value = "/secured/admin/addWorkout", method = RequestMethod.POST)
     protected void addWorkout(
-            @RequestBody String workoutMetadataJson,
+    		@RequestParam("name")    			String name,
+    		@RequestParam("isRepetitionBased")  boolean    isRepetitionBased,
+    		@RequestParam("description")    	String description,
             HttpServletResponse response) throws Exception
     {
-        log.info( "add workout: " + workoutMetadataJson);
+        log.info( "add workout: " + name);
         
         response.setContentType("text/html"); 
 
-        if( workoutMetadataJson == null || workoutMetadataJson.isEmpty() )
+        if( name == null || name.isEmpty() )
         {
             log.error( "workout cannot be null or empty" );
     		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         else
         {
-        	WorkoutMetadata workoutMetadata = Utils.convertFromJson( workoutMetadataJson, WorkoutMetadata.class );
-        	if( workoutMetadata == null )
-        	{
-                log.error( "cannot convert workout metadata from JSON" );
-        		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        	}
-        	else
-        	{
-                log.info( workoutMetadata );
-               	manager.addWorkout( workoutMetadata );
-        		response.setStatus(HttpServletResponse.SC_OK);
-        	}
+        	WorkoutMetadata workoutMetadata = new WorkoutMetadata(name, description, isRepetitionBased);
+
+        	log.info( workoutMetadata );
+           	manager.addWorkout( workoutMetadata );
+    		response.setStatus(HttpServletResponse.SC_OK);
         }
     }
 }

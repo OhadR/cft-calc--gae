@@ -131,14 +131,15 @@
         
         
         
-        function addWorkoutMetadata(workoutName, result, timestamp)
+//        called by addworkout_metadata.js
+        function addWorkoutMetadata(workoutName, repetitionBased, description)
         {
             var d = $q.defer();
 
             $http({
                 method: 'POST',
                 url: '/secured/admin/addWorkout',
-                data:  $.param({ name: workoutName, result: result, date: timestamp }),
+                data:  $.param({ name: workoutName, isRepetitionBased: repetitionBased, description: description }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) 
             {

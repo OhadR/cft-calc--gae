@@ -1,6 +1,5 @@
 package com.ohadr.cbenchmarkr;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class WorkoutMetadata
 {
@@ -11,7 +10,7 @@ public class WorkoutMetadata
 	 * workout can be reps-based (count number of perititions) or time-based (cound seconds)
 	 * this member is true if the workout is rep-based.
 	 */
-	private boolean	  repititionBased;
+	private boolean	  repetitionBased;
 
 	
 	//for serialization (from JSON) "JsonMappingException: No suitable constructor found"
@@ -19,11 +18,11 @@ public class WorkoutMetadata
 	
 	public WorkoutMetadata(String name, 
 			String description,
-			boolean repititionBased)
+			boolean repetitionBased)
 	{
 		this.name = name;
 		this.description = description;
-		this.repititionBased = repititionBased;		
+		this.repetitionBased = repetitionBased;		
 	}
 	
 	public String getName()
@@ -31,37 +30,21 @@ public class WorkoutMetadata
 		return name;
 	}
 
-/*	public void setName(String name)
-	{
-		this.name = name;
-	}
-*/
 	public String getDescription()
 	{
 		return description;
 	}
 
-/*	public void setDescription(String description)
-	{
-		this.description = description;
-	}
-*/
 	/**
 	 * @return true if the workout is rep-based.
 	 */
-	public boolean isRepititionBased()
+	public boolean isRepetitionBased()
 	{
-		return repititionBased;
+		return repetitionBased;
 	}
 
-/*	public void setRepititionBased(boolean repititionBased)
-	{
-		this.repititionBased = repititionBased;
-	}
-*/
-	
 	public String toString()
 	{
-		return name + ": repetitionBased? " + repititionBased;
+		return name + ": repetitionBased? " + repetitionBased;
 	}
 }

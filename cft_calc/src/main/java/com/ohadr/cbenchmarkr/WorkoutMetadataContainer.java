@@ -12,9 +12,12 @@ import com.ohadr.cbenchmarkr.interfaces.IWorkoutMetadataRepository;
 @Component
 public class WorkoutMetadataContainer implements IWorkoutMetadataRepository
 {
+	private static final String WORKOUTS_DB_KIND = "Workouts";
+	private static final String DESCRIPTION_PROP_NAME = "description";
+	private static final String IS_REPITITION_BASED_PROP_NAME = "isRepititionBased";
+
 	private static Logger log = Logger.getLogger(WorkoutMetadataContainer.class);
 
-	private static final String WORKOUTS_DB_KIND = "Workouts";
 
 	private DatastoreService datastore;
 
@@ -70,8 +73,8 @@ public class WorkoutMetadataContainer implements IWorkoutMetadataRepository
 		for (Entity entity : pq.asIterable()) 
 		{
 			String workoutName = (String) entity.getKey().getName();
-			boolean isRepititionBased = (Boolean) entity.getProperty( "isRepititionBased" );
-			String workoutDescription = (String) entity.getProperty( "description" );
+			boolean isRepititionBased = (Boolean) entity.getProperty( IS_REPITITION_BASED_PROP_NAME );
+			String workoutDescription = (String) entity.getProperty( DESCRIPTION_PROP_NAME );
 
 			retVal.put( workoutName, new WorkoutMetadata( workoutName, workoutDescription, isRepititionBased ) );
 		}		
@@ -84,7 +87,8 @@ public class WorkoutMetadataContainer implements IWorkoutMetadataRepository
 		log.info("updating DB with workout: " + workoutMetadata );
 		
 		Entity workoutEntity = new Entity( WORKOUTS_DB_KIND, workoutMetadata.getName() );
-		workoutEntity.setProperty( "isRepititionBased", workoutMetadata.isRepititionBased() );
+		workoutEntity.setProperty( IS_REPITITION_BASED_PROP_NAME, workoutMetadata.isRepetitionBased() );
+		workoutEntity.setProperty( DESCRIPTION_PROP_NAME, workoutMetadata.getDescription() );
 		datastore.put(workoutEntity);
 		
 	}
