@@ -153,38 +153,6 @@ public class WebController
     }
     
     
-    
-    @RequestMapping(value = "/secured/admin/addWorkout", method = RequestMethod.POST)
-    protected void addWorkout(
-            @RequestBody String workoutMetadataJson,
-            HttpServletResponse response) throws Exception
-    {
-        log.info( "add workout: " + workoutMetadataJson);
-        
-        response.setContentType("text/html"); 
-
-        if( workoutMetadataJson == null || workoutMetadataJson.isEmpty() )
-        {
-            log.error( "workout cannot be null or empty" );
-    		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-        else
-        {
-        	WorkoutMetadata workoutMetadata = Utils.convertFromJson( workoutMetadataJson, WorkoutMetadata.class );
-        	if( workoutMetadata == null )
-        	{
-                log.error( "cannot convert workout metadata from JSON" );
-        		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        	}
-        	else
-        	{
-                log.info( workoutMetadata );
-               	manager.addWorkout( workoutMetadata );
-        		response.setStatus(HttpServletResponse.SC_OK);
-        	}
-        }
-    }
-    
     @RequestMapping(value = "/getAllWorkoutsNames", method = RequestMethod.GET)
     protected void getAllWorkoutsNames(
     		HttpServletResponse response) throws Exception

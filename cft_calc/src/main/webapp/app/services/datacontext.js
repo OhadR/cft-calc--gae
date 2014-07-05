@@ -12,7 +12,8 @@
             getMessageCount: getMessageCount,
             getWorkoutHistoryForTrainee: getWorkoutHistoryForTrainee,
             getAllWorkoutsNames: getAllWorkoutsNames,
-            addWorkout: addWorkout
+            addWorkout: addWorkout,
+            addWorkoutMetadata: addWorkoutMetadata,
         };
 
         return service;
@@ -126,6 +127,28 @@
             });
 
             return d.promise;        
+        }
+        
+        
+        
+        function addWorkoutMetadata(workoutName, result, timestamp)
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/secured/admin/addWorkout',
+                data:  $.param({ name: workoutName, result: result, date: timestamp }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve( data );
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;
         }
     }
 })();
