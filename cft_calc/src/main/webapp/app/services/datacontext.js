@@ -94,20 +94,6 @@
 
             return d.promise;
 
-/*            var workouts = [
-                { date: '1402071766642', result: 100, name: 'aaa' },
-                { date: '1402071766642', result: 200, name: 'bbb' },
-                { date: '1402071766642', result: 300, name: 'ccc' },
-                { date: '1402071766642', result: 400, name: 'ddd' },
-                { date: '1402071766642', result: 500, name: 'eee' },
-                { date: '1402071766642', result: 600, name: 'fff' },
-                { date: '1402071766642', result: 700, name: 'hhh' },
-                { date: '1402071766642', result: 800, name: 'ggg' },
-                { date: '1402071766642', result: 900, name: '1313' },
-                { date: '1402071766642', result: 100, name: '2323' },
-            ];
-
-            return $q.when(workouts);*/
         }
         
         function getAllWorkoutsNames()
