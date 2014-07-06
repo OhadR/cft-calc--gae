@@ -36,7 +36,7 @@
 
         $scope.chartType = "line";
 
-        $scope.chartData = {
+        /*$scope.chartData = {
         	    series: ['Sales', 'Income', 'Expense', 'Laptops', 'Keyboards'],
         	    data: [{
         	      x: "Laptops",
@@ -52,8 +52,12 @@
         	      x: "Tablets",
         	      y: [54, 0, 879]
         	    }]
-        	  };        
+        	  };   */     
 
+        $scope.chartData = {
+        	    series: [''],
+        	    data: []
+        	  };        
 
         activate();
 
@@ -63,8 +67,22 @@
         }
 
         function loadWorkouts() {
-            datacontext.getWorkoutHistoryForTrainee( vm.workout.name ).then(function(data) {
+            datacontext.getWorkoutHistoryForTrainee( vm.workout.name ).
+            then(function(data) 
+            {
                 vm.workouts = data;
+                //update the graph:
+                $scope.chartData = {
+                	    series: [vm.workout.name],
+                	    data: []
+                	  }; 
+                var i;
+                for(i = 0; i < data.length; ++i)
+                {
+                	log(data[i].result + " / " + data[i].timestamp);
+                	$scope.chartData.data[i] = { x: data[i].timestamp, y: [data[i].result] };
+                }
+                
             });
         }
 
@@ -73,7 +91,7 @@
             then(function(data) {
                 vm.workoutNames = data;
                 //set a value, so we will not see an empty line:
-                vm.workout.name = vm.workoutNames[0];		
+//                vm.workout.name = vm.workoutNames[0];		
             });
         }
         

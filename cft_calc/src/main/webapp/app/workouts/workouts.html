@@ -7,7 +7,7 @@
                     <div class="widget-content user">
 						<div class="row">
 							<label>Workout Name: </label>
-							<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames" ng-change='vm.onWorkoutChanged()' >
+							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames" ng-change='vm.onWorkoutChanged()' >
 							</select>
 						</div>
 						<div style="height:200px"
@@ -19,7 +19,6 @@
 												  
 						<div>
 							<ul>
-							        <!-- li ng-repeat="xxx in xxxs">{{xxx}}</li-->
 							        <li ng-repeat="workout in vm.workouts">{{workout.result}} : {{workout.timestamp}}</li>
 							        <li ng-show="!vm.workouts.length">No records</li>
 							</ul>
