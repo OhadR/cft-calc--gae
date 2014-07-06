@@ -10,4 +10,9 @@ public class TimedResult
 	
 	public int result;
 	public long timestamp;	//secs from 1970
+	
+	public String toString()
+	{
+		return result + "/" + timestamp;
+	}
 }

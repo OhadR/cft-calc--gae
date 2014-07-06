@@ -123,10 +123,9 @@ public class WebController
 		}
     	String jsonResponse = Utils.convertToJson( workouts );
     	
-    	//TODO: remove to Utils?
-        log.error( "*********************" + jsonResponse + "*");
-    	if( jsonResponse == "null" )
+    	if( jsonResponse == null )
     	{
+    		//represent an emptry object:
     		jsonResponse = "[]";
     	}
         

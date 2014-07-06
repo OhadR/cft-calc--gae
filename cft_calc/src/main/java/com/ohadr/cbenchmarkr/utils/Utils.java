@@ -8,15 +8,21 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.ohadr.cbenchmarkr.Workout;
-
 public class Utils
 {
 	private static Logger log = Logger.getLogger(Utils.class);
 
-    public static <T> String convertToJson(T objectToConvert)
+    /**
+     * 
+     * @param objectToConvert
+     * @return: JSON-String that represents objectToConvert. null if objectToConvert is null.
+     */
+	public static <T> String convertToJson(T objectToConvert)
     {
-        ObjectMapper mapper = new ObjectMapper();
+        if( objectToConvert == null )
+        	return null;
+    	
+    	ObjectMapper mapper = new ObjectMapper();
         ByteArrayOutputStream bis = new ByteArrayOutputStream();
 
         String json = null;

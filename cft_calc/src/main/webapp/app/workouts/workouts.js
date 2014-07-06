@@ -17,7 +17,7 @@
         vm.onWorkoutChanged = onWorkoutChanged;
 
         $scope.config = {
-  			  title: 'revital',
+  			  title: '',
   			  tooltips: true,
   			  labels: false,
   			  mouseover: function() {},
@@ -29,8 +29,6 @@
   			    position: 'left'
   			  },
   			  innerRadius: 0, // applicable on pieCharts, can be a percentage like '50%'
-  			  totalHeight: 1001,
-  			  width: 100,
   			  lineLegend: 'lineEnd' // can be also 'traditional'
   			};
 
@@ -54,9 +52,13 @@
         	    }]
         	  };   */     
 
+        //init data, so we will not see exceptions/errors:
         $scope.chartData = {
         	    series: [''],
-        	    data: []
+        	    data: [{
+            	      x: "",
+            	      y: [0]
+            	    }]
         	  };        
 
         activate();
@@ -74,7 +76,10 @@
                 //update the graph:
                 $scope.chartData = {
                 	    series: [vm.workout.name],
-                	    data: []
+                	    data: [{
+                  	      x: "No Records for " + vm.workout.name,
+                	      y: [0]
+                	    }]
                 	  }; 
                 var i;
                 for(i = 0; i < data.length; ++i)
