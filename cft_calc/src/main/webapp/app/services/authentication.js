@@ -49,13 +49,15 @@
             return $q.when(true);
         }
 
-        function createUser(userName, password) {
+        function createUser(userName, password, firstName, lastName) {
             var d = $q.defer();
 
             $http({
                 method: 'POST',
                 url: '/rest/createAccount',
-                data:  $.param({ email: userName, password: password, confirm_password: password }),
+                data:  $.param({ email: userName, password: password, confirm_password: password, 
+                				firstName: firstName,
+                				lastName: lastName}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {
                 d.resolve();

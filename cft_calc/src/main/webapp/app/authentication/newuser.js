@@ -29,7 +29,7 @@
         {
     		log( "trying to create account..." );    
             //do not try to login, instead show a "message was sent" page
-        	auth.createUser(vm.userInfo.userName, vm.userInfo.password).then(function (loginData) {
+        	auth.createUser(vm.userInfo.userName, vm.userInfo.password, vm.userInfo.firstName, vm.userInfo.lastName).then(function (loginData) {
         		log( "account created" );    
         		$location.path('/');
              },
