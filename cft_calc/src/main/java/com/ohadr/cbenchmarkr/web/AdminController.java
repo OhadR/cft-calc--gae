@@ -63,4 +63,13 @@ public class AdminController
     		response.setStatus(HttpServletResponse.SC_OK);
         }
     }
+    
+    
+	@RequestMapping("/secured/admin/adminPing")	
+	protected void adminPing(
+			HttpServletResponse response) throws Exception{
+		log.info( "got to admin ping" );
+		response.getWriter().println("admin pong");
+	}
+    
 }
