@@ -32,20 +32,24 @@ public class Trainee implements ITrainee
 	 */
 	private double 						totalGrade;
 
-	public Trainee(String id)
+/*	public Trainee(String id)
 	{
 		this.id = id;
 		history = new HashMap<String, List<Workout>>();
 		results = new HashMap<String, Integer>();
 		
 	}
-	
+*/	
 	/**
 	 * called when item (entity) is loaded from the DB
 	 * @param id
+	 * @param lastName 
+	 * @param firstName 
 	 * @param results
 	 */
 	public Trainee(String id, 
+			String firstName,
+			String lastName, 
 			Map<String, Integer> results,
 			double totalGrade)
 	{
@@ -66,6 +70,9 @@ public class Trainee implements ITrainee
 		return results;
 	}
 
+	/**
+	 * TODO: this method never called. it supposed to reflect a user, but currently all info get through the Manager
+	 */
 	public void addWorkout(Workout workout)
 	{
 		log.info("adding workout " + workout);
