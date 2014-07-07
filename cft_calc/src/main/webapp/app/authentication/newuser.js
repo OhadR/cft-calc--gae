@@ -9,7 +9,7 @@
         var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
-        vm.title = 'Create new user';
+        vm.title = 'Sign Up';
         vm.failedCreatingUser = false;
         vm.userInfo = {
             userName: '',

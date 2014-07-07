@@ -3,11 +3,9 @@
         <form ng-submit="vm.loginUser()">
             <h1>Login to the application</h1>
             <p class="row">
-                <label for="login">Email:</label>
                 <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter you Email address" required>
             </p>
             <p class="row">
-                <label for="password">Password:</label>
                 <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your Password" required>
             </p>
             <p class="login-submit pull-right">
@@ -20,27 +18,23 @@
     </div>
 </section>
 ﻿<section data-ng-controller="newuser as vm">
-    <div class="login new-user">
+    <div class="login">
         <form ng-submit="vm.createUser()">
             <h1>{{vm.title}}</h1>
             <p class="row">
-                <label for="login">Email:</label>
-                <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter your email address" required>
+                <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Your email" required>
             </p>
             <p class="row">
-                <label for="password">Password:</label>
-                <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your password" required>
+                <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Create a password" required>
             </p>
             <p class="row">
-                <label for="firstname">First Name:</label>
-                <input type="text" name="firstname" ng-model="vm.userInfo.firstName" placeholder="Enter your first name" required>
+                <input type="text" name="firstname" ng-model="vm.userInfo.firstName" placeholder="Your first name" required>
             </p>
             <p class="row">
-                <label for="lastname">Last Name:</label>
-                <input type="text" name="lastname" ng-model="vm.userInfo.lastName" placeholder="Enter your last name" required>
+                <input type="text" name="lastname" ng-model="vm.userInfo.lastName" placeholder="Your last name" required>
             </p>
-            <p class="login-submit pull-right">
-                <button type="submit" class="login-button"></button>
+            <p class="row">
+                <button class="button primary button-block" type="submit">Sign up for benchmarkr</button>
             </p>
         </form>
     </div>
