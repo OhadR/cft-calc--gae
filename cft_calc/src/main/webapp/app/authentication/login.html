@@ -15,7 +15,32 @@
             </p>
             <p class="forgot-password">
                 <a ng-click="vm.fotgotPassword()">Forgot your password?</a>
-                <a class="pull-right" ng-click="vm.newUser()">New user? click here to join us!</a>
+            </p>
+        </form>
+    </div>
+</section>
+﻿<section data-ng-controller="newuser as vm">
+    <div class="login new-user">
+        <form ng-submit="vm.createUser()">
+            <h1>{{vm.title}}</h1>
+            <p class="row">
+                <label for="login">Email:</label>
+                <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter your email address" required>
+            </p>
+            <p class="row">
+                <label for="password">Password:</label>
+                <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your password" required>
+            </p>
+            <p class="row">
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname" ng-model="vm.userInfo.firstName" placeholder="Enter your first name" required>
+            </p>
+            <p class="row">
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" ng-model="vm.userInfo.lastName" placeholder="Enter your last name" required>
+            </p>
+            <p class="login-submit pull-right">
+                <button type="submit" class="login-button"></button>
             </p>
         </form>
     </div>

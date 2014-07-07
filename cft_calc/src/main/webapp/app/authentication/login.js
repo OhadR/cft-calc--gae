@@ -17,7 +17,7 @@
         };
         vm.loginUser = loginUser;
         vm.fotgotPassword = fotgotPassword;
-        vm.newUser = newUser;
+        //vm.newUser = newUser;
 
         activate();
 
@@ -51,6 +51,11 @@
             $location.path('/forgotpassword');
         }
 
+        
+        /**
+         * redirects to the 'create account' page.
+         * deprecated, since i have combined the login and create-account into a single page (like GitHub, Facebook, etc)
+         */
         function newUser() {
         	//log("navigating...");
             $location.path('/newuser');
