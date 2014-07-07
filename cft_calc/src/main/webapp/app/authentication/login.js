@@ -5,7 +5,8 @@
 
     function login($location, common, auth) {
         var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+        var log = 		getLogFn(controllerId);
+        var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
         vm.title = 'Login';
@@ -35,23 +36,23 @@
         }
 
         function loginUser() {
-            log( "user info - " + vm.userInfo.userName );
+        	//log( "user info - " + vm.userInfo.userName );
             auth.login(vm.userInfo.userName, vm.userInfo.password).then(function(data) {
                 $location.path('/');
                 sessionStorage.userName = vm.userInfo.userName;
                 sessionStorage.password = vm.userInfo.password;
             }, function(error) {
-            	log( "login failed for user " + vm.userInfo.userName + ": " + error );
+            	log_error( "login failed for user " + vm.userInfo.userName + ": " + error );
             });
         }
 
         function fotgotPassword() {
-            log("navigating...");
+        	//log("navigating...");
             $location.path('/forgotpassword');
         }
 
         function newUser() {
-            log("navigating...");
+        	//log("navigating...");
             $location.path('/newuser');
         }
     }

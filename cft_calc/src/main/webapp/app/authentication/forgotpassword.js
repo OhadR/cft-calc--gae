@@ -6,6 +6,7 @@
     function forgotpassword(common, auth) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
+        var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
         vm.title = 'Forgot password';
@@ -39,7 +40,7 @@
 //                $location.path('/');
             }, function(error) 
             {
-                log( "error: " + error );
+            	log_error( "error: " + error );
                 vm.hasError = true;
             	vm.failedCreatingUser = true;
             });

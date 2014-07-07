@@ -6,6 +6,7 @@
     function newUser($location, common, auth) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
+        var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
         vm.title = 'Create new user';
@@ -34,7 +35,7 @@
         		$location.path('/');
              },
              function(error) {
-            	 log( "error creating account: " + error );
+            	 log_error( "error creating account: " + error );
             	 vm.failedCreatingUser = true;
             });
         }

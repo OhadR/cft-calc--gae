@@ -7,7 +7,8 @@
     
     function workouts($scope, common, datacontext) {
         var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+        var log = 		getLogFn(controllerId);
+        var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
         vm.title = 'My workouts';
@@ -84,7 +85,7 @@
                 var i;
                 for(i = 0; i < data.length; ++i)
                 {
-                	log(data[i].result + " / " + data[i].timestamp);
+                	//log(data[i].result + " / " + data[i].timestamp);
                 	$scope.chartData.data[i] = { x: data[i].timestamp, y: [data[i].result] };
                 }
                 
