@@ -14,6 +14,9 @@ public class Trainee implements ITrainee
 	private boolean   					bMale;
 	private Date 	  					dateOfBirth;
 	
+	private String firstName;
+	private String lastName;
+	
 	/**
 	 * maps from WOD-name to the list of WODS the person did:
 	 */
@@ -57,7 +60,8 @@ public class Trainee implements ITrainee
 		history = new HashMap<String, List<Workout>>();
 		this.results = results;
 		this.totalGrade = totalGrade;
-		
+		this.firstName = firstName;
+		this.lastName = lastName;		
 	}
 
 	public String getId()
@@ -108,5 +112,17 @@ public class Trainee implements ITrainee
 			return -1;
 		}
 		return 0;
+	}
+
+	@Override
+	public String getFirstName()
+	{
+		return firstName;
+	}
+
+	@Override
+	public String getLastName()
+	{
+		return lastName;
 	}
 }

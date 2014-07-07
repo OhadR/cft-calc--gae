@@ -15,5 +15,9 @@ public interface ITrainee extends Comparable<ITrainee>
 //	void setTotalGrade(double grade);
 
 	double getTotalGrade();
+	
+	String getFirstName();
+	
+	String getLastName();
 
 }
