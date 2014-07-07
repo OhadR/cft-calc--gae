@@ -1,7 +1,7 @@
 ﻿<section data-ng-controller="login as vm">
     <div class="login">
         <form ng-submit="vm.loginUser()">
-            <h1>Login to the application</h1>
+            <h1>{{vm.title}}</h1>
             <p class="row">
                 <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter you Email address" required>
             </p>
