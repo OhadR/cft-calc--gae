@@ -22,7 +22,7 @@ public interface IRepository
 	 */
 	void addPerson(ITrainee person);
 
-	void addWorkoutForTrainee(String trainee, Workout workout);
+	void addWorkoutForTrainee(String trainee, Workout workout) throws BenchmarkrRuntimeException;
 	
 	/**
 	 * 
