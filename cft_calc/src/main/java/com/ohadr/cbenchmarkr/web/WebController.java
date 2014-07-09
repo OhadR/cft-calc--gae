@@ -218,13 +218,16 @@ public class WebController
     protected void setAdmin(
     		HttpServletResponse response) throws Exception
     {
-		if( getAuthenticatedUsername().startsWith("ohad.redlich"))
-		{
-	    	manager.setAdmin( getAuthenticatedUsername() );
-		}
-
     	response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
+
+    	if( manager.setAdmin( getAuthenticatedUsername() ) )
+	    {
+    		response.setStatus(HttpServletResponse.SC_OK);
+	    }
+	    else
+	    {
+    		response.setStatus( HttpServletResponse.SC_BAD_REQUEST );
+	    }
     }
 
 }
