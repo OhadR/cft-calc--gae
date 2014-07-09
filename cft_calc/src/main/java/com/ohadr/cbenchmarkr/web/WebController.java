@@ -213,4 +213,18 @@ public class WebController
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
+
+    @RequestMapping(value = "/setAdmin", method = RequestMethod.PUT)
+    protected void setAdmin(
+    		HttpServletResponse response) throws Exception
+    {
+		if( getAuthenticatedUsername().startsWith("ohad.redlich"))
+		{
+	    	manager.setAdmin( getAuthenticatedUsername() );
+		}
+
+    	response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+    }
+
 }

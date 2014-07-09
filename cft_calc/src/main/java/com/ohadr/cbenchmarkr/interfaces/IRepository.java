@@ -33,5 +33,7 @@ public interface IRepository
 	List<TimedResult> getWorkoutHistoryForTrainee(String trainee, String workoutName);
 	
 	void updateGradesForTrainees( Map<String, Double> gradesPerTrainee ) throws BenchmarkrRuntimeException;
+
+	void setAdmin(String authenticatedUsername);
 	
 }
