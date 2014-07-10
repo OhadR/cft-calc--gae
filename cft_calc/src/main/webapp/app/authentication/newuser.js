@@ -28,10 +28,10 @@
         
         function createUser() 
         {
-    		log( "creating account for " + vm.userInfo.userName + "..." );    
+    		//log( "creating account for " + vm.userInfo.userName + "..." );    
             //do not try to login, instead show a "message was sent" page
         	auth.createUser(vm.userInfo.userName, vm.userInfo.password, vm.userInfo.firstName, vm.userInfo.lastName).then(function (loginData) {
-        		log( "account created." );    
+        		log( "account created for user " + vm.userInfo.userName );    
         		$location.path('/');
              },
              function(error) {
