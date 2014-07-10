@@ -2,6 +2,8 @@ package com.ohadr.cftcalc.tests;
 
 import java.util.*;
 
+import org.apache.commons.lang.NotImplementedException;
+
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.interfaces.IRepository;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
@@ -69,6 +71,12 @@ public class InMemRepository implements IRepository
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setAdmin(String authenticatedUsername) 
+	{
+		throw new NotImplementedException();
 	}
 
 }
