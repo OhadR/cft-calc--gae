@@ -576,14 +576,14 @@ body, .login-submit, .login-submit:before, .login-submit:after {
   margin: 0 0 10px;
 }
 
-.login input, button, label {
+/*.login input, button, label {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: 300;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
+}*/
 
 .login input[type=text], input[type=email], input[type=password], .appl-button {
   padding: 0 10px;
