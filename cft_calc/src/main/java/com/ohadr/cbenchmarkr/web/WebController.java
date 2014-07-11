@@ -136,14 +136,11 @@ public class WebController
     }
 
     /**
-     * TODO use filters 
-     * @param json
      * @param response: json that represents the sorted list of trainees.
      * @throws IOException 
      */
     @RequestMapping(value = "/secured/getSortedTraineesByGrade", method = RequestMethod.GET)
     protected void getSortedTraineesByGrade(
-            @RequestBody String json,
             HttpServletResponse response) throws IOException 
     {
     	Collection<ITrainee> trainees = manager.getSortedTraineesByGrade();
@@ -151,7 +148,23 @@ public class WebController
     	response.getWriter().println( jsonResponse );
     }
     
-    
+
+    /**
+     * 
+     * @param workoutName
+     * @param response
+     * @throws IOException
+     * /
+    @RequestMapping(value = "/secured/getSortedTraineesByGradePerWorkout", method = RequestMethod.GET)
+    protected void getSortedTraineesByGrade(
+    		@RequestParam String workoutName,
+            HttpServletResponse response) throws IOException 
+    {
+    	Collection<ITrainee> trainees = manager.getSortedTraineesByGradePerWorkout( workoutName );
+    	String jsonResponse = Utils.convertToJson( trainees );
+    	response.getWriter().println( jsonResponse );
+    }*/
+
     @RequestMapping(value = "/getAllWorkoutsNames", method = RequestMethod.GET)
     protected void getAllWorkoutsNames(
     		HttpServletResponse response) throws Exception
