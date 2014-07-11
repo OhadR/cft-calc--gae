@@ -7,22 +7,18 @@
                         <div data-cc-widget-header title="{{vm.title}}"></div>
                         <div class="widget-content user">
                             <div class="container-fluid">
-                                <div class="row">
-                                    <label>Workout Name: </label>
-                                    <input type="text" data-ng-model="vm.workout.name" />
-							       	</select>
-							    </div>
-                                <div class="row">
-                                    <label>repetitionBased: </label>
-                                    <input type="text" data-ng-model="vm.workout.repetitionBased" />
-                                </div>
-                                <div class="row">
-                                    <label>description: </label>
-                                    <input type="text" data-ng-model="vm.workout.description" />
-                                </div>
+                                <p class="row">
+                                    <input type="text" data-ng-model="vm.workout.name" placeholder="Enter workout name" required/>
+							    </p>
+                                <p class="row">
+                                    <input type="text" data-ng-model="vm.workout.repetitionBased" placeholder="is it repetition based?" required />
+                                </p>
+                                <p class="row">
+                                    <input type="text" data-ng-model="vm.workout.description" placeholder="Enter workout description" required />
+                                </p>
                             </div>
                             <div class="container-fluid">
-                                <button type="submit">Save</button>
+                                <button type="submit" class="appl-button">Save</button>
                             </div>
                         </div>
                         <div class="widget-foot">

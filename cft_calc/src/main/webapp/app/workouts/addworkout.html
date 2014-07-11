@@ -7,18 +7,17 @@
                         <div data-cc-widget-header title="{{vm.title}}"></div>
                         <div class="widget-content user">
                             <div class="container-fluid">
-                                <div class="row">
+                                <p class="row">
                                     <label>Workout Name: </label>
 							       	<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames" />
-							    </div>
-                                <div class="row">
-                                    <label>Result: </label>
-                                    <input type="text" data-ng-model="vm.workout.result" />
-                                </div>
-                                <div class="row">
+							    </p>
+                                <p class="row">
+                                    <input type="text" data-ng-model="vm.workout.result" placeholder="Enter the result (see notes)" required/>
+                                </p>
+                                <p class="row">
                                     <label>Date: </label>
                                     <datepicker ng-model="vm.workout.date" show-weeks="false" class="well well-sm" />
-                                </div>
+                                </p>
                             </div>
                             <div class="container-fluid">
                                 <button type="submit">Save</button>
