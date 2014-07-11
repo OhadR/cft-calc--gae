@@ -3,31 +3,55 @@
         <form ng-submit="vm.onSaveWorkout()">
             <div class="container">
                 <div class="row">
-                    <div class="widget wviolet">
-                        <div data-cc-widget-header title="{{vm.title}}"></div>
-                        <div class="widget-content user">
-                            <div class="container-fluid">
-                                <p class="row">
-                                    <label>Workout Name: </label>
-							       	<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames" />
-							    </p>
-                                <p class="row">
-                                    <input type="text" data-ng-model="vm.workout.result" placeholder="Enter the result (see notes)" required/>
-                                </p>
-                                <p class="row">
-                                    <label>Date: </label>
-                                    <datepicker ng-model="vm.workout.date" show-weeks="false" class="well well-sm" />
-                                </p>
-                            </div>
-                            <div class="container-fluid">
-                                <button type="submit">Save</button>
-                            </div>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
+	                <div class="col-md-6">
+                    
+	                    <div class="widget wviolet">
+	                        <div data-cc-widget-header title="{{vm.title}}"></div>
+	                        <div class="widget-content user">
+	                            <div class="container-fluid">
+	                                <p class="row">
+	                                    <label>Workout Name: </label>
+								       	<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames" />
+								    </p>
+	                                <p class="row">
+	                                    <input type="text" data-ng-model="vm.workout.result" placeholder="Enter the result (see notes)" required/>
+	                                </p>
+	                                <p class="row">
+	                                    <label>Date: </label>
+	                                    <datepicker ng-model="vm.workout.date" show-weeks="false" class="well well-sm" />
+	                                </p>
+	                            </div>
+	                            <div class="container-fluid">
+	                                <button type="submit">Save</button>
+	                            </div>
+	                        </div>
+	                        <div class="widget-foot">
+	                            <div class="clearfix"></div>
+	                        </div>
+	                    </div>
                     </div>
+	
+	                <div class="col-md-6">
+	                    <div class="widget wred">
+	                        <div data-cc-widget-header title="Instructions"></div>
+	                           <div class="widget-content text-center text-info">
+	                            <div class="container-fluid">
+	                                <p class="row">
+	                                    <label>How to insert your data: choose the workout from the dropdown list. Important: if this is a repition-based WOD (e.g. cindy), 
+	                                    the result is the <b>number of repititions</b>. For example, if you did "cindy", 10 rounds plus 4 pullups. in this case, the result 
+	                                    is the number of total repititions: 10 rounds * 30 (5 pullups, 10 pushups and 15 squats) + 4 = 304.   
+	                                    If it is time-based WOD, the result in the <b>number of seconds</b>.</label>
+								    </p>
+	                            </div>
+	                        </div>
+	                        <div class="widget-foot">
+	                            <div class="clearfix"></div>
+	                        </div>
+	                    </div>
+                    </div>
+
                 </div>
+
             </div>
         </form>
     </section>
