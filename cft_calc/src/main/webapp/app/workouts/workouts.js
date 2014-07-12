@@ -94,7 +94,8 @@
             });
         }
 
-        function loadWorkoutNames() {
+        function loadWorkoutNames()
+        {
             datacontext.getAllWorkoutsNames().
             then(function(data) {
                 vm.workoutNames = data;

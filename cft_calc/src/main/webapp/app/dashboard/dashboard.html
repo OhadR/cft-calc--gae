@@ -57,6 +57,12 @@
                     <div class="widget wgreen">
                         <div data-cc-widget-header title="Leaderboard per-workout"
                              allow-collapse="true"></div>
+						<div class="row">
+							<label>Workout Name: </label>
+							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames" ng-change='vm.onWorkoutChanged()' >
+							</select>
+						</div>
+
                         <div class="widget-content text-center text-info">
                             <table class="table table-condensed table-striped">
                                 <thead>
@@ -68,11 +74,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-ng-repeat="p in vm.people">
+                                    <tr data-ng-repeat="p in vm.traineesPerWorkout">
                                         <td>{{$index+1}}</td>
                                         <td>{{p.firstName}}</td>
                                         <td>{{p.lastName}}</td>
-                                        <td>{{p.resultsMap.annie}}</td>
+                                        <td>{{p.result}}</td>
                                     </tr>
                                 </tbody>
                             </table>
