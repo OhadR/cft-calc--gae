@@ -26,7 +26,9 @@
             if (!auth.isUserLoggedIn) {
                 var nextPath = $location.path();
 
-                if (nextPath != '/login' && nextPath != '/forgotpassword' && nextPath != '/newuser') {
+                if (nextPath != '/login' && nextPath != '/forgotpassword' && nextPath != '/newuser'
+                	&& nextPath != '/accountCreatedSuccess') 
+                {
                     $location.path('/login');
                 }
             }

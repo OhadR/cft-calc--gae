@@ -79,6 +79,13 @@
                     title: 'new user',
                     templateUrl: 'app/authentication/newuser.html',
                 }
+            }, 
+            {
+                url: '/accountCreatedSuccess',
+                config: {
+                    title: 'account created successfully',
+                    templateUrl: 'app/authentication/accountCreatedSuccess.html',
+                }
             }
         ];
     }
