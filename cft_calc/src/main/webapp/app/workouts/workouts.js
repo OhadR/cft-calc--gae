@@ -86,7 +86,9 @@
                 for(i = 0; i < data.length; ++i)
                 {
                 	//log(data[i].result + " / " + data[i].timestamp);
-                	$scope.chartData.data[i] = { x: data[i].timestamp, y: [data[i].result] };
+                	var d = new Date( data[i].timestamp );
+                	
+                	$scope.chartData.data[i] = { x: d.toDateString(), y: [data[i].result] };
                 }
                 
             });
