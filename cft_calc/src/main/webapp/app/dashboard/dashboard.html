@@ -57,9 +57,11 @@
                     <div class="widget wgreen">
                         <div data-cc-widget-header title="Leaderboard per-workout"
                              allow-collapse="true"></div>
-						<div class="row">
-							<label>Workout Name: </label>
-							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames | orderBy:'toString()'" ng-change='vm.onWorkoutChanged()' >
+						<div>
+							<select data-ng-model="vm.workout.name" ng-init="" 
+							ng-options="w for w in vm.workoutNames | orderBy:'toString()'" 
+							ng-change='vm.onWorkoutChanged()' >
+								<option value="">choose workout...</option>
 							</select>
 						</div>
 
@@ -70,7 +72,7 @@
                                         <th>#</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Grade - annie</th>
+                                        <th>Grade - {{vm.workout.name}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

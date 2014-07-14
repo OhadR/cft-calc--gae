@@ -5,7 +5,7 @@
                 <div class="widget wviolet">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-						<div class="row">
+						<div>
 							<label>Workout Name: </label>
 							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames | orderBy:'toString()'" ng-change='vm.onWorkoutChanged()' >
 							</select>
