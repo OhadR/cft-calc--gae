@@ -1,4 +1,4 @@
-﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
     <section class="matter">
         <div class="container">
             <div class="row">
@@ -59,7 +59,7 @@
                              allow-collapse="true"></div>
 						<div class="row">
 							<label>Workout Name: </label>
-							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames" ng-change='vm.onWorkoutChanged()' >
+							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames | orderBy:'toString()'" ng-change='vm.onWorkoutChanged()' >
 							</select>
 						</div>
 
