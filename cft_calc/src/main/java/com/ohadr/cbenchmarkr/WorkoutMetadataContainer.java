@@ -54,8 +54,9 @@ public class WorkoutMetadataContainer implements IWorkoutMetadataRepository
 	@Override
 	public void addWorkoutMetadata(WorkoutMetadata workoutMetadata)
 	{
-		getWorkouts().put( workoutMetadata.getName(), workoutMetadata );
 		updateDB( workoutMetadata );
+		//force refreshing of cache from DB:
+		workouts = null;
 	}
 
 
