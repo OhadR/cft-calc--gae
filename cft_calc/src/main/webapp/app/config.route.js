@@ -86,6 +86,13 @@
                     title: 'account created successfully',
                     templateUrl: 'app/authentication/accountCreatedSuccess.html',
                 }
+            },
+            {
+                url: '/accountLocked',
+                config: {
+                    title: 'account locked',
+                    templateUrl: 'app/authentication/accountLocked.html',
+                }
             }
         ];
     }
