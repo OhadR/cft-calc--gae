@@ -41,8 +41,17 @@
                 $location.path('/');
                 sessionStorage.userName = vm.userInfo.userName;
                 sessionStorage.password = vm.userInfo.password;
-            }, function(error) {
-            	log_error( "login failed for user " + vm.userInfo.userName + ": " + error );
+            }, function(error) 
+            {
+            	if( error == 423 )	//locked
+            	{
+            		//handle account lockout = redirect:
+                    $location.path('/accountLocked');
+            	}
+            	else
+            	{
+            		log_error( "login failed for user " + vm.userInfo.userName + ": " + error );
+            	}            	
             });
         }
 
