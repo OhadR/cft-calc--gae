@@ -1,27 +1,20 @@
 ﻿<section data-ng-controller="login as vm">
     <div class="login">
         <form ng-submit="vm.loginUser()">
-            <h1>{{vm.title}}</h1>
+            <!-- h1>{{vm.title}}</h1 -->
             <p class="row">
                 <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter you Email address" required>
-            </p>
-            <p class="row">
                 <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your Password" required>
+                <button class="appl-button signup primary button-block" type="submit">Sign in</button>
             </p>
-            <!-- p class="login-submit pull-right">
-                <button type="submit" class="login-button">Login</button>
-            </p-->
             <p class="forgot-password">
                 <a ng-click="vm.fotgotPassword()">Forgot your password?</a>
-            </p>
-            <p class="row">
-                <button class="appl-button signup primary button-block" type="submit">Sign in</button>
             </p>
         </form>
     </div>
 </section>
 ﻿<section data-ng-controller="newuser as vm">
-    <div class="login">
+    <div class="login signup">
         <form ng-submit="vm.createUser()">
             <h1>{{vm.title}}</h1>
             <p class="row">
