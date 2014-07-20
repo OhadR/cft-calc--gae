@@ -53,13 +53,21 @@
         {
         	//do not call backend again - we have data in vm.people. just filter it.
 
-        	vm.traineesPerWorkout = vm.people;
+        	//clean the table:
+        	vm.traineesPerWorkout = [];
+        	
         	angular.forEach( vm.people, function(value, key)
         	{
-        		vm.traineesPerWorkout[key].firstName = value.firstName;
-        		vm.traineesPerWorkout[key].lastName = value.lastName;
+        		//get the result-map of this trainee:
         		var resultsMap = value.resultsMap;
-           		vm.traineesPerWorkout[key].result = resultsMap[vm.workout.name];
+           		var result = resultsMap[vm.workout.name];
+           		if( result > 0 )
+           		{
+           			vm.traineesPerWorkout[key] = [];
+               		vm.traineesPerWorkout[key].firstName = value.firstName;
+            		vm.traineesPerWorkout[key].lastName = value.lastName;
+               		vm.traineesPerWorkout[key].result = result;
+           		}
         	});
         }
         
