@@ -55,6 +55,7 @@
 
         	//clean the table:
         	vm.traineesPerWorkout = [];
+        	var index = 0;
         	
         	angular.forEach( vm.people, function(value, key)
         	{
@@ -63,13 +64,28 @@
            		var result = resultsMap[vm.workout.name];
            		if( result > 0 )
            		{
-           			vm.traineesPerWorkout[key] = [];
-               		vm.traineesPerWorkout[key].firstName = value.firstName;
-            		vm.traineesPerWorkout[key].lastName = value.lastName;
-               		vm.traineesPerWorkout[key].result = result;
+           			vm.traineesPerWorkout[index] = [];
+               		vm.traineesPerWorkout[index].firstName = value.firstName;
+            		vm.traineesPerWorkout[index].lastName = value.lastName;
+               		vm.traineesPerWorkout[index].result = result;
+               		++index;
            		}
         	});
+        	
+        	//sort by the result:
+        	vm.traineesPerWorkout.sort( compare );
         }
+        
+        function compare(a,b) 
+        {
+        	  if (a.result < b.result)
+        	     return -1;
+        	  if (a.result > b.result)
+        	    return 1;
+        	  return 0;
+        }
+
+        	
         
         
         
