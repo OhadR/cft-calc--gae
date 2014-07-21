@@ -10,6 +10,7 @@
         var service = {
             getPeople: getPeople,
             getMessageCount: getMessageCount,
+            getRegisteredUsers: getRegisteredUsers,
             getWorkoutHistoryForTrainee: getWorkoutHistoryForTrainee,
             getAllWorkoutsNames: getAllWorkoutsNames,
             addWorkout: addWorkout,
@@ -50,7 +51,57 @@
             return d.promise;
         }
         
+        function getRegisteredUsers()
+        {
+            var d = $q.defer();
 
+            $http({
+                method: 'GET',
+                url: '/getNumberOfRegisteredUsers',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;
+        }
+        
+        /**
+         * get the # of workouts-results entered by trainees. not history, only 'recent' that we
+         * use for calculations.
+         */
+        function getRegisteredWorkouts() 
+        { 
+            var d = $q.defer();
+
+            var x = getPeople().
+        	then(function (data) 
+        	{
+            	angular.forEach( data, function(value, key)
+                    	{//TODO - fix logic here
+                    		//get the result-map of this trainee:
+                    		var resultsMap = value.resultsMap;
+                       		var result = resultsMap[vm.workout.name];
+                       		if( result > 0 )
+                       		{
+                       			vm.traineesPerWorkout[index] = [];
+                           		vm.traineesPerWorkout[index].firstName = value.firstName;
+                        		vm.traineesPerWorkout[index].lastName = value.lastName;
+                           		vm.traineesPerWorkout[index].result = result;
+                           		++index;
+                       		}
+                    	});
+
+        		
+        		d.resolve( data.length );
+        	});
+            return d.promise;
+        }
+        
         function addWorkout(workoutName, result, timestamp)
         {
             var d = $q.defer();

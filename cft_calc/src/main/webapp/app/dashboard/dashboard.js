@@ -28,7 +28,7 @@
         }
 
         function getMessageCount() {
-            return datacontext.getMessageCount().then(function (data) {
+            return datacontext.getRegisteredUsers().then(function (data) {
                 return vm.messageCount = data;
             });
         }
