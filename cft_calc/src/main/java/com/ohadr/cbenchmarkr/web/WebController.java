@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.Workout;
+import com.ohadr.cbenchmarkr.WorkoutMetadata;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 import com.ohadr.cbenchmarkr.utils.Utils;
@@ -169,6 +170,15 @@ public class WebController
     		HttpServletResponse response) throws Exception
     {
     	Set<String> workouts = manager.getAllWorkoutsNames();
+    	String jsonResponse = Utils.convertToJson( workouts );
+    	response.getWriter().println( jsonResponse );    	
+    }
+
+    @RequestMapping(value = "/getAllWorkoutsMetadata", method = RequestMethod.GET)
+    protected void getAllWorkoutsMetadata(
+    		HttpServletResponse response) throws Exception
+    {
+    	Collection<WorkoutMetadata> workouts = manager.getAllWorkoutsMetadata();
     	String jsonResponse = Utils.convertToJson( workouts );
     	response.getWriter().println( jsonResponse );    	
     }

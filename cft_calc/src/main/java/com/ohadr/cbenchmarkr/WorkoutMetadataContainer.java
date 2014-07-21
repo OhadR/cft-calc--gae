@@ -52,6 +52,13 @@ public class WorkoutMetadataContainer implements IWorkoutMetadataRepository
 	}
 
 	@Override
+	public Collection<WorkoutMetadata> getAllWorkoutsMetadata() 
+	{
+        log.debug( "getAllWorkoutsMetadata()" );
+		return getWorkouts().values();
+	}
+
+	@Override
 	public void addWorkoutMetadata(WorkoutMetadata workoutMetadata)
 	{
 		updateDB( workoutMetadata );
