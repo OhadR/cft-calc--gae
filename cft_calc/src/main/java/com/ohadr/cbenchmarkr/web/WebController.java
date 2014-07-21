@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +60,7 @@ public class WebController
 
         try
         {
-        	manager.addWorkoutForTrainee( getAuthenticatedUsername(), workout );
+        	manager.addWorkoutForTrainee( Utils.getAuthenticatedUsername(), workout );
 			manager.calcAveragesAndGrades();
         }
         catch (BenchmarkrRuntimeException be)
@@ -112,7 +110,7 @@ public class WebController
     	List<TimedResult> workouts = null;
 		try
 		{
-			workouts = manager.getWorkoutHistoryForTrainee( getAuthenticatedUsername(), json);
+			workouts = manager.getWorkoutHistoryForTrainee( Utils.getAuthenticatedUsername(), json);
 		} 
 		catch (BenchmarkrRuntimeException be)
 		{
@@ -191,22 +189,21 @@ public class WebController
 		response.getWriter().println("ping response: pong");
 	}
 	
-	@RequestMapping("/secured/ping")	
+    @RequestMapping(value = "/getNumberOfRegisteredUsers", method = RequestMethod.GET)
+	protected void getNumberOfRegisteredUsers(
+			HttpServletResponse response) throws Exception
+	{
+    	int numberOfRegisteredUsers = manager.getNumberOfRegisteredUsers();
+		response.getWriter().println(  numberOfRegisteredUsers );
+	}
+
+    @RequestMapping("/secured/ping")	
 	protected void securedPing(
 			HttpServletResponse response) throws Exception{
 		log.info( "got to secured ping" );
 		response.getWriter().println("secured ping response: pong");
 	}
 
-
-	private String getAuthenticatedUsername()
-	{
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); //get logged in username
-		log.info( "logged in user: " + name );
-		return name;
-	}
-	
 
 	/**
 	 * called by a cron job.
@@ -236,20 +233,5 @@ public class WebController
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
 
-    @RequestMapping(value = "/setAdmin", method = RequestMethod.PUT)
-    protected void setAdmin(
-    		HttpServletResponse response) throws Exception
-    {
-    	response.setContentType("text/html"); 
-
-    	if( manager.setAdmin( getAuthenticatedUsername() ) )
-	    {
-    		response.setStatus(HttpServletResponse.SC_OK);
-	    }
-	    else
-	    {
-    		response.setStatus( HttpServletResponse.SC_BAD_REQUEST );
-	    }
-    }
 
 }

@@ -4,9 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class Utils
 {
@@ -59,4 +59,14 @@ public class Utils
 		}
         return t;
     }
+    
+    
+	public static String getAuthenticatedUsername()
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+		log.info( "logged in user: " + name );
+		return name;
+	}
+    
 }
