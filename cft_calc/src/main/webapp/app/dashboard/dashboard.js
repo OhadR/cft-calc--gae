@@ -12,7 +12,8 @@
             title: 'my area',
             description: 'Hot Towel Angular is a SPA template for Angular developers.'
         };
-        vm.messageCount = 0;
+        vm.registeredResults = 0;
+        vm.registeredUsers = 0;
         vm.people = [];
         vm.title = 'Leaderboard';
         vm.resultMapPerWorkoutIndex = '';
@@ -22,14 +23,20 @@
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople(), loadWorkoutNames()];
+            var promises = [getRegisteredUsers(), getRegisteredResults(), getPeople(), loadWorkoutNames()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
 
-        function getMessageCount() {
+        function getRegisteredUsers() {
             return datacontext.getRegisteredUsers().then(function (data) {
-                return vm.messageCount = data;
+                return vm.registeredUsers = data;
+            });
+        }
+
+        function getRegisteredResults() {
+            return datacontext.getMessageCount().then(function (data) {
+                return vm.registeredResults = data;
             });
         }
 

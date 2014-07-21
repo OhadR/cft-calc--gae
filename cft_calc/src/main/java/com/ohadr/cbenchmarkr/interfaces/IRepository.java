@@ -35,5 +35,7 @@ public interface IRepository
 	void updateGradesForTrainees( Map<String, Double> gradesPerTrainee ) throws BenchmarkrRuntimeException;
 
 	void setAdmin(String authenticatedUsername);
+
+	int getNumberOfRegisteredUsers();
 	
 }
