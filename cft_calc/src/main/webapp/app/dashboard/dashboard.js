@@ -81,6 +81,11 @@
         	
         	//sort by the result:
         	vm.traineesPerWorkout.sort( compare );
+        	
+        	if( vm.workout.repetitionBased )
+        	{
+        		vm.traineesPerWorkout.reverse();
+        	}
         }
         
         function compare(a,b) 
