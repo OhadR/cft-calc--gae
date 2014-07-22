@@ -13,6 +13,7 @@
             getRegisteredUsers: getRegisteredUsers,
             getWorkoutHistoryForTrainee: getWorkoutHistoryForTrainee,
             getAllWorkoutsNames: getAllWorkoutsNames,
+            getAllWorkoutsMetadata: getAllWorkoutsMetadata,
             addWorkout: addWorkout,
             addWorkoutMetadata: addWorkoutMetadata,
         };
@@ -165,6 +166,25 @@
 
             return d.promise;        
         }
+        
+        function getAllWorkoutsMetadata()
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/getAllWorkoutsMetadata',
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;        
+        }
+        
         
         
         

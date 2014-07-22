@@ -71,10 +71,10 @@
                         <div data-cc-widget-header title="Leaderboard per-workout"
                              allow-collapse="true"></div>
 						<div>
-							<select data-ng-model="vm.workout.name" ng-init="" 
-							ng-options="w for w in vm.workoutNames | orderBy:'toString()'" 
+							<select data-ng-model="vm.workout" ng-init="" 
+							ng-options="w.name for w in vm.workoutNames | orderBy:'toString()'" 
 							ng-change='vm.onWorkoutChanged()' >
-								<option value="">choose workout...</option>
+								<!-- option value="">choose workout...</option-->
 							</select>
 						</div>
 

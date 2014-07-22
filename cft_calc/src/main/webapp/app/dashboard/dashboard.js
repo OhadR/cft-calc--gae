@@ -49,7 +49,7 @@
 
         function loadWorkoutNames() 
         {
-            datacontext.getAllWorkoutsNames().
+            datacontext.getAllWorkoutsMetadata().
             then(function(data) 
             {
                 vm.workoutNames = data;
