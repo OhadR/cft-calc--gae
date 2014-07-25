@@ -93,6 +93,13 @@
                     title: 'account locked',
                     templateUrl: 'app/authentication/accountLocked.html',
                 }
+            },
+            {
+                url: '/accountActivated',
+                config: {
+                    title: 'account activated',
+                    templateUrl: 'app/authentication/accountActivated.html',
+                }
             }
         ];
     }

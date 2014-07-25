@@ -28,7 +28,8 @@
 
                 if (nextPath != '/login' && nextPath != '/forgotpassword' && nextPath != '/newuser'
                 	&& nextPath != '/accountCreatedSuccess'
-                	&& nextPath != '/accountLocked') 
+                	&& nextPath != '/accountLocked'
+                	&& nextPath != '/accountActivated') 
                 {
                     $location.path('/login');
                 }
