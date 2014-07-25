@@ -83,7 +83,7 @@
 
 	<!--bean class="com.ohadr.auth_flows.core.jdbc.JdbcAuthenticationPolicyRepositoryImpl" / -->
 	<bean
-		class="com.ohadr.auth_flows.mocks.MockAuthenticationPolicyRepositoryImpl" />
+		class="com.ohadr.auth_flows.core.AuthenticationPolicyRepositoryFileImpl" />
 
 
 
