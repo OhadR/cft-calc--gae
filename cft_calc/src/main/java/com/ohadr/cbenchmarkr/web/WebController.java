@@ -210,8 +210,8 @@ public class WebController
 	 * @param request
 	 * @return
 	 * @throws IOException 
-	 */
-//	@RequestMapping("/calcAveragesAndGrades")
+	 * /
+	@RequestMapping("/calcAveragesAndGrades")
 	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
 	{
 		log.info( "calc averages and grades" );
@@ -232,6 +232,7 @@ public class WebController
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
+	*/
 
 
 }
