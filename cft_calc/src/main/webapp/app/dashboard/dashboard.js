@@ -42,7 +42,11 @@
 
         function getPeople() {
             return datacontext.getPeople().then(function (data) {
-                return vm.people = data;
+                vm.people = data;
+            	//sort by the result:
+            	vm.people.sort( compareByTotalGrade );
+        		vm.people.reverse();
+            	return vm.people;                
             });
         }
         
@@ -80,7 +84,7 @@
         	});
         	
         	//sort by the result:
-        	vm.traineesPerWorkout.sort( compare );
+        	vm.traineesPerWorkout.sort( compareByResult );
         	
         	vm.workout.units = 'secs';
         	if( vm.workout.repetitionBased )
@@ -90,11 +94,20 @@
         	}
         }
         
-        function compare(a,b) 
+        function compareByResult(a,b) 
         {
         	  if (a.result < b.result)
         	     return -1;
         	  if (a.result > b.result)
+        	    return 1;
+        	  return 0;
+        }
+
+        function compareByTotalGrade(a,b) 
+        {
+        	  if (a.totalGrade < b.totalGrade)
+        	     return -1;
+        	  if (a.totalGrade > b.totalGrade)
         	    return 1;
         	  return 0;
         }
