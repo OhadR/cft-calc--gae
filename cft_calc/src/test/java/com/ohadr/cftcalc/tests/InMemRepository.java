@@ -79,4 +79,11 @@ public class InMemRepository implements IRepository
 		throw new NotImplementedException();
 	}
 
+	@Override
+	public int getNumberOfRegisteredUsers()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
