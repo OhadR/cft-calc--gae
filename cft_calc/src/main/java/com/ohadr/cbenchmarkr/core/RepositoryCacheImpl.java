@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
@@ -23,6 +24,7 @@ public class RepositoryCacheImpl implements IRepository
 	private Map<String, ITrainee> 	trainees = new HashMap<String, ITrainee>();
 
 	@Autowired
+	@Qualifier("GAERepositoryImpl")
 	private IRepository		repository;
 
 	@Override
