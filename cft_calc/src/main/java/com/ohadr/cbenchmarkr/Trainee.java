@@ -20,6 +20,7 @@ public class Trainee implements ITrainee
 	
 	/**
 	 * maps from WOD-name to the list of WODS the person did:
+	 * The history is not loaded from DB like the results, but instead it is loaded lazily.
 	 */
 	private Map<String, List<Workout>>  history;
 	
@@ -58,7 +59,6 @@ public class Trainee implements ITrainee
 			double totalGrade)
 	{
 		this.id = id;
-		history = new HashMap<String, List<Workout>>();
 		this.results = results;
 		this.totalGrade = totalGrade;
 		this.firstName = firstName;
@@ -80,7 +80,7 @@ public class Trainee implements ITrainee
 	{
 		List<TimedResult> retVal = new ArrayList<TimedResult>();
 		
-		List<Workout> workoutResults = history.get( workoutName );
+		List<Workout> workoutResults = getHistory().get( workoutName );
 		for( Workout workoutResult : workoutResults )
 		{
 			TimedResult tr = new TimedResult(
@@ -89,6 +89,26 @@ public class Trainee implements ITrainee
 			retVal.add( tr );
 		}
 		return retVal;
+	}
+
+	private Map<String, List<Workout>> getHistory()
+	{
+		if( history == null )
+		{
+			history = loadTraineesHistoryFromDB(); 
+		}
+		return history;
+	}
+
+	private Map<String, List<Workout>> loadTraineesHistoryFromDB()
+	{
+		log.info("loading history from DB");
+		
+		Map<String, List<Workout>> retVal = new HashMap<String, List<Workout>>();
+		Collection<ITrainee> repoResult = repository.getWorkoutHistoryForTrainee();
+
+		return retVal;
+		
 	}
 
 	/**

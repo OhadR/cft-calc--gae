@@ -123,5 +123,24 @@ public class RepositoryCacheImpl implements IRepository
 
 	
 
+	private Map<String, List<Workout>> getHistory()
+	{
+		if( history == null )
+		{
+			history = loadTraineesHistoryFromDB(); 
+		}
+		return history;
+	}
+
+	private List<Workout> loadTraineesHistoryFromDB()
+	{
+		log.info("loading history from DB");
+		
+		List<Workout> retVal = new ArrayList<Workout>();
+		Collection<ITrainee> repoResult = repository.getWorkoutHistoryForTrainee( trainee, );
+
+		return retVal;
+		
+	}
 
 }
