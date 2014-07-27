@@ -11,12 +11,6 @@ public interface IRepository
 	Collection<ITrainee> getAllTrainees();
 
 	/**
-	 * get all workouts 
-	 * @return
-	 */
-	List<Workout> getAllWorkouts();
-
-	/**
 	 * when a new user activates his new account, call this method and add a new entry for this user
 	 * @param personA
 	 */

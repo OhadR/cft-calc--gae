@@ -5,6 +5,7 @@ import java.util.*;
 import org.apache.log4j.Logger;
 
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
+import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public class Trainee implements ITrainee
 {
@@ -74,6 +75,22 @@ public class Trainee implements ITrainee
 		return results;
 	}
 
+	@Override
+	public List<TimedResult> getWorkoutHistory(String workoutName) 
+	{
+		List<TimedResult> retVal = new ArrayList<TimedResult>();
+		
+		List<Workout> workoutResults = history.get( workoutName );
+		for( Workout workoutResult : workoutResults )
+		{
+			TimedResult tr = new TimedResult(
+					workoutResult.getResult(),
+					workoutResult.getDate().getTime() );
+			retVal.add( tr );
+		}
+		return retVal;
+	}
+
 	/**
 	 * TODO: this method never called. it supposed to reflect a user, but currently all info get through the Manager
 	 */
@@ -97,7 +114,7 @@ public class Trainee implements ITrainee
 	}
 
 	/**
-	 * we comare two trainees by their total-grade:
+	 * we compare two trainees by their total-grade:
 	 */
 	@Override
 	public int compareTo(ITrainee o)

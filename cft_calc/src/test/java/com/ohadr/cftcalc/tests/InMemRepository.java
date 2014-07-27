@@ -13,8 +13,6 @@ public class InMemRepository implements IRepository
 {
 	private List<ITrainee> persons = new ArrayList<ITrainee>();
 
-	private Set<String> workoutsNames = new HashSet<String>();
-
 	public InMemRepository()
 	{
 		init();
@@ -24,25 +22,9 @@ public class InMemRepository implements IRepository
 	{
 	}
 
-	public List<Workout> getAllWorkouts()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Set<String> getAllWorkoutsNames()
-	{
-		return workoutsNames;
-	}
-
 	public void addPerson(ITrainee person)
 	{
 		persons.add( person );
-	}
-
-	public void addWorkout(String workout)
-	{
-		workoutsNames.add( workout );
 	}
 
 	@Override
