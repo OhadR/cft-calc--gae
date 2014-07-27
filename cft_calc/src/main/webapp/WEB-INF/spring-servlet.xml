@@ -70,10 +70,8 @@
 		<constructor-arg value="256" />
 	</bean>
 
-	<bean id="authenticationFailureHandler" class="com.ohadr.auth_flows.core.AuthenticationFailureHandler">
-		<!-- constructor-arg value="/login/login.htm?login_error=1" /-->
-		<property name="accountLockedUrl" value="/login/accountLocked.htm" />
-	</bean>
+	<!-- the prop 'accountLockedUrl' is irrelevant when working with REST -->
+	<bean id="authenticationFailureHandler" class="com.ohadr.auth_flows.core.AuthenticationFailureHandler" />
 
 
 	<!-- decide how you wanna work: in-mem repo, or jdbc impl: -->
