@@ -28,7 +28,7 @@ public class InMemRepository implements IRepository
 	}
 
 	@Override
-	public Collection<ITrainee> getAllTrainees()
+	public List<ITrainee> getAllTrainees()
 	{
 		return persons;
 	}

@@ -8,7 +8,7 @@ import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public interface IRepository
 {
-	Collection<ITrainee> getAllTrainees();
+	List<ITrainee> getAllTrainees();
 
 	/**
 	 * when a new user activates his new account, call this method and add a new entry for this user

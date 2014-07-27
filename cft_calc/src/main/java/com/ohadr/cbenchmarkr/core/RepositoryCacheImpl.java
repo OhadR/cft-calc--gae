@@ -1,5 +1,6 @@
 package com.ohadr.cbenchmarkr.core;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -28,18 +29,22 @@ public class RepositoryCacheImpl implements IRepository
 	private IRepository		repository;
 
 	@Override
-	public Collection<ITrainee> getAllTrainees() 
+	public List<ITrainee> getAllTrainees() 
 	{
-		if( trainees == null )
+		//usually 'values()' is of type HashMap.Values. so we need to convert, in order to sort, later on:
+		List<ITrainee> retVal = new ArrayList<ITrainee>();
+		for( ITrainee trainee : getTrainees().values() )
 		{
-			trainees = loadTraineesFromDB();
+			retVal.add( trainee );
 		}
-		return trainees.values();
+		return retVal;
 	}
 
 
 	private Map<String, ITrainee> loadTraineesFromDB() 
 	{
+		log.info("loading cache from DB");
+
 		Map<String, ITrainee> retVal = new HashMap<String, ITrainee>();
 		Collection<ITrainee> repoResult = repository.getAllTrainees();
 		for( ITrainee trainee : repoResult )
@@ -73,11 +78,15 @@ public class RepositoryCacheImpl implements IRepository
 		trainees = null;
 	}
 
+	/**
+	 * this impl is dependent on Trainee impl. In contrary to GEAImpl, where the data is read from DB and directly sent back to manager
+	 */
 	@Override
 	public List<TimedResult> getWorkoutHistoryForTrainee(String traineeId,
 			String workoutName) 
 	{
-		ITrainee trainee = trainees.get( traineeId );
+		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
+		ITrainee trainee = getTrainees().get( traineeId );
 		return trainee.getWorkoutHistory( workoutName );
 	}
 
@@ -99,7 +108,20 @@ public class RepositoryCacheImpl implements IRepository
 	@Override
 	public int getNumberOfRegisteredUsers() 
 	{
-		return trainees.size();
+		return getTrainees().size();
 	}
+
+
+	private synchronized Map<String, ITrainee> getTrainees()
+	{
+		if( trainees == null )
+		{
+			trainees = loadTraineesFromDB();
+		}
+		return trainees;
+	}
+
+	
+
 
 }
