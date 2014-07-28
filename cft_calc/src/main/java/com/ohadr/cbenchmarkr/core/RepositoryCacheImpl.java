@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,8 @@ public class RepositoryCacheImpl implements IRepository
 	}
 
 	/**
-	 * this impl is dependent on Trainee impl. In contrary to GEAImpl, where the data is read from DB and directly sent back to manager
+	 * this impl is dependent on Trainee impl. In contrary to GEAImpl, where the 
+	 * data is read from DB and directly sent back to manager
 	 */
 	@Override
 	public List<TimedResult> getWorkoutHistoryForTrainee(String traineeId,
@@ -87,7 +89,24 @@ public class RepositoryCacheImpl implements IRepository
 	{
 		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
 		ITrainee trainee = getTrainees().get( traineeId );
-		return trainee.getWorkoutHistory( workoutName );
+		Map<String, List<TimedResult>> history = trainee.getHistory();
+		if( history == null )
+		{
+			history = loadTraineesHistoryFromDB( traineeId );
+			trainee.setHistory( history );
+		}
+		List<TimedResult> timedResults = history.get( workoutName );
+		return timedResults;
+	}
+
+	private Map<String, List<TimedResult>> loadTraineesHistoryFromDB( String traineeId )
+	{
+		log.info("loading history from DB");
+		
+		Map<String, List<TimedResult>> repoResult = repository.getHistoryForTrainee( traineeId );
+
+		return repoResult;
+		
 	}
 
 	@Override
@@ -123,24 +142,18 @@ public class RepositoryCacheImpl implements IRepository
 
 	
 
-	private Map<String, List<Workout>> getHistory()
+	@Override
+	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
 	{
+		log.debug( "getHistoryForTrainee for " + traineeId );
+		ITrainee trainee = getTrainees().get( traineeId );
+		Map<String, List<TimedResult>> history = trainee.getHistory();
 		if( history == null )
 		{
-			history = loadTraineesHistoryFromDB(); 
+			history = loadTraineesHistoryFromDB( traineeId );
+			trainee.setHistory( history );
 		}
 		return history;
-	}
-
-	private List<Workout> loadTraineesHistoryFromDB()
-	{
-		log.info("loading history from DB");
-		
-		List<Workout> retVal = new ArrayList<Workout>();
-		Collection<ITrainee> repoResult = repository.getWorkoutHistoryForTrainee( trainee, );
-
-		return retVal;
-		
 	}
 
 }

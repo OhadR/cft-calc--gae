@@ -25,7 +25,15 @@ public interface IRepository
 	 * @return list of TimedResult elements. Per the requested workout, each element reperesents the date and the result.
 	 */
 	List<TimedResult> getWorkoutHistoryForTrainee(String trainee, String workoutName);
-	
+
+	/**
+	 * 
+	 * @param trainee
+	 * @return map from WOD-name, to a list of TimedResult elements. For each 
+	 * workout, each element reperesents the date and the result.
+	 */
+	Map< String, List<TimedResult> > getHistoryForTrainee( String traineeId );
+
 	void updateGradesForTrainees( Map<String, Double> gradesPerTrainee ) throws BenchmarkrRuntimeException;
 
 	void setAdmin(String authenticatedUsername);

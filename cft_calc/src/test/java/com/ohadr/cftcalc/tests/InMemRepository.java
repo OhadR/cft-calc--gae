@@ -68,4 +68,10 @@ public class InMemRepository implements IRepository
 		return 0;
 	}
 
+	@Override
+	public Map<String, List<TimedResult>> getHistoryForTrainee(String trainee) 
+	{
+		throw new NotImplementedException();
+	}
+
 }

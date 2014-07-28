@@ -22,7 +22,7 @@ public class Trainee implements ITrainee
 	 * maps from WOD-name to the list of WODS the person did:
 	 * The history is not loaded from DB like the results, but instead it is loaded lazily.
 	 */
-	private Map<String, List<Workout>>  history;
+	private Map<String, List<TimedResult>>  history;
 	
 	/**
 	 * maps from WOD-name to the results:
@@ -80,36 +80,17 @@ public class Trainee implements ITrainee
 	{
 		List<TimedResult> retVal = new ArrayList<TimedResult>();
 		
-		List<Workout> workoutResults = getHistory().get( workoutName );
-		for( Workout workoutResult : workoutResults )
-		{
-			TimedResult tr = new TimedResult(
-					workoutResult.getResult(),
-					workoutResult.getDate().getTime() );
-			retVal.add( tr );
-		}
+//		List<TimedResult> workoutResults = getHistory().get( workoutName );
+//		for( Workout workoutResult : workoutResults )
+//		{
+//			TimedResult tr = new TimedResult(
+//					workoutResult.getResult(),
+//					workoutResult.getDate().getTime() );
+//			retVal.add( tr );
+//		}
 		return retVal;
 	}
 
-	private Map<String, List<Workout>> getHistory()
-	{
-		if( history == null )
-		{
-			history = loadTraineesHistoryFromDB(); 
-		}
-		return history;
-	}
-
-	private Map<String, List<Workout>> loadTraineesHistoryFromDB()
-	{
-		log.info("loading history from DB");
-		
-		Map<String, List<Workout>> retVal = new HashMap<String, List<Workout>>();
-		Collection<ITrainee> repoResult = repository.getWorkoutHistoryForTrainee();
-
-		return retVal;
-		
-	}
 
 	/**
 	 * TODO: this method never called. it supposed to reflect a user, but currently all info get through the Manager
@@ -117,13 +98,13 @@ public class Trainee implements ITrainee
 	public void addWorkout(Workout workout)
 	{
 		log.info("adding workout " + workout);
-		List<Workout> workouts = history.get( workout.getName() );
+		List<TimedResult> workouts = history.get( workout.getName() );
 		if( workouts == null )
 		{
-			workouts = new ArrayList<Workout>();
+			workouts = new ArrayList<TimedResult>();
 			history.put( workout.getName(), workouts );			
 		}
-		workouts.add( workout );
+//		workouts.add( workout );
 		
 		results.put( workout.getName(), workout.getResult() );			
 	}
@@ -161,5 +142,17 @@ public class Trainee implements ITrainee
 	public String getLastName()
 	{
 		return lastName;
+	}
+
+	@Override
+	public Map<String, List<TimedResult>> getHistory() 
+	{
+		return history;
+	}
+
+	@Override
+	public void setHistory(Map<String, List<TimedResult>> history) 
+	{
+		this.history = history;
 	}
 }
