@@ -23,7 +23,7 @@ public class RepositoryCacheImpl implements IRepository
 {
 	private static Logger log = Logger.getLogger(RepositoryCacheImpl.class);
 
-	private Map<String, ITrainee> 	trainees = new HashMap<String, ITrainee>();
+	private Map<String, ITrainee> 	trainees = null;
 
 	@Autowired
 	@Qualifier("GAERepositoryImpl")
