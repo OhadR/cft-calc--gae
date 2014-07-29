@@ -48,28 +48,36 @@ public class Trainee implements ITrainee
 	/**
 	 * called when item (entity) is loaded from the DB
 	 * @param id
-	 * @param lastName 
 	 * @param firstName 
+	 * @param lastName 
 	 * @param results
+	 * @param isMale - gender
+	 * @param dateOfBirth 
 	 */
 	public Trainee(String id, 
 			String firstName,
 			String lastName, 
 			Map<String, Integer> results,
-			double totalGrade)
+			double totalGrade, 
+			boolean isMale, 
+			Date dateOfBirth)
 	{
 		this.id = id;
 		this.results = results;
 		this.totalGrade = totalGrade;
 		this.firstName = firstName;
-		this.lastName = lastName;		
+		this.lastName = lastName;
+		this.bMale = isMale;
+		this.dateOfBirth = dateOfBirth;
 	}
 
+	@Override
 	public String getId()
 	{
 		return id;
 	}
 
+	@Override
 	public Map<String, Integer> getResultsMap()
 	{
 		return results;
@@ -95,6 +103,7 @@ public class Trainee implements ITrainee
 	/**
 	 * TODO: this method never called. it supposed to reflect a user, but currently all info get through the Manager
 	 */
+	@Override
 	public void addWorkout(Workout workout)
 	{
 		log.info("adding workout " + workout);
@@ -109,6 +118,7 @@ public class Trainee implements ITrainee
 		results.put( workout.getName(), workout.getResult() );			
 	}
 
+	@Override
 	public double getTotalGrade()
 	{
 		return totalGrade;
@@ -154,5 +164,17 @@ public class Trainee implements ITrainee
 	public void setHistory(Map<String, List<TimedResult>> history) 
 	{
 		this.history = history;
+	}
+
+	@Override
+	public boolean isMale()
+	{
+		return bMale;
+	}
+
+	@Override
+	public Date getDateOfBirth() 
+	{
+		return dateOfBirth;
 	}
 }
