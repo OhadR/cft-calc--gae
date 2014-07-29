@@ -14,11 +14,12 @@ public interface IRepository
 	 * @param traineeId
 	 * @param isMale
 	 * @param dateOfBirth
+	 * @throws BenchmarkrRuntimeException 
 	 */
 	void createBenchmarkrAccount(
 			String traineeId, 
 			boolean isMale,
-			Date dateOfBirth);
+			Date dateOfBirth) throws BenchmarkrRuntimeException;
 	
 	List<ITrainee> getAllTrainees();
 

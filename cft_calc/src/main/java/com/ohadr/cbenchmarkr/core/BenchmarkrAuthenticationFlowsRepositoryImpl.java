@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.google.appengine.api.datastore.*;
 import com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl;
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 
 
 public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
@@ -17,7 +18,7 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 	private static final String GENDER_PROP_NAME = "isMale";
 	private static final String DOB_PROP_NAME = "DOB";
 	
-	public void enrichAccount(String traineeId, boolean isMale, Date dateOfBirth) 
+	public void enrichAccount(String traineeId, boolean isMale, Date dateOfBirth) throws BenchmarkrRuntimeException 
 	{
 		Key userKey = KeyFactory.createKey(AUTH_FLOWS_USER_DB_KIND, traineeId);
 		Entity entity;
@@ -29,7 +30,7 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 		catch (EntityNotFoundException e) 
 		{
 			log.error("entity of " + traineeId + " not found");
-			throw new NoSuchElementException(e.getMessage());
+			throw new BenchmarkrRuntimeException(e.getMessage());
 		}
 
 		entity.setProperty(GENDER_PROP_NAME, isMale);				
