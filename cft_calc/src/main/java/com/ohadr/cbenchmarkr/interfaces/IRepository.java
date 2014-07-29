@@ -8,13 +8,19 @@ import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public interface IRepository
 {
-	List<ITrainee> getAllTrainees();
-
 	/**
-	 * when a new user activates his new account, call this method and add a new entry for this user
-	 * @param personA
+	 * when a new user creates account, the UI is responsible to invoke a call - AFTER
+	 * the account is created successfully - to this method.
+	 * @param traineeId
+	 * @param isMale
+	 * @param dateOfBirth
 	 */
-	void addPerson(ITrainee person);
+	void createBenchmarkrAccount(
+			String traineeId, 
+			boolean isMale,
+			Date dateOfBirth);
+	
+	List<ITrainee> getAllTrainees();
 
 	void addWorkoutForTrainee(String trainee, Workout workout) throws BenchmarkrRuntimeException;
 	
@@ -39,5 +45,5 @@ public interface IRepository
 	void setAdmin(String authenticatedUsername);
 
 	int getNumberOfRegisteredUsers();
-	
+
 }

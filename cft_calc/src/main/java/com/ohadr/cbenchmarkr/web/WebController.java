@@ -234,5 +234,41 @@ public class WebController
 	}
 	*/
 
+    /**
+     * init the account for the trainee. right after the call to auth-flows/createAccount, the 
+     * client calls this endpoint. note that the user is not logged in yet, hence the "traineeId"
+     * is required.
+     * @param traineeId - note that the user is not logged in yet, hence the "traineeId" is required.
+     * @param isMale
+     * @param dateOfBirth
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(value = "/secured/createBenchmarkrAccount", method = RequestMethod.POST)
+    protected void createBenchmarkrAccount(
+    		@RequestParam("traineeId")    String traineeId,
+    		@RequestParam("isMale")  boolean    isMale,
+    		@RequestParam("dateOfBirth")    Date   dateOfBirth,
+            HttpServletResponse response) throws IOException 
+    {
+    	PrintWriter writer = response.getWriter();
+        log.info( "creating Benchmarkr Account");
+
+        try
+        {
+        	manager.createBenchmarkrAccount( traineeId, isMale, dateOfBirth );
+        }
+        catch (BenchmarkrRuntimeException be)
+        {
+            log.error( "error creating Benchmarkr Account", be);
+            writer.println( be.getMessage() );
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+
+        }
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+   }
 
 }

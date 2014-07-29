@@ -22,11 +22,6 @@ public class InMemRepository implements IRepository
 	{
 	}
 
-	public void addPerson(ITrainee person)
-	{
-		persons.add( person );
-	}
-
 	@Override
 	public List<ITrainee> getAllTrainees()
 	{
@@ -70,6 +65,13 @@ public class InMemRepository implements IRepository
 
 	@Override
 	public Map<String, List<TimedResult>> getHistoryForTrainee(String trainee) 
+	{
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public void createBenchmarkrAccount(String traineeId, boolean isMale,
+			Date dateOfBirth) 
 	{
 		throw new NotImplementedException();
 	}

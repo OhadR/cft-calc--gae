@@ -76,8 +76,8 @@
 
 	<!-- decide how you wanna work: in-mem repo, or jdbc impl: -->
 	<!-- bean class="com.ohadr.auth_flows.mocks.InMemoryAuthenticationAccountRepositoryImpl" / -->
-	<bean id="userDetailsService"
-		class="com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl" />
+	<!-- bean id="userDetailsService" class="com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl" /-->
+	<bean id="userDetailsService" class="com.ohadr.cbenchmarkr.core.BenchmarkrAuthenticationFlowsRepositoryImpl" />
 
 	<!--bean class="com.ohadr.auth_flows.core.jdbc.JdbcAuthenticationPolicyRepositoryImpl" / -->
 	<bean

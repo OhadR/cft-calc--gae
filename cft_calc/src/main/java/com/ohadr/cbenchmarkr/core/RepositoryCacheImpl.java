@@ -2,6 +2,7 @@ package com.ohadr.cbenchmarkr.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,13 +57,6 @@ public class RepositoryCacheImpl implements IRepository
 		return retVal;
 	}
 
-
-	@Override
-	public void addPerson(ITrainee person) 
-	{
-		//  Auto-generated method stub
-
-	}
 
 	@Override
 	public void addWorkoutForTrainee(String trainee, Workout workout)
@@ -154,6 +148,14 @@ public class RepositoryCacheImpl implements IRepository
 			trainee.setHistory( history );
 		}
 		return history;
+	}
+
+
+	@Override
+	public void createBenchmarkrAccount(String traineeId, boolean isMale,
+			Date dateOfBirth) 
+	{
+		repository.createBenchmarkrAccount(traineeId, isMale, dateOfBirth);
 	}
 
 }
