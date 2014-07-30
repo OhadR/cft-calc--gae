@@ -17,8 +17,14 @@
         vm.people = [];
         vm.title = 'Leaderboard';
         vm.resultMapPerWorkoutIndex = '';
-        vm.onWorkoutChanged = onWorkoutChanged;
         vm.traineesPerWorkout = [];
+        //boolean: true of we wanna show men, false if we wanna show women:
+        vm.show_men_only; 
+        vm.filter_gender = 'Men';	//attached to ComboBox
+
+        //functions:
+        vm.onWorkoutChanged = onWorkoutChanged;
+        vm.onGenderChanged = onGenderChanged;
 
         activate();
 
@@ -42,10 +48,12 @@
 
         function getPeople() {
             return datacontext.getPeople().then(function (data) {
-                vm.people = data;
+                //store all data in 'vm.people', and filter by gender here:
+            	vm.people = data;
             	//sort by the result:
             	vm.people.sort( compareByTotalGrade );
         		vm.people.reverse();
+
             	return vm.people;                
             });
         }
@@ -112,8 +120,19 @@
         	  return 0;
         }
 
-        	
+
         
+        function onGenderChanged()
+        {
+        	if( vm.filter_gender == 'Men' )
+        	{
+        		vm.show_men_only = true; 
+        	}
+        	else
+        	{
+        		vm.show_men_only = false; 
+        	}
+        }        
         
         
         

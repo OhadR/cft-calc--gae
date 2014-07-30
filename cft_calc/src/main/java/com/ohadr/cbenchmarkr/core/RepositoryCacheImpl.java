@@ -153,7 +153,7 @@ public class RepositoryCacheImpl implements IRepository
 
 	@Override
 	public void createBenchmarkrAccount(String traineeId, boolean isMale,
-			Date dateOfBirth) 
+			Date dateOfBirth) throws BenchmarkrRuntimeException 
 	{
 		repository.createBenchmarkrAccount(traineeId, isMale, dateOfBirth);
 	}

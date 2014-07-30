@@ -41,6 +41,13 @@
                     <div class="widget wviolet">
                         <div data-cc-widget-header title="Global Leaderboard"
                              allow-collapse="true"></div>
+						<div class="leaderboard-combo">
+							<select data-ng-model="vm.filter_gender" 
+							ng-change='vm.onGenderChanged()' >
+								<option value="Men">Men</option>
+								<option value="Women">Women</option>
+							</select>
+						</div>
                         <div class="widget-content text-center text-info">
                             <table class="table table-condensed table-striped">
                                 <thead>
@@ -52,7 +59,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-ng-repeat="p in vm.people">
+                                    <tr data-ng-repeat="p in vm.people | filter: { male: vm.show_men_only }">
                                         <td>{{$index+1}}</td>
                                         <td>{{p.firstName}}</td>
                                         <td>{{p.lastName}}</td>
@@ -70,7 +77,7 @@
                     <div class="widget wgreen">
                         <div data-cc-widget-header title="Leaderboard per-workout"
                              allow-collapse="true"></div>
-						<div>
+						<div class="leaderboard-combo">
 							<select data-ng-model="vm.workout" ng-init="" 
 							ng-options="w.name for w in vm.workoutNames | orderBy:'toString()'" 
 							ng-change='vm.onWorkoutChanged()' >
