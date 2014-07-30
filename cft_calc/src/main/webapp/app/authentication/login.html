@@ -14,7 +14,22 @@
     </div>
 </section>
 ﻿<section data-ng-controller="newuser as vm">
-    <div class="login signup">
+    <div class="login">
+    	<div class="row">
+      
+      <div class="col-md-6">
+				<div class="login signup">
+					<h3>benchmarkr</h3>
+				
+					<div style="margin-top: 25px">
+					Compare your CrossFit RX-benchmark results with other CrossFitters all around the world!<br>
+					<br>
+					</div>
+				</div>
+		</div>
+      
+      
+      <div class="col-md-6">
         <form ng-submit="vm.createUser()">
             <h1>{{vm.title}}</h1>
             <p class="row">
@@ -39,5 +54,7 @@
                 <button class="appl-button signup primary button-block" type="submit">Sign up for benchmarkr</button>
             </p>
         </form>
+      </div>
+      </div>
     </div>
 </section>
