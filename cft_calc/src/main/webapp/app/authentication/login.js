@@ -9,7 +9,6 @@
         var log_error = getLogFn(controllerId, 'error');
 
         var vm = this;
-        vm.title = 'Login';
         vm.userInfo = {
             userName: '',
             password: '',

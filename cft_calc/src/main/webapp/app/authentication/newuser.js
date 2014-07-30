@@ -16,7 +16,7 @@
             password: '',
             firstName: '',
             lastName: '',
-            rememberMe: false
+            gender: 'Male'
         };
         vm.createUser = createUser;
 

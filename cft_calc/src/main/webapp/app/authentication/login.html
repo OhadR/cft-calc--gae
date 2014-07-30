@@ -29,6 +29,12 @@
             <p class="row">
                 <input type="text" name="lastname" ng-model="vm.userInfo.lastName" placeholder="Your last name" required>
             </p>
+			<p class="row">
+				<select data-ng-model="vm.userInfo.gender">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+            </p>
             <p class="row">
                 <button class="appl-button signup primary button-block" type="submit">Sign up for benchmarkr</button>
             </p>
