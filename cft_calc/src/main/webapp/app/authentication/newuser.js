@@ -16,7 +16,8 @@
             password: '',
             firstName: '',
             lastName: '',
-            gender: 'Male'
+            gender: 'Male',
+            dob: '01 Jan 1990'
         };
         vm.createUser = createUser;
 
@@ -30,7 +31,10 @@
         {
     		//log( "creating account for " + vm.userInfo.userName + "..." );    
             //do not try to login, instead show a "message was sent" page
-        	auth.createUser(vm.userInfo.userName, vm.userInfo.password, vm.userInfo.firstName, vm.userInfo.lastName).
+        	auth.createUser(vm.userInfo.userName, vm.userInfo.password, 
+        			vm.userInfo.firstName, vm.userInfo.lastName,
+        			(vm.userInfo.gender == 'Male'),
+        			vm.userInfo.dob	).
         	then(function (loginData) 
         	{
         		log( "account created for user " + vm.userInfo.userName );    

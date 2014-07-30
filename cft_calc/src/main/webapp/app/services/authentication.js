@@ -49,7 +49,8 @@
             return $q.when(true);
         }
 
-        function createUser(userName, password, firstName, lastName) {
+        function createUser(userName, password, firstName, lastName, isMale, dateOfBirth) 
+        {
             var d = $q.defer();
 
             $http({
@@ -59,7 +60,24 @@
                 				firstName: firstName,
                 				lastName: lastName}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            }).success(function (data, status, headers, config) {
+            })
+            .success(function (data, status, headers, config) 
+            {
+                $http({
+                    method: 'POST',
+                    url: '/createBenchmarkrAccount',
+                    data:  $.param({ traineeId: userName,
+                    				isMale: isMale,
+                    				dateOfBirth: dateOfBirth }),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                })
+	            .success(function (data, status, headers, config) 
+	            {
+	                d.resolve();
+	            }).error(function (data, status, headers, config) {
+	                d.reject(data, status);
+	            });
+            	
                 d.resolve();
             }).error(function (data, status, headers, config) {
                 d.reject(data, status);

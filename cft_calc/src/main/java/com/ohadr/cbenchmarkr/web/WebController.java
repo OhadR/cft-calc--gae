@@ -244,7 +244,7 @@ public class WebController
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "/secured/createBenchmarkrAccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/createBenchmarkrAccount", method = RequestMethod.POST)
     protected void createBenchmarkrAccount(
     		@RequestParam("traineeId")    String traineeId,
     		@RequestParam("isMale")  boolean    isMale,
