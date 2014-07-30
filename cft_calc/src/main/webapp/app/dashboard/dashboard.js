@@ -19,7 +19,7 @@
         vm.resultMapPerWorkoutIndex = '';
         vm.traineesPerWorkout = [];
         //boolean: true of we wanna show men, false if we wanna show women:
-        vm.show_men_only; 
+        vm.show_men = true; 
         vm.filter_gender = 'Men';	//attached to ComboBox
 
         //functions:
@@ -126,11 +126,11 @@
         {
         	if( vm.filter_gender == 'Men' )
         	{
-        		vm.show_men_only = true; 
+        		vm.show_men = true; 
         	}
         	else
         	{
-        		vm.show_men_only = false; 
+        		vm.show_men = false; 
         	}
         }        
         
