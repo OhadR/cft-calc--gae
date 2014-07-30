@@ -1,7 +1,6 @@
 package com.ohadr.cbenchmarkr.core;
 
 import java.util.Date;
-import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
@@ -15,8 +14,8 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 {
 	private static Logger log = Logger.getLogger(BenchmarkrAuthenticationFlowsRepositoryImpl.class);
 
-	private static final String GENDER_PROP_NAME = "isMale";
-	private static final String DOB_PROP_NAME = "DOB";
+	public static final String GENDER_PROP_NAME = "isMale";
+	public static final String DOB_PROP_NAME = "DOB";
 	
 	public void enrichAccount(String traineeId, boolean isMale, Date dateOfBirth) throws BenchmarkrRuntimeException 
 	{
