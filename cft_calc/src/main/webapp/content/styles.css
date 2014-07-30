@@ -735,7 +735,7 @@ so this is a special behaviour - both classes login+signup */
   padding: 0;
 }
 
-.lt-ie9 input[type=text], input[type=email], .lt-ie9 input[type=password] {
+.lt-ie9 input[type=text], input[type=email], .lt-ie9 input[type=password], select {
   line-height: 40px;
   background: #282828;
 }
