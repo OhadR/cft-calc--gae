@@ -83,6 +83,11 @@
 							ng-change='vm.onWorkoutChanged()' >
 								<!-- option value="">choose workout...</option-->
 							</select>
+							<select data-ng-model="vm.filter_gender" 
+							ng-change='vm.onGenderChanged()' >
+								<option value="Men">Men</option>
+								<option value="Women">Women</option>
+							</select>
 						</div>
 
                         <div class="widget-content text-center text-info">
