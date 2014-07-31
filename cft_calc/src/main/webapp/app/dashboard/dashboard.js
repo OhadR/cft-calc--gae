@@ -84,9 +84,10 @@
            		if( result > 0 )
            		{
            			vm.traineesPerWorkout[index] = [];
-               		vm.traineesPerWorkout[index].firstName = value.firstName;
-            		vm.traineesPerWorkout[index].lastName = value.lastName;
-               		vm.traineesPerWorkout[index].result = result;
+               		vm.traineesPerWorkout[index].firstName 	= value.firstName;
+            		vm.traineesPerWorkout[index].lastName 	= value.lastName;
+            		vm.traineesPerWorkout[index].male 		= value.male;
+               		vm.traineesPerWorkout[index].result 	= result;
                		++index;
            		}
         	});

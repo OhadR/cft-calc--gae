@@ -76,13 +76,12 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 		boolean isMale = true;
 		if( entity.hasProperty( GENDER_PROP_NAME ) )
 		{
-			log.error("isMale=" + entity.getProperty( GENDER_PROP_NAME ));
 			isMale = (Boolean) entity.getProperty( GENDER_PROP_NAME ) ;
-			log.error("isMale=" + isMale);
+			log.error(username + "/isMale=" + isMale);
 		}
 		else
 		{
-			log.error("isMale not found");
+			log.error("isMale not found for user " + username);
 		}
 		
 		Date dateOfBirth = null;

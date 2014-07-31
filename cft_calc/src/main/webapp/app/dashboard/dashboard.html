@@ -101,7 +101,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-ng-repeat="p in vm.traineesPerWorkout">
+                                    <tr data-ng-repeat="p in vm.traineesPerWorkout | filter: { male: (vm.filter_gender == 'Men') }">
                                         <td>{{$index+1}}</td>
                                         <td>{{p.firstName}}</td>
                                         <td>{{p.lastName}}</td>
