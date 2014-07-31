@@ -2,6 +2,8 @@ package com.ohadr.cbenchmarkr.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -243,16 +245,20 @@ public class WebController
      * @param dateOfBirth
      * @param response
      * @throws IOException
+     * @throws ParseException if date could not be formatted
      */
     @RequestMapping(value = "/createBenchmarkrAccount", method = RequestMethod.POST)
     protected void createBenchmarkrAccount(
     		@RequestParam("traineeId")    String traineeId,
     		@RequestParam("isMale")  boolean    isMale,
-    		@RequestParam("dateOfBirth")    Date   dateOfBirth,
-            HttpServletResponse response) throws IOException 
+    		@RequestParam("dateOfBirth")    String   dateOfBirthText,		//UI format: 1974-10-12
+            HttpServletResponse response) throws IOException, ParseException 
     {
     	PrintWriter writer = response.getWriter();
         log.info( "creating Benchmarkr Account");
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOfBirth = format.parse(dateOfBirthText);
 
         try
         {
