@@ -120,7 +120,8 @@ public class RepositoryCacheImpl implements IRepository
 	@Override
 	public int getNumberOfRegisteredUsers() 
 	{
-		return getTrainees().size();
+//		return getTrainees().size();
+		return repository.getNumberOfRegisteredUsers();
 	}
 
 
