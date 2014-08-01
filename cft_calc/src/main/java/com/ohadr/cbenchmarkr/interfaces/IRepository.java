@@ -47,4 +47,6 @@ public interface IRepository
 
 	int getNumberOfRegisteredUsers();
 
+	void resetRepository();
+
 }

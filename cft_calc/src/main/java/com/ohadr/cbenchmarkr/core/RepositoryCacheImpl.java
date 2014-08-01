@@ -158,4 +158,13 @@ public class RepositoryCacheImpl implements IRepository
 		repository.createBenchmarkrAccount(traineeId, isMale, dateOfBirth);
 	}
 
+
+	@Override
+	public void resetRepository()
+	{
+		resetCache();
+		//delegate to GAE-repo:
+		repository.resetRepository();
+	}
+
 }
