@@ -167,4 +167,22 @@ public class RepositoryCacheImpl implements IRepository
 		repository.resetRepository();
 	}
 
+
+	@Override
+	public int getNumberOfRegisteredResults()
+	{
+		int sum = 0;
+		//iterate over all trainees
+		for( ITrainee trainee : getTrainees().values() )
+		{
+			//for each trainee, iterate all WODs
+			for( List<TimedResult> resultsPerWOD : trainee.getHistory().values() )
+			{
+				sum += resultsPerWOD.size();
+				
+			}
+		}
+		return sum;
+	}
+
 }

@@ -41,7 +41,7 @@
         }
 
         function getRegisteredResults() {
-            return datacontext.getMessageCount().then(function (data) {
+            return datacontext.getRegisteredResults().then(function (data) {
                 return vm.registeredResults = data;
             });
         }

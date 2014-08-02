@@ -10,6 +10,7 @@
         var service = {
             getPeople: getPeople,
             getMessageCount: getMessageCount,
+            getRegisteredResults: getRegisteredResults,
             getRegisteredUsers: getRegisteredUsers,
             getWorkoutHistoryForTrainee: getWorkoutHistoryForTrainee,
             getAllWorkoutsNames: getAllWorkoutsNames,
@@ -40,6 +41,25 @@
                 method: 'GET',
                 url: '/secured/getSortedTraineesByGrade',
                 data:  $.param({ json: 'json' }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;
+        }
+        
+        function getRegisteredResults()
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/getNumberOfRegisteredResults',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) 
             {

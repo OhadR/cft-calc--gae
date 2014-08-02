@@ -198,6 +198,15 @@ public class WebController
     	int numberOfRegisteredUsers = manager.getNumberOfRegisteredUsers();
 		response.getWriter().println(  numberOfRegisteredUsers );
 	}
+    
+    
+    @RequestMapping(value = "/getNumberOfRegisteredResults", method = RequestMethod.GET)
+	protected void getNumberOfRegisteredResults(
+			HttpServletResponse response) throws Exception
+	{
+    	int numberOfRegisteredResults = manager.getNumberOfRegisteredResults();
+		response.getWriter().println(  numberOfRegisteredResults );
+	}
 
     @RequestMapping("/secured/ping")	
 	protected void securedPing(

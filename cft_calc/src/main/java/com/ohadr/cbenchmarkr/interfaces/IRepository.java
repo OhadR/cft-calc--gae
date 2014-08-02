@@ -47,6 +47,13 @@ public interface IRepository
 
 	int getNumberOfRegisteredUsers();
 
-	void resetRepository();
+	/**
+	 * returns the number of all workouts-results that were entered. Basically, iterate over all trainees,
+	 * and for each one of them go to his history map and count the number of items.
+	 * @return the number of all workouts-results that were entered. Basically, iterate over all trainees,
+	 * and for each one of them go to his history map and count the number of items.
+	 */
+	int getNumberOfRegisteredResults();
 
+	void resetRepository();
 }

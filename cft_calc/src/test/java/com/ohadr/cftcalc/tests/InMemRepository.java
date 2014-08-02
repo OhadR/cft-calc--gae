@@ -76,4 +76,16 @@ public class InMemRepository implements IRepository
 		throw new NotImplementedException();
 	}
 
+	@Override
+	public void resetRepository()
+	{
+		persons.clear();
+	}
+
+	@Override
+	public int getNumberOfRegisteredResults()
+	{
+		throw new NotImplementedException();
+	}
+
 }
