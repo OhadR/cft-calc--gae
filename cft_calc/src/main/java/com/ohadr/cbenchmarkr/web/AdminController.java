@@ -1,8 +1,5 @@
 package com.ohadr.cbenchmarkr.web;
 
-import java.io.IOException;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -12,11 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ohadr.auth_flows.interfaces.AuthenticationFlowsProcessor;
-import com.ohadr.auth_flows.types.AuthenticationFlowsException;
-import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
-import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.WorkoutMetadata;
 import com.ohadr.cbenchmarkr.utils.Utils;
 
@@ -25,9 +18,6 @@ import com.ohadr.cbenchmarkr.utils.Utils;
 public class AdminController 
 {
 	private static Logger log = Logger.getLogger(AdminController.class);
-
-	@Autowired
-	private AuthenticationFlowsProcessor flowsProcessor;
 
 	@Autowired
     private Manager manager;
