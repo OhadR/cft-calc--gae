@@ -176,11 +176,7 @@ public class RepositoryCacheImpl implements IRepository
 		for( ITrainee trainee : getTrainees().values() )
 		{
 			//for each trainee, iterate all WODs
-			for( List<TimedResult> resultsPerWOD : trainee.getHistory().values() )
-			{
-				sum += resultsPerWOD.size();
-				
-			}
+			sum += trainee.getResultsMap().size();
 		}
 		return sum;
 	}

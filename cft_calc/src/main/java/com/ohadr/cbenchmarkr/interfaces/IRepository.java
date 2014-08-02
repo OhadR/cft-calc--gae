@@ -49,9 +49,8 @@ public interface IRepository
 
 	/**
 	 * returns the number of all workouts-results that were entered. Basically, iterate over all trainees,
-	 * and for each one of them go to his history map and count the number of items.
-	 * @return the number of all workouts-results that were entered. Basically, iterate over all trainees,
-	 * and for each one of them go to his history map and count the number of items.
+	 * and for each one of them go to his results-map (NOTE: not to the history map) and count the number of items.
+	 * @return the number of all workouts-results that were entered. 
 	 */
 	int getNumberOfRegisteredResults();
 
