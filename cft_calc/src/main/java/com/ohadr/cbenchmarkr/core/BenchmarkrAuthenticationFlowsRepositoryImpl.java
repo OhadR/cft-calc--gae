@@ -1,8 +1,6 @@
 package com.ohadr.cbenchmarkr.core;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,10 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.google.appengine.api.datastore.*;
 import com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl;
 import com.ohadr.auth_flows.interfaces.AuthenticationUser;
-import com.ohadr.auth_flows.mocks.InMemoryAuthenticationUserImpl;
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
-import com.ohadr.cbenchmarkr.Trainee;
-import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 
 
 public class BenchmarkrAuthenticationFlowsRepositoryImpl extends

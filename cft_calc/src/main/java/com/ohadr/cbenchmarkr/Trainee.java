@@ -4,7 +4,6 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
-import com.google.appengine.api.datastore.Entity;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
