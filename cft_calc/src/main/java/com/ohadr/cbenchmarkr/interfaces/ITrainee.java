@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
@@ -33,13 +34,12 @@ public interface ITrainee extends Comparable<ITrainee>
 	void setHistory( Map<String, List<TimedResult>> history );
 
 	/**
-	 * TODO: this method never called. it supposed to reflect a user, but currently all info get through the Manager
+	 * NOTE: this method is called in "in-mem" mode, when using cache. 
+	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist . 
 	 */
-	@Deprecated
-	void addWorkout(Workout workout);
+	void addWorkout(Workout workout) throws BenchmarkrRuntimeException;
 
-//	void setTotalGrade(double grade);
-
+	void setTotalGrade(double grade);
 	double getTotalGrade();
 	
 	String getFirstName();

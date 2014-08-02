@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
+import com.google.appengine.api.datastore.Entity;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
@@ -100,11 +101,8 @@ public class Trainee implements ITrainee
 	}
 
 
-	/**
-	 * TODO: this method never called. it supposed to reflect a user, but currently all info get through the Manager
-	 */
 	@Override
-	public void addWorkout(Workout workout)
+	public void addWorkout(Workout workout) throws BenchmarkrRuntimeException
 	{
 		log.info("adding workout " + workout);
 		List<TimedResult> workouts = history.get( workout.getName() );
@@ -113,11 +111,32 @@ public class Trainee implements ITrainee
 			workouts = new ArrayList<TimedResult>();
 			history.put( workout.getName(), workouts );			
 		}
-//		workouts.add( workout );
+		//validate this workout does not already exist:
+		validateNonExistence( workouts, workout );
+		
+		workouts.add( new TimedResult( workout.getResult(), workout.getDate().getTime() ) );
 		
 		results.put( workout.getName(), workout.getResult() );			
 	}
 
+	/**
+	 * method makes sure that @workout does not already registered for this user. 
+	 * @param workouts
+	 * @param workout
+	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist . 
+	 */
+	private static void validateNonExistence(List<TimedResult> workouts, Workout workout) throws BenchmarkrRuntimeException
+	{
+		for( TimedResult tr : workouts )
+		{
+			if( tr.timestamp == workout.getDate().getTime() )
+			{
+				throw new BenchmarkrRuntimeException( "Workout " + workout.getName() + " already registered for date " + workout.getDate() );
+			}
+		}
+	}
+
+	
 	@Override
 	public double getTotalGrade()
 	{
@@ -176,5 +195,11 @@ public class Trainee implements ITrainee
 	public Date getDateOfBirth() 
 	{
 		return dateOfBirth;
+	}
+
+	@Override
+	public void setTotalGrade(double grade)
+	{
+		totalGrade = grade;
 	}
 }

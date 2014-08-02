@@ -77,7 +77,7 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 		if( entity.hasProperty( GENDER_PROP_NAME ) )
 		{
 			isMale = (Boolean) entity.getProperty( GENDER_PROP_NAME ) ;
-			log.error(username + "/isMale=" + isMale);
+			log.debug(username + "/isMale=" + isMale);
 		}
 		else
 		{

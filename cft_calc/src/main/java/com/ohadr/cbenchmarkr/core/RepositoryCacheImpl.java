@@ -58,11 +58,17 @@ public class RepositoryCacheImpl implements IRepository
 
 
 	@Override
-	public void addWorkoutForTrainee(String trainee, Workout workout)
+	public void addWorkoutForTrainee(String traineeId, Workout workout)
 			throws BenchmarkrRuntimeException 
 	{
+		/**
+		 * old impl: access repo.
+		 *
 		repository.addWorkoutForTrainee(trainee, workout);
 		resetCache();
+		*/
+		ITrainee trainee = trainees.get( traineeId );
+		trainee.addWorkout(workout);
 	}
 
 
@@ -102,13 +108,30 @@ public class RepositoryCacheImpl implements IRepository
 		
 	}
 
+	
+	/**
+	 * new impl: do not access repo when we update grades; instead use in mem.
+	 */
 	@Override
 	public void updateGradesForTrainees(Map<String, Double> gradesPerTrainee)
 			throws BenchmarkrRuntimeException 
 	{
 		log.debug("updating GradesForTrainees");
-		repository.updateGradesForTrainees( gradesPerTrainee );
-		resetCache();
+		/**
+		 * old impl: update repo and reset cache.
+		 * the drawback: the access to repo every time. meaning, every time a workout is updated, we get here
+		 * and access the repo. we pay in performance and quota. 
+		 *
+			repository.updateGradesForTrainees( gradesPerTrainee );
+			resetCache();
+		*/
+		
+		for( Map.Entry<String, Double> entry : gradesPerTrainee.entrySet() )
+		{
+			ITrainee trainee = getTrainees().get( entry.getKey() );
+			trainee.setTotalGrade( entry.getValue() );
+		}
+		
 	}
 
 	@Override
