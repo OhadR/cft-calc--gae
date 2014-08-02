@@ -23,7 +23,13 @@ public interface IRepository
 	
 	List<ITrainee> getAllTrainees();
 
-	void addWorkoutForTrainee(String trainee, Workout workout) throws BenchmarkrRuntimeException;
+	/**
+	 * 
+	 * @param traineeId
+	 * @param workout
+	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist. 
+	 */
+	void addWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException;
 	
 	/**
 	 * 
@@ -54,5 +60,8 @@ public interface IRepository
 	 */
 	int getNumberOfRegisteredResults();
 
+	/**
+	 * for TESTS PURPOSES ONLY
+	 */
 	void resetRepository();
 }
