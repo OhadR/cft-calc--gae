@@ -1,4 +1,4 @@
-package com.ohadr.cftcalc.tests;
+package com.ohadr.cbenchmarkr.core;
 
 import java.util.*;
 
