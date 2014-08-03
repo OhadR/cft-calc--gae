@@ -86,7 +86,7 @@
 
 	<bean id="mailSender" class="com.ohadr.auth_flows.core.gae.GAEMailSenderImpl" />
 
-	<bean id="repository" class="com.ohadr.cftcalc.tests.InMemRepository" />
+	<bean id="repository" class="com.ohadr.cbenchmarkr.core.InMemRepositoryImpl" />
 		
 	
 	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
