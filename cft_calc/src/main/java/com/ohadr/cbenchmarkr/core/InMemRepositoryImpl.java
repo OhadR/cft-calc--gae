@@ -20,13 +20,8 @@ public class InMemRepositoryImpl implements IRepository
 
 	public InMemRepositoryImpl()
 	{
-		init();
 	}
 	
-
-	private void init()
-	{
-	}
 
 	@Override
 	public List<ITrainee> getAllTrainees() 
