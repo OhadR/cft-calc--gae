@@ -88,6 +88,9 @@ public class RepositoryCacheImpl implements IRepository
 	{
 		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
 		ITrainee trainee = getTrainees().get( traineeId );
+		if( trainee == null )		//in case trainee has not enter any WOD-result (issue #52)
+			return null;
+
 		Map<String, List<TimedResult>> history = trainee.getHistory();
 		if( history == null )
 		{
