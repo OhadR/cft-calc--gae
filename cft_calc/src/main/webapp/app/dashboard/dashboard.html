@@ -79,7 +79,7 @@
                              allow-collapse="true"></div>
 						<div class="leaderboard-combo">
 							<select data-ng-model="vm.workout" ng-init="" 
-							ng-options="w.name for w in vm.workoutNames | orderBy:'toString()'" 
+							ng-options="w.name for w in vm.workoutNames | orderBy:'name'" 
 							ng-change='vm.onWorkoutChanged()' >
 								<!-- option value="">choose workout...</option-->
 							</select>
