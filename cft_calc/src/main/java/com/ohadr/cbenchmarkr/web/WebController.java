@@ -254,20 +254,28 @@ public class WebController
      * @param dateOfBirth
      * @param response
      * @throws IOException
-     * @throws ParseException if date could not be formatted
      */
     @RequestMapping(value = "/createBenchmarkrAccount", method = RequestMethod.POST)
     protected void createBenchmarkrAccount(
     		@RequestParam("traineeId")    String traineeId,
     		@RequestParam("isMale")  boolean    isMale,
     		@RequestParam("dateOfBirth")    String   dateOfBirthText,		//UI format: 1974-10-12
-            HttpServletResponse response) throws IOException, ParseException 
+            HttpServletResponse response) throws IOException 
     {
     	PrintWriter writer = response.getWriter();
         log.info( "creating Benchmarkr Account");
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateOfBirth = format.parse(dateOfBirthText);
+        Date dateOfBirth;
+		try
+		{
+			dateOfBirth = format.parse(dateOfBirthText);
+		} 
+		catch (ParseException pe) //if date could not be parsed
+		{
+            log.error( "date could not be parsed", pe);
+            dateOfBirth = new Date();
+		}
 
         try
         {
