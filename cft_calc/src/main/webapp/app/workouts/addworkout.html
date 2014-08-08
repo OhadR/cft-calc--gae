@@ -11,10 +11,13 @@
 	                            <div class="container-fluid">
 	                                <p class="row">
 	                                    <label>Workout Name: </label>
-								       	<select data-ng-model="vm.workout.name" data-ng-options="w for w in vm.workoutNames | orderBy:'toString()'" />
+								       	<select data-ng-model="vm.workout" 
+								       		data-ng-options="w.name for w in vm.workoutNames | orderBy:'name'"
+								       		ng-change='vm.onWorkoutChanged()' />
 								    </p>
 	                                <p class="row">
 	                                    <input type="text" data-ng-model="vm.workout.result" placeholder="Enter the result (see notes)" required/>
+	                                    <label>{{vm.workout.units}}</label>
 	                                </p>
 	                                <p class="row">
 	                                    <label>Date: </label>

@@ -11,8 +11,11 @@
         var vm = this;
         vm.title = "Add Workout";
         vm.workout = { };		//input object from the form.
-        vm.onSaveWorkout = onSaveWorkout;
         vm.workoutNames = [];
+
+        //functions:
+        vm.onWorkoutChanged = onWorkoutChanged;
+        vm.onSaveWorkout = onSaveWorkout;
 
         activate();
 
@@ -44,15 +47,26 @@
             });
         }
 
-        function loadWorkoutNames() {
-            datacontext.getAllWorkoutsNames().
-            then(function(data) {
+        function loadWorkoutNames() 
+        {
+            datacontext.getAllWorkoutsMetadata().
+            then(function(data) 
+            {
                 vm.workoutNames = data;
 
                 //set a value, so we will not see an empty line:
-                vm.workout.name = vm.workoutNames[0];		
+//                vm.workout.name = vm.workoutNames[0];		
             });
         }
+        
+        function onWorkoutChanged()
+        {
+        	vm.workout.units = 'secs';
+        	if( vm.workout.repetitionBased )
+        	{
+            	vm.workout.units = 'reps';
+        	}
+        }        
         
     }
 })();
