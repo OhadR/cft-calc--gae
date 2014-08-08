@@ -8,15 +8,16 @@ import org.springframework.stereotype.Component;
 
 import com.ohadr.auth_flows.endpoints.CreateAccountEndpoint;
 import com.ohadr.auth_flows.types.AuthenticationFlowsException;
+import com.ohadr.cbenchmarkr.utils.MailSenderWrapper;
 
 
 @Component
 public class CustomCreateAccountEndpoint extends CreateAccountEndpoint
 {
 	private static Logger log = Logger.getLogger(CustomCreateAccountEndpoint.class);
-
+	
 	@Autowired
-	private MailSender			mailSender;
+	MailSenderWrapper mailSenderWrapper;
 
 	public void additionalValidations(String email, String password) throws AuthenticationFlowsException 
 	{
@@ -37,26 +38,12 @@ public class CustomCreateAccountEndpoint extends CreateAccountEndpoint
 	{
 		log.info("this is a custom message from postCreateAccount - notify admin");
 		
-		notifyAdmin("ohad.redlich@gmail.com",
-				"a new user registered to cBenchmarkr!",
-				"a new user registered to cBenchmarkr: " + username);
+		mailSenderWrapper.notifyAdmin("ohad.redlich@gmail.com",
+				"cBenchmarkr: new registered user",
+				"a new user has registered to cBenchmarkr: " + username);
 		
 		super.postCreateAccount( username );		
 	}
 	
 	
-	private void notifyAdmin(String email, 
-			String mailSubject,
-			String mailBody)
-	{
-        SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setTo(email);
-		msg.setSubject(mailSubject);
-		msg.setText(mailBody);
-		
-		mailSender.send( msg );
-	}
-
-
-
 }
