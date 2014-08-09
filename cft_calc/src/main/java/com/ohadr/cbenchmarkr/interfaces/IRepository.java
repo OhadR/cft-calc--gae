@@ -21,7 +21,7 @@ public interface IRepository
 			boolean isMale,
 			Date dateOfBirth) throws BenchmarkrRuntimeException;
 	
-	List<ITrainee> getAllTrainees();
+	List<ITrainee> getTrainees();
 
 	/**
 	 * 
@@ -52,13 +52,6 @@ public interface IRepository
 	void setAdmin(String authenticatedUsername);
 
 	int getNumberOfRegisteredUsers();
-
-	/**
-	 * returns the number of all workouts-results that were entered. Basically, iterate over all trainees,
-	 * and for each one of them go to his results-map (NOTE: not to the history map) and count the number of items.
-	 * @return the number of all workouts-results that were entered. 
-	 */
-	int getNumberOfRegisteredResults();
 
 	/**
 	 * for TESTS PURPOSES ONLY

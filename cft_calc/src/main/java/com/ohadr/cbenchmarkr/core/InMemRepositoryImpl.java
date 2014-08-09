@@ -24,18 +24,18 @@ public class InMemRepositoryImpl implements IRepository
 	
 
 	@Override
-	public List<ITrainee> getAllTrainees() 
+	public List<ITrainee> getTrainees() 
 	{
 		//usually 'values()' is of type HashMap.Values. so we need to convert, in order to sort, later on:
 		List<ITrainee> retVal = new ArrayList<ITrainee>();
-		for( ITrainee trainee : getTrainees().values() )
+		for( ITrainee trainee : loadTrainees().values() )
 		{
 			retVal.add( trainee );
 		}
 		return retVal;
 	}
 
-	private synchronized Map<String, ITrainee> getTrainees()
+	private synchronized Map<String, ITrainee> loadTrainees()
 	{
 		if( trainees == null )
 		{
@@ -58,7 +58,7 @@ public class InMemRepositoryImpl implements IRepository
 			String workoutName)
 	{
 		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
-		ITrainee trainee = getTrainees().get( traineeId );
+		ITrainee trainee = loadTrainees().get( traineeId );
 		Map<String, List<TimedResult>> history = trainee.getHistory();
 		if( history == null )
 		{
@@ -81,7 +81,7 @@ public class InMemRepositoryImpl implements IRepository
 	{
 		for( Map.Entry<String, Double> entry : gradesPerTrainee.entrySet() )
 		{
-			ITrainee trainee = getTrainees().get( entry.getKey() );
+			ITrainee trainee = loadTrainees().get( entry.getKey() );
 			trainee.setTotalGrade( entry.getValue() );
 		}
 	}
@@ -95,14 +95,14 @@ public class InMemRepositoryImpl implements IRepository
 	@Override
 	public int getNumberOfRegisteredUsers()
 	{
-		return getTrainees().size();
+		return loadTrainees().size();
 	}
 
 	@Override
 	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
 	{
 		log.debug( "getHistoryForTrainee for " + traineeId );
-		ITrainee trainee = getTrainees().get( traineeId );
+		ITrainee trainee = loadTrainees().get( traineeId );
 		Map<String, List<TimedResult>> history = trainee.getHistory();
 		if( history == null )
 		{
@@ -131,12 +131,12 @@ public class InMemRepositoryImpl implements IRepository
 		trainees = null;
 	}
 
-	@Override
+//	@Override
 	public int getNumberOfRegisteredResults()
 	{
 		int sum = 0;
 		//iterate over all trainees
-		for( ITrainee trainee : getTrainees().values() )
+		for( ITrainee trainee : loadTrainees().values() )
 		{
 			//for each trainee, iterate all WODs
 			sum += trainee.getResultsMap().size();

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +15,46 @@ import org.springframework.stereotype.Component;
 
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Workout;
+import com.ohadr.cbenchmarkr.interfaces.ICacheRepository;
 import com.ohadr.cbenchmarkr.interfaces.IRepository;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 @Component
-public class RepositoryCacheImpl implements IRepository
+public class RepositoryCacheImpl implements ICacheRepository
 {
 	private static Logger log = Logger.getLogger(RepositoryCacheImpl.class);
 
 	private Map<String, ITrainee> 	trainees = null;
+
+	/**
+	 * maps from WOD-name to its average:
+	 * this map is in the repo (and not in "GradesCalculator"), so upon "add workout for trainee", i will not have to 
+	 * recalc the averages, but instead i can use the already-calc'ed values. Once a day, i will re-calc 
+	 * all averages and grades.
+	 */
+	private Map<String, Integer> averageGrades = new HashMap<String, Integer>();
 
 	@Autowired
 	@Qualifier("GAERepositoryImpl")
 	private IRepository		repository;
 
 	@Override
-	public List<ITrainee> getAllTrainees() 
+	public List<ITrainee> getTrainees() 
 	{
 		//usually 'values()' is of type HashMap.Values. so we need to convert, in order to sort, later on:
 		List<ITrainee> retVal = new ArrayList<ITrainee>();
-		for( ITrainee trainee : getTrainees().values() )
+		for( ITrainee trainee : loadTrainees().values() )
 		{
 			retVal.add( trainee );
 		}
 		return retVal;
+	}
+
+	@Override
+	public Map<String, ITrainee> getTraineesCache()
+	{
+		return loadTrainees();
 	}
 
 
@@ -47,7 +63,7 @@ public class RepositoryCacheImpl implements IRepository
 		log.info("loading cache from DB");
 
 		Map<String, ITrainee> retVal = new HashMap<String, ITrainee>();
-		Collection<ITrainee> repoResult = repository.getAllTrainees();
+		Collection<ITrainee> repoResult = repository.getTrainees();
 		for( ITrainee trainee : repoResult )
 		{
 			retVal.put(trainee.getId(), trainee);
@@ -63,12 +79,13 @@ public class RepositoryCacheImpl implements IRepository
 	{
 		/**
 		 * old impl: access repo.
-		 *
-		repository.addWorkoutForTrainee(trainee, workout);
+		 */
+		repository.addWorkoutForTrainee(traineeId, workout);
 		resetCache();
-		*/
-		ITrainee trainee = trainees.get( traineeId );
-		trainee.addWorkout(workout);
+		
+		/*"new impl" = full cache
+		ITrainee trainee = getTrainees().get( traineeId );
+		trainee.addWorkout(workout);*/
 	}
 
 
@@ -87,7 +104,7 @@ public class RepositoryCacheImpl implements IRepository
 			String workoutName) 
 	{
 		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
-		ITrainee trainee = getTrainees().get( traineeId );
+		ITrainee trainee = loadTrainees().get( traineeId );
 		if( trainee == null )		//in case trainee has not enter any WOD-result (issue #52)
 			return null;
 
@@ -131,7 +148,7 @@ public class RepositoryCacheImpl implements IRepository
 		
 		for( Map.Entry<String, Double> entry : gradesPerTrainee.entrySet() )
 		{
-			ITrainee trainee = getTrainees().get( entry.getKey() );
+			ITrainee trainee = loadTrainees().get( entry.getKey() );
 			trainee.setTotalGrade( entry.getValue() );
 		}
 		
@@ -151,7 +168,7 @@ public class RepositoryCacheImpl implements IRepository
 	}
 
 
-	private synchronized Map<String, ITrainee> getTrainees()
+	private synchronized Map<String, ITrainee> loadTrainees()
 	{
 		if( trainees == null )
 		{
@@ -166,7 +183,7 @@ public class RepositoryCacheImpl implements IRepository
 	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
 	{
 		log.debug( "getHistoryForTrainee for " + traineeId );
-		ITrainee trainee = getTrainees().get( traineeId );
+		ITrainee trainee = loadTrainees().get( traineeId );
 		Map<String, List<TimedResult>> history = trainee.getHistory();
 		if( history == null )
 		{
@@ -199,7 +216,7 @@ public class RepositoryCacheImpl implements IRepository
 	{
 		int sum = 0;
 		//iterate over all trainees
-		for( ITrainee trainee : getTrainees().values() )
+		for( ITrainee trainee : loadTrainees().values() )
 		{
 			//for each trainee, iterate all WODs
 			sum += trainee.getResultsMap().size();
@@ -207,4 +224,26 @@ public class RepositoryCacheImpl implements IRepository
 		return sum;
 	}
 
+
+	@Override
+	public Map<String, Integer> getAveragesForWorkouts()
+	{
+		return averageGrades;
+	}
+
+
+	@Override
+	public void setAveragesForWorkouts(Map<String, Integer> averages)
+	{
+		averageGrades = averages;
+	}
+
+	public void logAverages()
+	{
+		log.info("log averages");
+		for( Entry<String, Integer> pair : averageGrades.entrySet() )
+		{
+			log.info( pair.getKey() + " : " + pair.getValue() );
+		}		
+	}
 }
