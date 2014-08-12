@@ -1,5 +1,7 @@
 package com.ohadr.cbenchmarkr.web;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.WorkoutMetadata;
 import com.ohadr.cbenchmarkr.utils.Utils;
@@ -73,4 +76,31 @@ public class AdminController
 		log.info( "got to admin ping" );
 		response.getWriter().println("admin pong");
 	}
+	
+	/**
+	 * called by a cron job as GET. URL starts with 'cron' so only admin can invoke the call (web.xml)
+	 * @param request
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping("/cron/calcAveragesAndGrades")
+	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
+	{
+		log.info( "calc averages and grades" );
+
+    	try
+		{
+			manager.calcAveragesAndGrades();
+		} 
+		catch (BenchmarkrRuntimeException be)
+		{
+            log.error( "error calcAveragesAndGrades", be);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+		}
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
 }

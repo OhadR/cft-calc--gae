@@ -12,8 +12,8 @@
   </cron-->
   
   <cron>
-    <url>/calcAveragesAndGrades</url>
+    <url>/cron/calcAveragesAndGrades</url>
     <description>calc averages and grades</description>
-    <schedule>every 1 hours</schedule>
+    <schedule>every 2 hours</schedule>
   </cron>  
 </cronentries>

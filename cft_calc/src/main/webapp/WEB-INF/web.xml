@@ -55,4 +55,15 @@
     <!-- welcome-file-list>
         <welcome-file>guestbook.jsp</welcome-file>
     </welcome-file-list-->
+    
+	<!-- make 'cron' URLs run only by app-admin -->
+	<security-constraint>
+	    <web-resource-collection>
+	        <web-resource-name>cron</web-resource-name>
+	        <url-pattern>/cron/*</url-pattern>
+	    </web-resource-collection>
+	    <auth-constraint>
+	        <role-name>admin</role-name>
+	    </auth-constraint>
+	</security-constraint>    
 </web-app>
