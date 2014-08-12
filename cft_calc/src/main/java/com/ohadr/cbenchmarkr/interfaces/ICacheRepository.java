@@ -17,5 +17,8 @@ public interface ICacheRepository extends IRepository
 	 */
 	int getNumberOfRegisteredResults();
 	
+	/**
+	 * @return the trainees map that in the cache. if cache is empty, it loads the data from the DB
+	 */
 	Map<String, ITrainee> 	getTraineesCache();
 }

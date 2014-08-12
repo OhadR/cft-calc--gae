@@ -36,6 +36,13 @@ public class InMemRepositoryImpl implements IRepository
 		return retVal;
 	}
 
+	@Override
+	public ITrainee getTrainee(String traineeId)
+	{
+		return loadTrainees().get( traineeId );
+	}
+
+
 	private synchronized Map<String, ITrainee> loadTrainees()
 	{
 		if( trainees == null )

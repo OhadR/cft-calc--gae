@@ -23,7 +23,8 @@ public interface IRepository
 			String firstName, String lastName, boolean isMale,
 			Date dateOfBirth) throws BenchmarkrRuntimeException;
 	
-	List<ITrainee> getTrainees();
+	List<ITrainee> 	getTrainees();
+	ITrainee 		getTrainee( String traineeId );
 
 
 	/**
