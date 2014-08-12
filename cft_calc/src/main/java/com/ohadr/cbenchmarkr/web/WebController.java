@@ -63,7 +63,6 @@ public class WebController
         try
         {
         	manager.addWorkoutForTrainee( Utils.getAuthenticatedUsername(), workout );
-			manager.calcAveragesAndGrades();
         }
         catch (BenchmarkrRuntimeException be)
         {
@@ -99,7 +98,7 @@ public class WebController
      * 
      * @param json: workout name
      * TBD: pass the filter to this controller
-     * @param response
+     * @param response: json of the list of TimedResults workouts (results+dates). empty list if none exist. 
      * @throws IOException 
      */
     @RequestMapping(value = "/secured/getWorkoutHistoryForTrainee", method = RequestMethod.GET)
@@ -215,35 +214,6 @@ public class WebController
 		response.getWriter().println("secured ping response: pong");
 	}
 
-
-	/**
-	 * called by a cron job.
-	 * @param request
-	 * @return
-	 * @throws IOException 
-	 * /
-	@RequestMapping("/calcAveragesAndGrades")
-	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
-	{
-		log.info( "calc averages and grades" );
-    	PrintWriter writer = response.getWriter();
-
-    	try
-		{
-			manager.calcAveragesAndGrades();
-		} 
-		catch (BenchmarkrRuntimeException be)
-		{
-            log.error( "error calcAveragesAndGrades", be);
-            writer.println( be.getMessage() );
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    		return;
-		}
-
-        response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
-	}
-	*/
 
     /**
      * init the account for the trainee. right after the call to auth-flows/createAccount, the 

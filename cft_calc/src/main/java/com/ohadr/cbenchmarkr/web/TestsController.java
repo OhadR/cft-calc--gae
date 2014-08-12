@@ -110,32 +110,6 @@ public class TestsController
     }
 	
 	
-	/**
-	 * called for tests
-	 * @param request
-	 * @return
-	 * @throws IOException 
-	 */
-	@RequestMapping(value = "/secured/admin/test/calcAveragesAndGrades", method = RequestMethod.PUT)
-	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
-	{
-		log.info( "calc averages and grades" );
-
-    	try
-		{
-			manager.calcAveragesAndGrades();
-		} 
-		catch (BenchmarkrRuntimeException be)
-		{
-            log.error( "error calcAveragesAndGrades", be);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    		return;
-		}
-
-        response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
-	}
-	
 	@RequestMapping(value = "/secured/admin/test/resetDB", method = RequestMethod.POST)
 	protected void resetDB(HttpServletResponse response) throws IOException
 	{
