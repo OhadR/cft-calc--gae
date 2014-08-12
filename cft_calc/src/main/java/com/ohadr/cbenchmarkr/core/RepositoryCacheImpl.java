@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
+import com.ohadr.cbenchmarkr.Trainee;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.interfaces.ICacheRepository;
 import com.ohadr.cbenchmarkr.interfaces.IRepository;
@@ -74,19 +75,19 @@ public class RepositoryCacheImpl implements ICacheRepository
 
 
 	@Override
-	public void addWorkoutForTrainee(String traineeId, Workout workout)
-			throws BenchmarkrRuntimeException 
+	public void addWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException 
 	{
-		/**
-		 * old impl: access repo.
-		 */
+		//add the workout both to "user" table, and to the "hostory" table. If @workout already exist, exception raised:
 		repository.addWorkoutForTrainee(traineeId, workout);
-		resetCache();
 		
-		/*"new impl" = full cache
-		ITrainee trainee = getTrainees().get( traineeId );
-		trainee.addWorkout(workout);*/
+		//	issue #47: in new impl, i do not reset cache (originally it was in order to re-load all data). i update
+		//	the new workout, and keep it in cache, and when time come, i will re-calc all averages+grades. 
+		//		resetCache();
+		
+		ITrainee trainee = getTraineesCache().get( traineeId );
+		trainee.addWorkout(workout);
 	}
+
 
 
 	private void resetCache() 
@@ -104,20 +105,32 @@ public class RepositoryCacheImpl implements ICacheRepository
 			String workoutName) 
 	{
 		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
-		ITrainee trainee = loadTrainees().get( traineeId );
-		if( trainee == null )		//in case trainee has not enter any WOD-result (issue #52)
-			return null;
-
-		Map<String, List<TimedResult>> history = trainee.getHistory();
+		Map<String, List<TimedResult>> history = getHistoryForTrainee( traineeId );
 		if( history == null )
-		{
-			history = loadTraineesHistoryFromDB( traineeId );
-			trainee.setHistory( history );
-		}
+			return null;
+		
 		List<TimedResult> timedResults = history.get( workoutName );
 		return timedResults;
 	}
 
+
+	@Override
+	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
+	{
+		log.debug( "getHistoryForTrainee for " + traineeId );
+		ITrainee trainee = loadTrainees().get( traineeId );
+		if( trainee == null )		//in case trainee has not enter any WOD-result (issue #52)
+			return null;
+
+		Map<String, List<TimedResult>> history = loadTraineesHistoryFromDB( traineeId );
+		return history;
+	}
+	
+	/**
+	 * 
+	 * @param traineeId
+	 * @return: the history-map for this trainee. null if user has not entered any WOD.
+	 */
 	private Map<String, List<TimedResult>> loadTraineesHistoryFromDB( String traineeId )
 	{
 		log.info("loading history from DB");
@@ -168,6 +181,9 @@ public class RepositoryCacheImpl implements ICacheRepository
 	}
 
 
+	/**
+	 * @return the trainees map that in the cache. if cache is empty, it loads the data from the DB
+	 */
 	private synchronized Map<String, ITrainee> loadTrainees()
 	{
 		if( trainees == null )
@@ -177,28 +193,21 @@ public class RepositoryCacheImpl implements ICacheRepository
 		return trainees;
 	}
 
-	
 
 	@Override
-	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
+	public void createBenchmarkrAccount(String traineeId, String firstName,
+			String lastName, boolean isMale, Date dateOfBirth)
+			throws BenchmarkrRuntimeException
 	{
-		log.debug( "getHistoryForTrainee for " + traineeId );
-		ITrainee trainee = loadTrainees().get( traineeId );
-		Map<String, List<TimedResult>> history = trainee.getHistory();
-		if( history == null )
-		{
-			history = loadTraineesHistoryFromDB( traineeId );
-			trainee.setHistory( history );
-		}
-		return history;
-	}
-
-
-	@Override
-	public void createBenchmarkrAccount(String traineeId, boolean isMale,
-			Date dateOfBirth) throws BenchmarkrRuntimeException 
-	{
-		repository.createBenchmarkrAccount(traineeId, isMale, dateOfBirth);
+		//enrich the auth-flows with the "isMale" and "DOB":
+		repository.createBenchmarkrAccount(traineeId, firstName, lastName, isMale, dateOfBirth);
+		
+		//since issue #42+#47 (quota), we do not reset-cache and then reload data from DB. instead, create a new @Trainee objkect and put in cache:
+		Map<String, Integer> results = new HashMap<String, Integer>();
+		double totalGrade = 0;
+		ITrainee trainee = new Trainee(traineeId, firstName, lastName, results, totalGrade, isMale, dateOfBirth);
+		log.info("adding " + traineeId + " to cache");
+		loadTrainees().put( traineeId,  trainee );
 	}
 
 
@@ -231,12 +240,6 @@ public class RepositoryCacheImpl implements ICacheRepository
 		return averageGrades;
 	}
 
-
-	@Override
-	public void setAveragesForWorkouts(Map<String, Integer> averages)
-	{
-		averageGrades = averages;
-	}
 
 	public void logAverages()
 	{

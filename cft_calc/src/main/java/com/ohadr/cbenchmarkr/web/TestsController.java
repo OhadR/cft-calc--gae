@@ -19,7 +19,7 @@ import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.WorkoutMetadata;
 
-@Controller
+//@Controller
 public class TestsController
 {
 	private static final String WORKOUT_1 = "workout-1";
@@ -56,7 +56,9 @@ public class TestsController
 						"path");
 				
 				manager.createBenchmarkrAccount(
-						username, 
+						username,
+						username,				//1st name
+						String.valueOf( index ), //"lastName", 
 						true, 
 						new Date(System.currentTimeMillis()));
 				
@@ -116,6 +118,26 @@ public class TestsController
 		log.info( "reset DB" );
 
     	manager.resetDB();
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+	}	
+	
+	@RequestMapping("/calcAveragesAndGrades")
+	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
+	{
+		log.info( "calc averages and grades" );
+
+    	try
+		{
+			manager.calcAveragesAndGrades();
+		} 
+		catch (BenchmarkrRuntimeException be)
+		{
+            log.error( "error calcAveragesAndGrades", be);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+		}
 
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);

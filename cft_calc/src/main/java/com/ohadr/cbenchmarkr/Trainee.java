@@ -5,8 +5,13 @@ import java.util.*;
 import org.apache.log4j.Logger;
 
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
-import com.ohadr.cbenchmarkr.utils.TimedResult;
 
+/**
+ * NOTE: the Trainee object does NOT hold the history. Because we do not want to serialize all history. We do not want to load 
+ * the history from DB if not necessary.
+ * @author OhadR
+ *
+ */
 public class Trainee implements ITrainee
 {
 	private static Logger log = Logger.getLogger(Trainee.class);
@@ -17,12 +22,6 @@ public class Trainee implements ITrainee
 	
 	private String firstName;
 	private String lastName;
-	
-	/**
-	 * maps from WOD-name to the list of WODS the person did:
-	 * The history is not loaded from DB like the results, but instead it is loaded lazily.
-	 */
-	private Map<String, List<TimedResult>>  history;
 	
 	/**
 	 * maps from WOD-name to the results:
@@ -83,56 +82,13 @@ public class Trainee implements ITrainee
 		return results;
 	}
 
-	@Override
-	public List<TimedResult> getWorkoutHistory(String workoutName) 
-	{
-		List<TimedResult> retVal = new ArrayList<TimedResult>();
-		
-//		List<TimedResult> workoutResults = getHistory().get( workoutName );
-//		for( Workout workoutResult : workoutResults )
-//		{
-//			TimedResult tr = new TimedResult(
-//					workoutResult.getResult(),
-//					workoutResult.getDate().getTime() );
-//			retVal.add( tr );
-//		}
-		return retVal;
-	}
-
 
 	@Override
 	public void addWorkout(Workout workout) throws BenchmarkrRuntimeException
 	{
 		log.info("adding workout " + workout);
-		List<TimedResult> workouts = history.get( workout.getName() );
-		if( workouts == null )
-		{
-			workouts = new ArrayList<TimedResult>();
-			history.put( workout.getName(), workouts );			
-		}
-		//validate this workout does not already exist:
-		validateNonExistence( workouts, workout );
-		
-		workouts.add( new TimedResult( workout.getResult(), workout.getDate().getTime() ) );
 		
 		results.put( workout.getName(), workout.getResult() );			
-	}
-
-	/**
-	 * method makes sure that @workout does not already registered for this user. 
-	 * @param workouts
-	 * @param workout
-	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist . 
-	 */
-	private static void validateNonExistence(List<TimedResult> workouts, Workout workout) throws BenchmarkrRuntimeException
-	{
-		for( TimedResult tr : workouts )
-		{
-			if( tr.timestamp == workout.getDate().getTime() )
-			{
-				throw new BenchmarkrRuntimeException( "Workout " + workout.getName() + " already registered for date " + workout.getDate() );
-			}
-		}
 	}
 
 	
@@ -170,18 +126,6 @@ public class Trainee implements ITrainee
 	public String getLastName()
 	{
 		return lastName;
-	}
-
-	@Override
-	public Map<String, List<TimedResult>> getHistory() 
-	{
-		return history;
-	}
-
-	@Override
-	public void setHistory(Map<String, List<TimedResult>> history) 
-	{
-		this.history = history;
 	}
 
 	@Override

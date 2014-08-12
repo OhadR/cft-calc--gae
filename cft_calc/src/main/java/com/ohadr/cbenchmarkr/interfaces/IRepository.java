@@ -12,16 +12,19 @@ public interface IRepository
 	 * when a new user creates account, the UI is responsible to invoke a call - AFTER
 	 * the account is created successfully - to this method.
 	 * @param traineeId
+	 * @param lastName 
+	 * @param firstName 
 	 * @param isMale
 	 * @param dateOfBirth
 	 * @throws BenchmarkrRuntimeException 
 	 */
 	void createBenchmarkrAccount(
 			String traineeId, 
-			boolean isMale,
+			String firstName, String lastName, boolean isMale,
 			Date dateOfBirth) throws BenchmarkrRuntimeException;
 	
 	List<ITrainee> getTrainees();
+
 
 	/**
 	 * 
@@ -36,6 +39,7 @@ public interface IRepository
 	 * @param trainee
 	 * @param workoutName: the requested workout's name.
 	 * @return list of TimedResult elements. Per the requested workout, each element reperesents the date and the result.
+	 * null if no results were registered for this trainee.
 	 */
 	List<TimedResult> getWorkoutHistoryForTrainee(String trainee, String workoutName);
 
@@ -43,7 +47,8 @@ public interface IRepository
 	 * 
 	 * @param trainee
 	 * @return map from WOD-name, to a list of TimedResult elements. For each 
-	 * workout, each element reperesents the date and the result.
+	 * workout, each element reperesents the date and the result. 
+	 * null if no results were registered for this trainee.
 	 */
 	Map< String, List<TimedResult> > getHistoryForTrainee( String traineeId );
 

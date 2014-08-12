@@ -40,7 +40,24 @@
         }
 
         function signOut() {
-            service.currentUser = '';
+        	/*
+        	var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/j_spring_security_check',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) {
+                service.isUserLoggedIn = true;
+                service.currentUser = userName;
+                d.resolve();
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+            return d.promise;
+*/
+        	service.currentUser = '';
             service.isUserLoggedIn = false;
 
             sessionStorage.userName = '';
@@ -67,6 +84,8 @@
                     method: 'POST',
                     url: '/createBenchmarkrAccount',
                     data:  $.param({ traineeId: userName,
+			        				firstName: firstName,
+			        				lastName: lastName,
                     				isMale: isMale,
                     				dateOfBirth: dateOfBirth }),
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

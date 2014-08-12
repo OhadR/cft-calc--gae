@@ -228,6 +228,8 @@ public class WebController
     @RequestMapping(value = "/createBenchmarkrAccount", method = RequestMethod.POST)
     protected void createBenchmarkrAccount(
     		@RequestParam("traineeId")    String traineeId,
+    		@RequestParam("firstName")  String	firstName,
+    		@RequestParam("lastName")  String   lastName,
     		@RequestParam("isMale")  boolean    isMale,
     		@RequestParam("dateOfBirth")    String   dateOfBirthText,		//UI format: 1974-10-12
             HttpServletResponse response) throws IOException 
@@ -249,7 +251,9 @@ public class WebController
 
         try
         {
-        	manager.createBenchmarkrAccount( traineeId, isMale, dateOfBirth );
+        	manager.createBenchmarkrAccount( traineeId,
+        			firstName, lastName,
+        			isMale, dateOfBirth );
         }
         catch (BenchmarkrRuntimeException be)
         {

@@ -10,8 +10,6 @@ public interface ICacheRepository extends IRepository
 	 */
 	Map<String, Integer> getAveragesForWorkouts();
 	
-	void setAveragesForWorkouts( Map<String, Integer> averages );
-
 	/**
 	 * returns the number of all workouts-results that were entered. Basically, iterate over all trainees,
 	 * and for each one of them go to his results-map (NOTE: not to the history map) and count the number of items.

@@ -17,7 +17,8 @@ public class InMemRepositoryImpl implements IRepository
 
 	private Map<String, ITrainee> 	trainees = null;
 
-
+	private Map<String, List<TimedResult>> history;
+	
 	public InMemRepositoryImpl()
 	{
 	}
@@ -58,15 +59,23 @@ public class InMemRepositoryImpl implements IRepository
 			String workoutName)
 	{
 		log.debug("getWorkoutHistoryForTrainee for " + traineeId + ", " + workoutName);
-		ITrainee trainee = loadTrainees().get( traineeId );
-		Map<String, List<TimedResult>> history = trainee.getHistory();
+
+		Map<String, List<TimedResult>> history = getHistoryForTrainee( traineeId );
+		
+		List<TimedResult> timedResults = history.get( workoutName );
+		return timedResults;
+	}
+
+	@Override
+	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
+	{
+		log.debug( "getHistoryForTrainee for " + traineeId );
+
 		if( history == null )
 		{
 			history = loadTraineesHistoryFromDB( traineeId );
-			trainee.setHistory( history );
 		}
-		List<TimedResult> timedResults = history.get( workoutName );
-		return timedResults;
+		return history;
 	}
 
 	private Map<String, List<TimedResult>> loadTraineesHistoryFromDB(
@@ -99,25 +108,14 @@ public class InMemRepositoryImpl implements IRepository
 	}
 
 	@Override
-	public Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
-	{
-		log.debug( "getHistoryForTrainee for " + traineeId );
-		ITrainee trainee = loadTrainees().get( traineeId );
-		Map<String, List<TimedResult>> history = trainee.getHistory();
-		if( history == null )
-		{
-			history = loadTraineesHistoryFromDB( traineeId );
-			trainee.setHistory( history );
-		}
-		return history;
-	}
-
-	@Override
-	public void createBenchmarkrAccount(String traineeId, boolean isMale,
-			Date dateOfBirth) 
+	public void createBenchmarkrAccount(String traineeId, String firstName,
+			String lastName, boolean isMale, Date dateOfBirth)
+			throws BenchmarkrRuntimeException
 	{
 		throw new NotImplementedException();
 	}
+
+
 
 	@Override
 	public void resetRepository()
