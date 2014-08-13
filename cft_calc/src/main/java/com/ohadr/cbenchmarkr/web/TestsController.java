@@ -19,7 +19,7 @@ import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.WorkoutMetadata;
 
-//@Controller
+@Controller
 public class TestsController
 {
 	private static final String WORKOUT_1 = "workout-1";
@@ -57,8 +57,6 @@ public class TestsController
 				
 				manager.createBenchmarkrAccount(
 						username,
-						username,				//1st name
-						String.valueOf( index ), //"lastName", 
 						true, 
 						new Date(System.currentTimeMillis()));
 				

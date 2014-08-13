@@ -20,7 +20,7 @@ public interface IRepository
 	 */
 	void createBenchmarkrAccount(
 			String traineeId, 
-			String firstName, String lastName, boolean isMale,
+			boolean isMale,
 			Date dateOfBirth) throws BenchmarkrRuntimeException;
 	
 	List<ITrainee> 	getTrainees();

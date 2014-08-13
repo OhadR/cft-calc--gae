@@ -84,8 +84,6 @@
                     method: 'POST',
                     url: '/createBenchmarkrAccount',
                     data:  $.param({ traineeId: userName,
-			        				firstName: firstName,
-			        				lastName: lastName,
                     				isMale: isMale,
                     				dateOfBirth: dateOfBirth }),
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

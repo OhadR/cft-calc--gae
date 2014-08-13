@@ -115,8 +115,7 @@ public class InMemRepositoryImpl implements IRepository
 	}
 
 	@Override
-	public void createBenchmarkrAccount(String traineeId, String firstName,
-			String lastName, boolean isMale, Date dateOfBirth)
+	public void createBenchmarkrAccount(String traineeId, boolean isMale, Date dateOfBirth)
 			throws BenchmarkrRuntimeException
 	{
 		throw new NotImplementedException();
