@@ -38,7 +38,7 @@ public interface IRepository
 	/**
 	 * 
 	 * @param trainee
-	 * @param workoutName: the requested workout's name.
+	 * @param workoutName the requested workout's name.
 	 * @return list of TimedResult elements. Per the requested workout, each element reperesents the date and the result.
 	 * null if no results were registered for this trainee.
 	 */

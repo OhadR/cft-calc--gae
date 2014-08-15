@@ -162,7 +162,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 	/**
 	 * 
 	 * @param traineeId
-	 * @return: the history-map for this trainee. null if user has not entered any WOD.
+	 * @return the history-map for this trainee. null if user has not entered any WOD.
 	 */
 	private final Map<String, List<TimedResult>> loadTraineesHistoryFromDB( String traineeId )
 	{

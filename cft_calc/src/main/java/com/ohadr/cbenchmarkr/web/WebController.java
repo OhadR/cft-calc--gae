@@ -96,9 +96,9 @@ public class WebController
 
     /**
      * 
-     * @param json: workout name
+     * @param json workout name
      * TBD: pass the filter to this controller
-     * @param response: json of the list of TimedResults workouts (results+dates). empty list if none exist. 
+     * @param response json of the list of TimedResults workouts (results+dates). empty list if none exist. 
      * @throws IOException 
      */
     @RequestMapping(value = "/secured/getWorkoutHistoryForTrainee", method = RequestMethod.GET)
