@@ -68,5 +68,21 @@ public class Utils
 		log.info( "logged in user: " + name );
 		return name;
 	}
+	
+	/**
+	 * 
+	 * @param input the input double
+	 * @param numDigitsAfterDecimalPoint num Digits After Decimal Point. e.g. if it is 3, and input is 4.123456789, 
+	 * the output will be 4.123
+	 * @return
+	 */
+	public static double formatDouble(double input, int numDigitsAfterDecimalPoint) 
+	{
+		double factor = Math.pow(10, numDigitsAfterDecimalPoint);
+		int nResult = (int)(input * factor);
+		double output = nResult / factor;
+		return output;
+	}
+	
     
 }
