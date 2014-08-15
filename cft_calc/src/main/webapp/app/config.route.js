@@ -35,7 +35,7 @@
                     title: 'my workouts',
                     templateUrl: 'app/workouts/workouts.html',
                     settings: {
-                        nav: 2,
+                        nav: 3,
                         content: '<i class="fa fa-lock"></i> My Workouts'
                     }
                 }
@@ -45,7 +45,7 @@
                     title: 'add workout',
                     templateUrl: 'app/workouts/addworkout.html',
                     settings: {
-                        nav: 3,
+                        nav: 2,
                         content: '<i class="fa fa-lock"></i> Add Workout'
                     }
                 }
