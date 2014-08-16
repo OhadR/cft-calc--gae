@@ -32,11 +32,11 @@
             }, {
                 url: '/workouts',
                 config: {
-                    title: 'my workouts',
+                    title: 'my profile',
                     templateUrl: 'app/workouts/workouts.html',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-lock"></i> My Workouts'
+                        content: '<i class="fa fa-lock"></i> My Profile'
                     }
                 }
             }, {
