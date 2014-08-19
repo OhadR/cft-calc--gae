@@ -11,7 +11,8 @@ public interface ITrainee extends Comparable<ITrainee>
 	String getId();
 
 	/**
-	 * maps from WOD-name to the results:
+	 * 
+	 * @return map from WOD-name to the result.
 	 */
 	Map<String, Integer> getResultsMap();
 	

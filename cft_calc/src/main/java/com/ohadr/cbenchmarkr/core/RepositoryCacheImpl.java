@@ -110,10 +110,10 @@ public class RepositoryCacheImpl implements ICacheRepository
 	@Override
 	public synchronized void addWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException 
 	{
-		//add the workout both to "user" table, and to the "hostory" table. If @workout already exist, exception raised:
+		//add the workout both to "user" table, and to the "history" table. If @workout already exist, exception raised:
 		repository.addWorkoutForTrainee(traineeId, workout);
 		
-		//	issue #47: in new impl, i do not reset cache (originally it was in order to re-load all data). i update
+		//	issue #47: in new impl, I do not reset cache (originally it was in order to re-load all data). i update
 		//	the new workout, and keep it in cache, and when time come, i will re-calc all averages+grades. 
 		//		resetCache();
 		
@@ -260,5 +260,11 @@ public class RepositoryCacheImpl implements ICacheRepository
 		{
 			log.info( pair.getKey() + " : " + pair.getValue() );
 		}		
+	}
+
+	@Override
+	public void clearAveragesForWorkouts()
+	{
+		averageGrades.clear();
 	}
 }
