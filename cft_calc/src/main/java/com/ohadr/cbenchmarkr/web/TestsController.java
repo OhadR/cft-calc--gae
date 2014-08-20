@@ -38,7 +38,7 @@ public class TestsController
     		@RequestParam("amount")    int amount,
             HttpServletResponse response) throws IOException 
     {
-		WorkoutMetadata workoutMD = new WorkoutMetadata( WORKOUT_1, "", true );
+		WorkoutMetadata workoutMD = new WorkoutMetadata( WORKOUT_1, "", true, "reps" );
 		manager.addWorkout( workoutMD );
 		
 		//add 100 users, starting from 'startIndex'

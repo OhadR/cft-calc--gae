@@ -30,6 +30,7 @@ public class AdminController
     protected void addWorkout(
     		@RequestParam("name")    			String name,
     		@RequestParam("isRepetitionBased")  boolean    isRepetitionBased,
+    		@RequestParam("units")  			String units,
     		@RequestParam("description")    	String description,
             HttpServletResponse response) throws Exception
     {
@@ -44,7 +45,7 @@ public class AdminController
         }
         else
         {
-        	WorkoutMetadata workoutMetadata = new WorkoutMetadata(name, description, isRepetitionBased);
+        	WorkoutMetadata workoutMetadata = new WorkoutMetadata(name, description, isRepetitionBased, units);
 
         	log.info( workoutMetadata );
            	manager.addWorkout( workoutMetadata );

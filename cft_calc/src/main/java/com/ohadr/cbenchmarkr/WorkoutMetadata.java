@@ -11,6 +11,8 @@ public class WorkoutMetadata
 	 * this member is true if the workout is rep-based.
 	 */
 	private boolean	  repetitionBased;
+	
+	private String units;
 
 	
 	//for serialization (from JSON) "JsonMappingException: No suitable constructor found"
@@ -18,11 +20,13 @@ public class WorkoutMetadata
 	
 	public WorkoutMetadata(String name, 
 			String description,
-			boolean repetitionBased)
+			boolean repetitionBased,
+			String units)
 	{
 		this.name = name;
 		this.description = description;
-		this.repetitionBased = repetitionBased;		
+		this.repetitionBased = repetitionBased;
+		this.units = units;
 	}
 	
 	public String getName()
@@ -42,9 +46,15 @@ public class WorkoutMetadata
 	{
 		return repetitionBased;
 	}
+	
+	public String getUnits()
+	{
+		return units;
+	}
 
 	public String toString()
 	{
-		return name + ": repetitionBased? " + repetitionBased;
+		return name + ": repetitionBased? " + repetitionBased + 
+				", untis: " + units;
 	}
 }

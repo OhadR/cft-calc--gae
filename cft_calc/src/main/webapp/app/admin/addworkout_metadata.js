@@ -31,7 +31,9 @@
             }
 
             //call backend:
-            datacontext.addWorkoutMetadata( vm.workout.name, vm.workout.repetitionBased, vm.workout.description ).
+            datacontext.addWorkoutMetadata( vm.workout.name, vm.workout.repetitionBased, 
+            		vm.workout.description,
+            		vm.workout.units).
             then(function (loginData) 
             {
                 log( "workout " + vm.workout.name + " : " + vm.workout.result + " added");

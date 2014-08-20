@@ -95,11 +95,9 @@
         	//sort by the result:
         	vm.traineesPerWorkout.sort( compareByResult );
         	
-        	vm.workout.units = 'secs';
         	if( vm.workout.repetitionBased )
         	{
         		vm.traineesPerWorkout.reverse();
-            	vm.workout.units = 'reps';
         	}
         }
         

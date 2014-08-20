@@ -61,11 +61,6 @@
         
         function onWorkoutChanged()
         {
-        	vm.workout.units = 'secs';
-        	if( vm.workout.repetitionBased )
-        	{
-            	vm.workout.units = 'reps';
-        	}
         }        
         
     }
