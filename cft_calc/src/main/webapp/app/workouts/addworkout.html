@@ -20,8 +20,7 @@
 	                                    <label>{{vm.workout.units}}</label>
 	                                </p>
 	                                <p class="row">
-	                                    <label>Date: </label>
-	                                    <datepicker ng-model="vm.workout.date" show-weeks="false" class="well well-sm" />
+						                <input type="date" name="dob" ng-model="vm.workout.date" placeholder="dd-MM-yyyy" required />
 	                                </p>
 	                            </div>
 	                            <div class="container-fluid">
@@ -35,7 +34,7 @@
                     </div>
 	
 	                <div class="col-md-6">
-	                    <div class="widget wred">
+	                    <div class="widget wgray">
 	                        <div data-cc-widget-header title="Instructions"></div>
 	                           <div class="widget-content text-left text-info">
 	                            <div class="container-fluid">

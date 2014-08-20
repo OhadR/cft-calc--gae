@@ -51,11 +51,24 @@ public class WebController
     protected void addWorkoutForTrainee(
     		@RequestParam("name")    String name,
     		@RequestParam("result")  int    result,
-    		@RequestParam("date")    Date   date,
+//    		@RequestParam("date")    Date   date,
+    		@RequestParam("date")    String   dateText,		//UI format: 1974-10-12
             HttpServletResponse response) throws IOException 
     {
     	PrintWriter writer = response.getWriter();
-    	
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+		try
+		{
+			date = format.parse(dateText);
+		} 
+		catch (ParseException pe) //if date could not be parsed
+		{
+            log.error( "date could not be parsed", pe);
+            date = new Date();
+		}
+
     	Workout workout = new Workout( name, result );
     	workout.setDate( date );
         log.info( "adding workout: " + workout);
