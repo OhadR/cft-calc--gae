@@ -565,10 +565,11 @@ body, .login-submit, .login-submit:before, .login-submit:after {
 
 .login {
   position: relative;
-  margin: 80px auto;
+  margin: 50px auto;
+  margin-bottom: 20px;
   width: 1000px;
   padding-right: 32px;
-  font-weight: 300;
+/*   font-weight: 300;*/
   color: #a8a7a8;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
 }

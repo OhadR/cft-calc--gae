@@ -1294,6 +1294,7 @@ login {
   -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
+/*		issue #32 - remove the dark background from items in the login page 
 .login:before {
   content: '';
   position: absolute;
@@ -1305,6 +1306,7 @@ login {
   background: rgba(0, 0, 0, 0.08);
   border-radius: 4px;
 }
+*/
 .login h1 {
   margin: -20px -20px 21px;
   line-height: 40px;
