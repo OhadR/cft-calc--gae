@@ -16,6 +16,8 @@
         vm.workouts = [];		//objects to the UI. each contains name, result and timestamp
         vm.workoutNames = [];
         vm.onWorkoutChanged = onWorkoutChanged;
+        vm.userInfo = { };
+        vm.updateUser = updateUser;
 
         $scope.config = {
   			  title: '',
@@ -66,7 +68,7 @@
 
         function activate() 
         {
-            common.activateController( [loadWorkoutNames()], controllerId );
+            common.activateController( [loadWorkoutNames(), getTraineeById()], controllerId );
         }
 
         function loadWorkouts() {
@@ -104,9 +106,47 @@
             });
         }
         
+        function getTraineeById()
+        {
+            datacontext.getTraineeById().
+            then(function(data) {
+                vm.userInfo = data;
+            	//fix dob from timestamp to Date obj:
+                var dobDate = new Date( data.dateOfBirth );
+            	vm.userInfo.dateOfBirth = dobDate.getFullYear() + "-" + (dobDate.getMonth()+1) + "-" + dobDate.getUTCDate();
+//            	vm.userInfo.dateOfBirth = '2011-09-29';
+            });
+        }
+        
         function onWorkoutChanged()
         {
         	loadWorkouts();
+        }
+        
+        function updateUser()
+        {
+        	datacontext.updateUser().
+            then(function(data) 
+            {
+                vm.workouts = data;
+                //update the graph:
+                $scope.chartData = {
+                	    series: [vm.workout.name],
+                	    data: [{
+                  	      x: "No Records for " + vm.workout.name,
+                	      y: [0]
+                	    }]
+                	  }; 
+                var i;
+                for(i = 0; i < data.length; ++i)
+                {
+                	//log(data[i].result + " / " + data[i].timestamp);
+                	var d = new Date( data[i].timestamp );
+                	
+                	$scope.chartData.data[i] = { x: d.toDateString(), y: [data[i].result] };
+                }
+                
+            });
         }
 
     }

@@ -17,6 +17,7 @@
             getAllWorkoutsMetadata: getAllWorkoutsMetadata,
             addWorkout: addWorkout,
             addWorkoutMetadata: addWorkoutMetadata,
+            getTraineeById: getTraineeById,
         };
 
         return service;
@@ -230,6 +231,24 @@
             });
 
             return d.promise;
+        }
+        
+        function getTraineeById()
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/secured/getTraineeById',
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve(data);
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;        
         }
     }
 })();

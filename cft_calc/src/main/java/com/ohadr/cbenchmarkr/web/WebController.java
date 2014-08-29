@@ -278,4 +278,42 @@ public class WebController
 		response.setStatus(HttpServletResponse.SC_OK);
    }
 
+    @RequestMapping(value = "/secured/updateBenchmarkrAccount", method = RequestMethod.POST)
+    protected void updateBenchmarkrAccount(
+    		@RequestParam("firstName")   String   firstName,
+    		@RequestParam("lastName")    String   lastName,
+    		@RequestParam("dateOfBirth") String   dateOfBirthText,		//UI format: 1974-10-12
+            HttpServletResponse response) throws IOException 
+    {
+    	PrintWriter writer = response.getWriter();
+        log.info( "creating Benchmarkr Account");
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOfBirth;
+		try
+		{
+			dateOfBirth = format.parse(dateOfBirthText);
+		} 
+		catch (ParseException pe) //if date could not be parsed
+		{
+            log.error( "date could not be parsed", pe);
+            dateOfBirth = new Date();
+		}
+
+       	manager.updateBenchmarkrAccount( Utils.getAuthenticatedUsername(),
+        			firstName, lastName, dateOfBirth );
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+   }
+
+    @RequestMapping(value = "/secured/getTraineeById", method = RequestMethod.GET)
+    protected void getTraineeById(
+            HttpServletResponse response) throws IOException 
+    {
+    	ITrainee trainee = manager.getTraineeById( Utils.getAuthenticatedUsername() );
+    	String jsonResponse = Utils.convertToJson( trainee );
+    	response.getWriter().println( jsonResponse );
+    }
+
 }

@@ -28,4 +28,6 @@ public interface ICacheRepository extends IRepository
 	 * @return the trainees map that in the cache. if cache is empty, it loads the data from the DB
 	 */
 	Map<String, ITrainee> 	getTraineesCache();
+	
+	ITrainee getTraineeFromCache( String traineeId );
 }

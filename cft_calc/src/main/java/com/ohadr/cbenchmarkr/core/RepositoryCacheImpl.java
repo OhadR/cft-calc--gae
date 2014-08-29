@@ -73,7 +73,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 	 * @param traineeId
 	 * @return null if this trainee is neither in the cache nor in "Users" DB (hasn't entered any WOD-result). 
 	 */
-	public synchronized ITrainee getTraineeCache( String traineeId )
+	public synchronized ITrainee getTraineeFromCache( String traineeId )
 	{
 		ITrainee trainee = getTraineesCache().get( traineeId );
 		//if we get null, this trainee is not in the cache. try to load it from the DB:
@@ -117,7 +117,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 		//	the new workout, and keep it in cache, and when time come, i will re-calc all averages+grades. 
 		//		resetCache();
 		
-		ITrainee trainee = getTraineeCache( traineeId );
+		ITrainee trainee = getTraineeFromCache( traineeId );
 		trainee.addWorkout(workout);
 	}
 
@@ -151,7 +151,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 	public final Map<String, List<TimedResult>> getHistoryForTrainee(String traineeId) 
 	{
 		log.debug( "getHistoryForTrainee for " + traineeId );
-		ITrainee trainee = getTraineeCache( traineeId );
+		ITrainee trainee = getTraineeFromCache( traineeId );
 		if( trainee == null )		//in case trainee has not enter any WOD-result (issue #52)
 			return null;
 
@@ -194,7 +194,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 		
 		for( Map.Entry<String, Double> entry : gradesPerTrainee.entrySet() )
 		{
-			ITrainee trainee = getTraineeCache( entry.getKey() );
+			ITrainee trainee = getTraineeFromCache( entry.getKey() );
 			trainee.setTotalGrade( entry.getValue() );
 		}
 		
@@ -266,5 +266,12 @@ public class RepositoryCacheImpl implements ICacheRepository
 	public void clearAveragesForWorkouts()
 	{
 		averageGrades.clear();
+	}
+
+	@Override
+	public void updateBenchmarkrAccount(String traineeId, String firstName,
+			String lastName, Date dateOfBirth)
+	{
+		repository.updateBenchmarkrAccount( traineeId, firstName, lastName, dateOfBirth );
 	}
 }

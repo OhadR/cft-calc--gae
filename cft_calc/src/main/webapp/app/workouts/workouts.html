@@ -23,6 +23,67 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <!--  div class="col-md-6">
+                    <div class="widget wgray">
+                        <div data-cc-widget-header title="Edit {{vm.title}}"></div>
+
+                        <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <!-- <th>Result - {{vm.workout.name}} ({{vm.workout.units}})</th>  - ->
+                                        <th>Result - {{vm.workout.name}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="p in vm.workouts">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{p.timestamp}}</td>
+                                        <td>{{p.result}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div-->
+
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <div class="widget wgreen">
+	                        <div data-cc-widget-header title="Update Profile"></div>
+	
+	                        <div class="widget-content user">
+						        <form ng-submit="vm.onSaveWorkout()">
+		                            <div class="container-fluid">
+							            <p class="row">
+							                <input type="text" name="firstname" ng-model="vm.userInfo.firstName" placeholder="Your first name" required />
+							            </p>
+							            <p class="row">
+							                <input type="text" name="lastname" data-ng-model="vm.userInfo.lastName" placeholder="Your last name" required />
+							            </p>
+							            <p class="row">
+							                <input type="date" name="dob" ng-model="vm.userInfo.dateOfBirth" required />
+							            </p>
+		                            </div>
+		                            <div class="container-fluid">
+		                                <button type="submit">Update Profile</button>
+		                            </div>
+	   	                        </form>
+	                        </div>
+	
+	                        <div class="widget-foot">
+	                            <div class="clearfix"></div>
+	                        </div>
+	                    </div>
+	                </div>            
+	            </div>
         </div>
     </section>
 </section>

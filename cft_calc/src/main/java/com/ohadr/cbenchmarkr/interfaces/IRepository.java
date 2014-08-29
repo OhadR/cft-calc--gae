@@ -63,4 +63,10 @@ public interface IRepository
 	 * for TESTS PURPOSES ONLY
 	 */
 	void resetRepository();
+	
+	void updateBenchmarkrAccount(String traineeId, 
+			String firstName, 
+			String lastName, 
+			Date dateOfBirth);
+	
 }
