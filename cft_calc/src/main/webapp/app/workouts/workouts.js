@@ -113,9 +113,25 @@
                 vm.userInfo = data;
             	//fix dob from timestamp to Date obj:
                 var dobDate = new Date( data.dateOfBirth );
-            	vm.userInfo.dateOfBirth = dobDate.getFullYear() + "-" + (dobDate.getMonth()+1) + "-" + dobDate.getUTCDate();
+            	vm.userInfo.dateOfBirth = formatDate( dobDate ); 
 //            	vm.userInfo.dateOfBirth = '2011-09-29';
             });
+        }
+        
+        function formatDate( date )
+        {
+        	var month = date.getMonth()+1;
+        	if( month < 10 )
+        	{
+        		month = '0' + month;
+        	}
+        	var day = date.getUTCDate();
+        	if( day < 10 )
+        	{
+        		day = '0' + day;
+        	}
+        	var retVal = date.getFullYear() + "-" + month + "-" + day;
+    		return retVal;
         }
         
         function onWorkoutChanged()
