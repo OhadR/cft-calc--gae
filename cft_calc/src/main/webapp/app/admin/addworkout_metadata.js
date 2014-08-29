@@ -25,8 +25,6 @@
             if ( !vm.workout.name ) 
             {
             	log_error( 'workout name is empty' );
-                vm.error = 'workout name is empty';
-                vm.hasError = true;
                 return;
             }
 
@@ -36,12 +34,11 @@
             		vm.workout.units).
             then(function (loginData) 
             {
-                log( "workout " + vm.workout.name + " : " + vm.workout.result + " added");
+                log( "workout " + vm.workout.name + " added");
 //                $location.path('/');
             }, function(error) 
             {
             	log_error( "error: " + error );
-                vm.hasError = true;
             });
         }
    
