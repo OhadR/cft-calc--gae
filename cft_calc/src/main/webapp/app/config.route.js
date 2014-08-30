@@ -51,12 +51,23 @@
                 }
             }, 
             {
+                url: '/insights',
+                config: {
+                    title: 'insights',
+                    templateUrl: 'app/dashboard/insights.html',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="fa fa-lock"></i> Insights'
+                    }
+                }
+            },            
+            {
                 url: '/admin',
                 config: {
                     title: 'Administration',
                     templateUrl: 'app/admin/admin.html',
                     settings: {
-                        nav: 4,
+                        nav: 5,
                         content: '<i class="fa fa-lock"></i> Administration'
                     }
                 }
