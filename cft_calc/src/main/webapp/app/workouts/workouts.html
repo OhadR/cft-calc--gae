@@ -85,5 +85,37 @@
 	                </div>            
 	            </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="Change Password"></div>
+
+                    <div class="widget-content user">
+	        		<form ng-submit="vm.onChangePassword()">
+                         <div class="container-fluid">
+							<p class="row">
+							    <input type="password" name="currentPassword" ng-model="vm.changePassword.current" placeholder="Current password" required />
+							</p>
+							<p class="row">
+							    <input type="password" name="newPassword" data-ng-model="vm.changePassword.new" placeholder="New password" required />
+							</p>
+							<p class="row">
+							    <input type="password" name="confirm_password" ng-model="vm.changePassword.retypeNew" placeholder="Retype new password" required />
+							</p>
+                         </div>
+                         <div class="container-fluid">
+                             <button type="submit">Submit</button>
+                         </div>
+                        </form>
+                    </div>
+
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+                        
+        </div>        
     </section>
 </section>
