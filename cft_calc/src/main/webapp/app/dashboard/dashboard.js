@@ -29,21 +29,9 @@
         activate();
 
         function activate() {
-            var promises = [getRegisteredUsers(), getRegisteredResults(), getPeople(), loadWorkoutNames()];
+            var promises = [getPeople(), loadWorkoutNames()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
-        }
-
-        function getRegisteredUsers() {
-            return datacontext.getRegisteredUsers().then(function (data) {
-                return vm.registeredUsers = data;
-            });
-        }
-
-        function getRegisteredResults() {
-            return datacontext.getRegisteredResults().then(function (data) {
-                return vm.registeredResults = data;
-            });
         }
 
         function getPeople() {
