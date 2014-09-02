@@ -2,10 +2,10 @@
     'use strict';
     var controllerId = 'workouts';
     var mudule = angular.module('app');
-    mudule.controller(controllerId, ['$scope', 'common', 'datacontext', workouts]);
+    mudule.controller(controllerId, ['$scope', 'common', 'datacontext', 'auth', workouts]);
 
     
-    function workouts($scope, common, datacontext) {
+    function workouts($scope, common, datacontext, auth) {
         var getLogFn = common.logger.getLogFn;
         var log = 		getLogFn(controllerId);
         var log_error = getLogFn(controllerId, 'error');
@@ -15,9 +15,11 @@
         vm.workout = { };
         vm.workouts = [];		//objects to the UI. each contains name, result and timestamp
         vm.workoutNames = [];
-        vm.onWorkoutChanged = onWorkoutChanged;
         vm.userInfo = { };
+        //functions:
+        vm.onWorkoutChanged = onWorkoutChanged;
         vm.updateUser = updateUser;
+        vm.onChangePassword = onChangePassword;
 
         $scope.config = {
   			  title: '',
@@ -162,6 +164,23 @@
                 	$scope.chartData.data[i] = { x: d.toDateString(), y: [data[i].result] };
                 }
                 
+            });
+        }
+        
+        function onChangePassword()
+        {
+        	//TODO: assert newPass==retypeNewPass
+        	
+        	auth.changePassword(vm.changePassword.current, vm.changePassword.newPass ).
+        	then(function (loginData) 
+        	{
+        		log( "password changed successfully" );    
+        		$location.params = vm.userInfo.userName;
+        		$location.path('/accountCreatedSuccess');
+            },
+            function(error) {
+            	 log_error( "change password failed, error: " + error );
+            	 vm.failedCreatingUser = true;
             });
         }
 

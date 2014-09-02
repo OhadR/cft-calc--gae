@@ -11,11 +11,12 @@
 
         var service = {
             isUserLoggedIn: false,
+            currentUser: loggedInUser,
             login: login,
             createUser: createUser,
             restorePassword: restorePassword,
             signOut: signOut,
-            currentUser: loggedInUser,
+            changePassword: changePassword,
         };
 
         return service;
@@ -110,6 +111,23 @@
                 method: 'POST',
                 url: '/rest/forgotPassword',
                 data:  $.param({ email: email  }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            }).success(function (data, status, headers, config) {
+                d.resolve();
+            }).error(function (data, status, headers, config) {
+                d.reject(status);
+            });
+
+            return d.promise;
+        }
+
+        function changePassword( currentPass, newPass ) {
+            var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/rest/changePassword',
+                data:  $.param({ currentPassword: currentPass, newPassword: newPass, confirm_password: newPass  }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) {
                 d.resolve();
