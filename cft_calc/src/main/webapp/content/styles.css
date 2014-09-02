@@ -736,10 +736,18 @@ so this is a special behaviour - both classes login+signup */
   padding: 0;
 }
 
-.lt-ie9 input[type=text], input[type=email], .lt-ie9 input[type=password], .login input[type=date], .login-select {
+.lt-ie9 input[type=text], input[type=email], .lt-ie9 input[type=password], .login-select {
   line-height: 40px;
   background: #282828;
 }
+/*if I give the input.date height of 40px as well, it is higher than other controls */
+input[type=date] {
+  line-height: 29px;
+}
+.login input[type=date] {
+  background: #282828;
+}
+
 .lt-ie9 .login-submit {
   position: absolute;
   top: 12px;
