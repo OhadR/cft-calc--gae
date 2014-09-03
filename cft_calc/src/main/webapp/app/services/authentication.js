@@ -132,7 +132,7 @@
             }).success(function (data, status, headers, config) {
                 d.resolve();
             }).error(function (data, status, headers, config) {
-                d.reject(status);
+                d.reject(data, status);
             });
 
             return d.promise;

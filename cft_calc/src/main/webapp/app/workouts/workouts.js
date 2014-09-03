@@ -175,12 +175,9 @@
         	then(function (loginData) 
         	{
         		log( "password changed successfully" );    
-        		$location.params = vm.userInfo.userName;
-        		$location.path('/accountCreatedSuccess');
             },
             function(error) {
             	 log_error( "change password failed, error: " + error );
-            	 vm.failedCreatingUser = true;
             });
         }
 
