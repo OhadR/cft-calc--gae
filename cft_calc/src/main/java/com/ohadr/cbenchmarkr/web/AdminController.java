@@ -87,7 +87,7 @@ public class AdminController
 	@RequestMapping("/cron/calcAveragesAndGrades")
 	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
 	{
-		log.info( "calc averages and grades" );
+		log.debug( "calc averages and grades" );
 
     	try
 		{
@@ -99,6 +99,16 @@ public class AdminController
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     		return;
 		}
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
+	
+	@RequestMapping("/cron/recordStatistics")
+	protected void recordStatistics( HttpServletResponse response ) throws IOException
+	{
+		manager.recordStatistics();
 
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);

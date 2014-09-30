@@ -19,6 +19,7 @@ import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.interfaces.ICacheRepository;
 import com.ohadr.cbenchmarkr.interfaces.IRepository;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
+import com.ohadr.cbenchmarkr.utils.StatisticsData;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 @Component
@@ -273,5 +274,25 @@ public class RepositoryCacheImpl implements ICacheRepository
 			String lastName, Date dateOfBirth)
 	{
 		repository.updateBenchmarkrAccount( traineeId, firstName, lastName, dateOfBirth );
+	}
+
+	
+	/***************** TRAFFIC STATISTICS **********************/
+	@Override
+	public List<TimedResult> getRegisteredUsersStatistics()
+	{
+		return repository.getRegisteredUsersStatistics();
+	}
+
+	@Override
+	public List<TimedResult> getRegisteredResultsStatistics()
+	{
+		return repository.getRegisteredResultsStatistics();
+	}
+
+	@Override
+	public void recordStatistics(StatisticsData statisticsData)
+	{
+		repository.recordStatistics(statisticsData);		
 	}
 }

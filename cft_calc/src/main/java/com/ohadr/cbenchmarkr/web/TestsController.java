@@ -121,7 +121,7 @@ public class TestsController
 		response.setStatus(HttpServletResponse.SC_OK);
 	}	
 	
-	@RequestMapping("/calcAveragesAndGrades")
+//	@RequestMapping("/calcAveragesAndGrades")
 	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
 	{
 		log.info( "calc averages and grades" );
@@ -140,4 +140,14 @@ public class TestsController
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
 	}	
+	
+	@RequestMapping("/recordStatistics")
+	protected void recordStatistics( HttpServletResponse response ) throws IOException
+	{
+		manager.recordStatistics();
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
 }

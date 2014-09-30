@@ -9,6 +9,7 @@ import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.interfaces.IRepository;
 import com.ohadr.cbenchmarkr.interfaces.ITrainee;
+import com.ohadr.cbenchmarkr.utils.StatisticsData;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public class InMemRepositoryImpl implements IRepository
@@ -146,6 +147,38 @@ public class InMemRepositoryImpl implements IRepository
 			sum += trainee.getResultsMap().size();
 		}
 		return sum;
+	}
+
+
+	@Override
+	public void updateBenchmarkrAccount(String traineeId, String firstName,
+			String lastName, Date dateOfBirth)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public List<TimedResult> getRegisteredUsersStatistics()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<TimedResult> getRegisteredResultsStatistics()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void recordStatistics(StatisticsData statisticsData)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 

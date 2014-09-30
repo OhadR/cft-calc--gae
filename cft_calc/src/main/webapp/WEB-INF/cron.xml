@@ -16,4 +16,11 @@
     <description>calc averages and grades</description>
     <schedule>every 10 minutes</schedule>
   </cron>  
+
+  <cron>
+    <url>/cron/recordStatistics</url>
+    <description>record weekly traffic</description>
+    <schedule>every monday 05:00</schedule>
+  </cron>  
+  
 </cronentries>

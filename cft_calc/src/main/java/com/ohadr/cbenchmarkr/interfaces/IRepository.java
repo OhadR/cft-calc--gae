@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Workout;
+import com.ohadr.cbenchmarkr.utils.StatisticsData;
 import com.ohadr.cbenchmarkr.utils.TimedResult;
 
 public interface IRepository
@@ -68,5 +69,11 @@ public interface IRepository
 			String firstName, 
 			String lastName, 
 			Date dateOfBirth);
+
 	
+	/****** TRAFFIC STATISTICS ******/
+	List<TimedResult> getRegisteredUsersStatistics();
+	List<TimedResult> getRegisteredResultsStatistics();
+	void recordStatistics( StatisticsData statisticsData );
+
 }
