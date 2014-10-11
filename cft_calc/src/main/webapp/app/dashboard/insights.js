@@ -44,31 +44,6 @@
               	    }]
           	  };        
 
-          function loadWorkouts() {
-              datacontext.getWorkoutHistoryForTrainee( vm.workout.name ).
-              then(function(data) 
-              {
-                  vm.workouts = data;
-                  //update the graph:
-                  $scope.chartData = {
-                  	    series: [vm.workout.name],
-                  	    data: [{
-                    	      x: "No Records for " + vm.workout.name,
-                  	      y: [0]
-                  	    }]
-                  	  }; 
-                  var i;
-                  for(i = 0; i < data.length; ++i)
-                  {
-                  	//log(data[i].result + " / " + data[i].timestamp);
-                  	var d = new Date( data[i].timestamp );
-                  	
-                  	$scope.chartData.data[i] = { x: d.toDateString(), y: [data[i].result] };
-                  }
-                  
-              });
-          }
-
           function loadWorkoutNames()
           {
               datacontext.getAllWorkoutsNames().
@@ -139,22 +114,24 @@
         {
             datacontext.getStatistics().then( function(data) 
             {
-                vm.workouts = data;
                 //update the graph:
                 $scope.chartData = {
-                	    series: [vm.workout.name],
+                	    series: ["# Registered Results", '# users'],
                 	    data: [{
-                  	      x: "No Records for " + vm.workout.name,
-                	      y: [0]
+                  	      x: "No Records for ",
+                	      y: [70, 70]
                 	    }]
                 	  }; 
+                
+                       
                 var i;
-                for(i = 0; i < data.length; ++i)
+                for(i = 0; i < data.numberOfRegisteredResults.length; ++i)
                 {
-                	//log(data[i].result + " / " + data[i].timestamp);
-                	var d = new Date( data[i].timestamp );
-                	
-                	$scope.chartData.data[i] = { x: d.toDateString(), y: [data[i].result] };
+                	var d = new Date( data.numberOfRegisteredResults[i].timestamp );
+                	$scope.chartData.data[i] = 
+                		{ 	x: d.toDateString(), 
+                			y: [data.numberOfRegisteredResults[i].result, data.numberOfRegisteredUsers[i].result] 
+                		};
                 }
                 
             });
