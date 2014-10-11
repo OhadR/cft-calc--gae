@@ -141,7 +141,7 @@ public class TestsController
 		response.setStatus(HttpServletResponse.SC_OK);
 	}	
 	
-	@RequestMapping("/recordStatistics")
+//	@RequestMapping("/recordStatistics")
 	protected void recordStatistics( HttpServletResponse response ) throws IOException
 	{
 		manager.recordStatistics();

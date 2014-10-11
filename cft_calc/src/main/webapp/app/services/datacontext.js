@@ -18,6 +18,7 @@
             addWorkout: addWorkout,
             addWorkoutMetadata: addWorkoutMetadata,
             getTraineeById: getTraineeById,
+            getStatistics: getStatistics,
         };
 
         return service;
@@ -249,6 +250,11 @@
             });
 
             return d.promise;        
+        }
+        
+        function getStatistics()
+        {
+        	
         }
     }
 })();

@@ -72,8 +72,7 @@ public interface IRepository
 
 	
 	/****** TRAFFIC STATISTICS ******/
-	List<TimedResult> getRegisteredUsersStatistics();
-	List<TimedResult> getRegisteredResultsStatistics();
 	void recordStatistics( StatisticsData statisticsData );
+	Map<String, List<TimedResult>> getRegisteredStatistics();
 
 }

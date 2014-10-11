@@ -279,20 +279,14 @@ public class RepositoryCacheImpl implements ICacheRepository
 	
 	/***************** TRAFFIC STATISTICS **********************/
 	@Override
-	public List<TimedResult> getRegisteredUsersStatistics()
-	{
-		return repository.getRegisteredUsersStatistics();
-	}
-
-	@Override
-	public List<TimedResult> getRegisteredResultsStatistics()
-	{
-		return repository.getRegisteredResultsStatistics();
-	}
-
-	@Override
 	public void recordStatistics(StatisticsData statisticsData)
 	{
 		repository.recordStatistics(statisticsData);		
+	}
+
+	@Override
+	public Map<String, List<TimedResult>> getRegisteredStatistics()
+	{
+		return repository.getRegisteredStatistics();
 	}
 }

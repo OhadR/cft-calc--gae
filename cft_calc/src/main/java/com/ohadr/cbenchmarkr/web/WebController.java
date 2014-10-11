@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
@@ -313,6 +314,15 @@ public class WebController
     {
     	ITrainee trainee = manager.getTraineeById( Utils.getAuthenticatedUsername() );
     	String jsonResponse = Utils.convertToJson( trainee );
+    	response.getWriter().println( jsonResponse );
+    }
+
+    @RequestMapping(value = "/getStatistics", method = RequestMethod.GET)
+    protected void getRegisteredStatistics(
+            HttpServletResponse response) throws IOException 
+    {
+    	Map<String, List<TimedResult>> stats = manager.getRegisteredStatistics();
+    	String jsonResponse = Utils.convertToJson( stats );
     	response.getWriter().println( jsonResponse );
     }
 

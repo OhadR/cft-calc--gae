@@ -160,25 +160,18 @@ public class InMemRepositoryImpl implements IRepository
 
 
 	@Override
-	public List<TimedResult> getRegisteredUsersStatistics()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<TimedResult> getRegisteredResultsStatistics()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void recordStatistics(StatisticsData statisticsData)
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public Map<String, List<TimedResult>> getRegisteredStatistics()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
