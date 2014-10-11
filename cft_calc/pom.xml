@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<ohadr.spring.version>3.1.0.RELEASE</ohadr.spring.version>
 		<ohadr.spring.security.version>3.1.0.RELEASE</ohadr.spring.security.version>
-		<ohadr.flows.version>1.6.1-SNAPSHOT</ohadr.flows.version>
+		<ohadr.flows.version>1.6.2-SNAPSHOT</ohadr.flows.version>
 	</properties>
 
     <dependencies>
