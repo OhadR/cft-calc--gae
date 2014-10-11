@@ -41,11 +41,6 @@
                 <div class="widget wviolet">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-						<div>
-							<label>Statistics: </label>
-							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames | orderBy:'toString()'" ng-change='vm.onWorkoutChanged()' >
-							</select>
-						</div>
 						<div style="height:200px"
 						    ac-chart="chartType" 
 						    ac-data="chartData" 
