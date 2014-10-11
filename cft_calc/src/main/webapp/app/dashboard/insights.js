@@ -119,7 +119,7 @@
                 	    series: ["# Registered Results", '# users'],
                 	    data: [{
                   	      x: "No Records for ",
-                	      y: [70, 70]
+                	      y: [0, 0]
                 	    }]
                 	  }; 
                 
