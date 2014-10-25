@@ -10,6 +10,7 @@
 
         var vm = this;
         vm.title = "Add Workout";
+        vm.show;		//boolean, indicates whether to show time-units. o/w we show regular "number" input (weight-units/reps).
         vm.workout = { };		//input object from the form.
         vm.workoutNames = [];
 
@@ -34,6 +35,13 @@
                 return;
             }
 
+            //take the relevant results from UI:
+            if( vm.workout.units == 'secs' )
+            {
+            	var parts = vm.workout.result_time.split(':');
+            	vm.workout.result = parseInt(parts[0] * 60) + parseInt( parts[1] );
+            }
+            
             //call backend:
             datacontext.addWorkout( vm.workout.name, vm.workout.result, vm.workout.date ).
             then(function (loginData) 
@@ -61,6 +69,7 @@
         
         function onWorkoutChanged()
         {
+       		vm.show = (vm.workout.units == 'secs');
         }        
         
     }
