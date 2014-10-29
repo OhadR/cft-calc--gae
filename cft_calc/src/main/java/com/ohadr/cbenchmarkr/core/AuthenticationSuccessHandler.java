@@ -58,6 +58,7 @@ public class AuthenticationSuccessHandler extends MySavedRequestAwareAuthenticat
 
 		}
 
+		postLogin( username );
 		
 		/////////////////////////////////////////
 		// changeSessionTimeout(request);
@@ -76,5 +77,16 @@ public class AuthenticationSuccessHandler extends MySavedRequestAwareAuthenticat
     	session.setMaxInactiveInterval(50);
     	
     }
+    
+	/**
+	 * we would like to save in the DB the time of the login, so we know how long the 
+	 * user has not login to the app. in addition, we same metrics:
+	 */
+	private void postLogin( String username )
+	{
+		manager.userLoginSuccess( username );
+		
+	}
+    
 
 }
