@@ -124,7 +124,8 @@ public class RepositoryCacheImpl implements ICacheRepository
 
 
 
-	private void resetCache() 
+	@Override
+	public void clearCache()
 	{
 		log.info("resetting cache");
 		trainees = null;
@@ -227,7 +228,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 	@Override
 	public synchronized void resetRepository()
 	{
-		resetCache();
+		clearCache();
 		//delegate to GAE-repo:
 		repository.resetRepository();
 	}

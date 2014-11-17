@@ -113,5 +113,16 @@ public class AdminController
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
-	
+
+    @RequestMapping(value = "/secured/admin/clearCache", method = RequestMethod.POST)
+    protected void clearCache( HttpServletResponse response ) throws Exception
+    {
+        log.info( "clearCache" );
+        
+        response.setContentType("text/html"); 
+
+       	manager.clearCache();
+		response.setStatus(HttpServletResponse.SC_OK);
+    }
+
 }
