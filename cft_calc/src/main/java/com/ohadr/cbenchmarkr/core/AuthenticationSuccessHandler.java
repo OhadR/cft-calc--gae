@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.ohadr.auth_flows.interfaces.AuthenticationFlowsProcessor;
 import com.ohadr.auth_flows.types.FlowsConstatns;
+import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.crypto.service.CryptoService;
 
 /**
@@ -30,6 +31,10 @@ public class AuthenticationSuccessHandler extends MySavedRequestAwareAuthenticat
 
 	@Autowired
 	private CryptoService cryptoService;
+	
+    @Autowired
+    private Manager manager;
+	
 
 	private static Logger log = Logger.getLogger(AuthenticationSuccessHandler.class);
 
