@@ -66,7 +66,7 @@ public class WebController
 		} 
 		catch (ParseException pe) //if date could not be parsed
 		{
-            log.error( "date could not be parsed; recieved:" + dateText, pe);
+            log.error( "date could not be parsed; recieved: " + dateText, pe);
             date = new Date();
 		}
 
