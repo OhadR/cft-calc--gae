@@ -19,7 +19,7 @@
 	                                    <input type="number" ng-show="!vm.show" data-ng-model="vm.workout.result" 
 	                                    		placeholder="Enter the result (kg)"
 	                                    		name='result_weight'/>
-	                                    <label ng-show="!vm.show">kg</label>
+	                                    <label ng-show="!vm.show">{{vm.workout.units}}</label>
 	                                </p>
 	                                <p class="row">
 										<input type="text" ng-show="vm.show" data-ng-model="vm.workout.result_time" 
