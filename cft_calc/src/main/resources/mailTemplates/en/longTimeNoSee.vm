@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <div>
+<a href="http://cbenchmarkr.appspot.com"><img border="0" width="815" height="52" style="display:block" 
+src="http://cbenchmarkr.appspot.com/content/images/icon.png"></a>
+
+<p>
+Hello ${username},
+</p>
+
+<p>
+It has been a while since last time you checked in on <a href="http://cbenchmarkr.appspot.com">cBenchmarkr</a>.
+Do you have any new Benchmark or PR to update? Please login now and update!
+</p>
+<p>
+Feel free to contact us for any trouble or suggestion. 
+In addition, you can check our <a href="https://www.facebook.com/cbenchmarkr">Facebook page</a> and get updated with new features and news.
+</p>
+
+<br>Regards,
+<br>The cBenchmarkr Team.
+
+
+<p>
+You've received this message as you're a registered member of TripTogether.com
+If you don't want to receive these notifications, you can XXXunsubscribeXXX  from this mailing.
+</p>
+        </div>
+    </body>
+</html>

@@ -150,4 +150,15 @@ public class TestsController
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
 	
+	
+	@RequestMapping(value = "/sendReminderToTrainees", method = RequestMethod.POST)
+	protected void sendReminderToTrainees( HttpServletResponse response ) throws Exception
+	{
+		manager.sendReminderToTrainees();
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
+	
 }

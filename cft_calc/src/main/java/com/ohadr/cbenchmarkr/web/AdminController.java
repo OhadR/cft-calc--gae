@@ -125,4 +125,13 @@ public class AdminController
 		response.setStatus(HttpServletResponse.SC_OK);
     }
 
+	@RequestMapping("/cron/sendReminderToTrainee")
+	protected void sendReminderToTrainee( HttpServletResponse response ) throws Exception
+	{
+		manager.sendReminderToTrainees();
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+
 }
