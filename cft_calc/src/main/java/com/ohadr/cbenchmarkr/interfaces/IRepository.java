@@ -75,4 +75,5 @@ public interface IRepository
 	void recordStatistics( StatisticsData statisticsData );
 	Map<String, List<TimedResult>> getRegisteredStatistics();
 
+	void 		setUserLoginSuccess(String username) throws BenchmarkrRuntimeException;
 }

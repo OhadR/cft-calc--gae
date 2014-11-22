@@ -290,4 +290,10 @@ public class RepositoryCacheImpl implements ICacheRepository
 	{
 		return repository.getRegisteredStatistics();
 	}
+
+	@Override
+	public void setUserLoginSuccess(String username) throws BenchmarkrRuntimeException
+	{
+		repository.setUserLoginSuccess( username );
+	}
 }

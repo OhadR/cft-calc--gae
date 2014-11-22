@@ -175,4 +175,12 @@ public class InMemRepositoryImpl implements IRepository
 	}
 
 
+	@Override
+	public void setUserLoginSuccess(String username)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
