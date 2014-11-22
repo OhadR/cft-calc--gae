@@ -19,6 +19,7 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 
 	public static final String GENDER_PROP_NAME = "isMale";
 	public static final String DOB_PROP_NAME = "DOB";
+	public static final String LAST_LOGIN_DATE_PROP_NAME = "lastLoginDate";
 	
 	public void enrichAccount(String traineeId, boolean isMale, Date dateOfBirth) throws BenchmarkrRuntimeException 
 	{
@@ -98,5 +99,22 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 						dateOfBirth);
 
 	}
-	
+
+	public void setUserLoginSuccess(String username) throws BenchmarkrRuntimeException
+	{
+		Key userKey = KeyFactory.createKey(AUTH_FLOWS_USER_DB_KIND, username);
+		Entity entity;
+		try 
+		{
+			entity = datastore.get(userKey);
+		} 
+		catch (EntityNotFoundException e) 
+		{
+			log.error("entity of " + username + " not found");
+			throw new BenchmarkrRuntimeException( e.getMessage() );
+		}
+
+		entity.setProperty(LAST_LOGIN_DATE_PROP_NAME, new Date( System.currentTimeMillis()) );
+		datastore.put(entity);	
+	}	
 }
