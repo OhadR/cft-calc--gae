@@ -145,4 +145,10 @@ public class Trainee implements ITrainee
 	{
 		totalGrade = grade;
 	}
+
+	@Override
+	public int getNumerOfWorkouts()
+	{
+		return this.results.size();
+	}
 }

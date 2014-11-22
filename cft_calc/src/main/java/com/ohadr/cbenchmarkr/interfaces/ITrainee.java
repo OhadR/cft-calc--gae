@@ -32,5 +32,12 @@ public interface ITrainee extends Comparable<ITrainee>
 	boolean isMale();
 	
 	Date getDateOfBirth();
+	
+	/**
+	 * 
+	 * @return the # of WODs for this Trainee that his grade was calc'ed from. Not including history; meaning 
+	 * if Trainee has entered 10 Deadlifts, we count only 1.
+	 */
+	int		getNumerOfWorkouts();
 
 }

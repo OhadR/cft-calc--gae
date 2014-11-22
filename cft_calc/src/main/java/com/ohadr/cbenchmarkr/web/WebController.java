@@ -94,21 +94,6 @@ public class WebController
 
     
     /**
-     * gets the 'latest' workouts from the repository. 
-     * if trainee entered 3 results for the same workout (different dates) - he gets only the latest.
-     * @param response
-     */
-    @RequestMapping(value = "/secured/getLatestWorkoutsForTrainee", method = RequestMethod.GET)
-    protected void getLatestWorkoutsForTrainee(
-            @RequestBody String json,
-            HttpServletResponse response) 
-    {
-    	throw new NotImplementedException();
-    }
-
-    
-
-    /**
      * 
      * @param json workout name
      * TBD: pass the filter to this controller
