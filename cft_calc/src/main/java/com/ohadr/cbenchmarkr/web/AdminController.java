@@ -125,10 +125,10 @@ public class AdminController
 		response.setStatus(HttpServletResponse.SC_OK);
     }
 
-	@RequestMapping("/cron/sendReminderToTrainee")
+	@RequestMapping("/cron/handleNotSeenForaWhileUsers")
 	protected void sendReminderToTrainee( HttpServletResponse response ) throws Exception
 	{
-		manager.sendReminderToTrainees();
+		manager.handleNotSeenForaWhileUsers();
 
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);

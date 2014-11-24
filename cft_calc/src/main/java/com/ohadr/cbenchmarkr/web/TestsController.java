@@ -1,23 +1,34 @@
 package com.ohadr.cbenchmarkr.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl;
 import com.ohadr.auth_flows.interfaces.AuthenticationFlowsProcessor;
 import com.ohadr.auth_flows.types.AuthenticationFlowsException;
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.Workout;
 import com.ohadr.cbenchmarkr.WorkoutMetadata;
+import com.ohadr.cbenchmarkr.interfaces.BenchmarkrAuthenticationUser;
+import com.ohadr.cbenchmarkr.interfaces.ITrainee;
 
 @Controller
 public class TestsController
@@ -120,45 +131,5 @@ public class TestsController
         response.setContentType("text/html"); 
 		response.setStatus(HttpServletResponse.SC_OK);
 	}	
-	
-//	@RequestMapping("/calcAveragesAndGrades")
-	protected void calcAveragesAndGrades(HttpServletResponse response) throws IOException
-	{
-		log.info( "calc averages and grades" );
 
-    	try
-		{
-			manager.calcAveragesAndGrades();
-		} 
-		catch (BenchmarkrRuntimeException be)
-		{
-            log.error( "error calcAveragesAndGrades", be);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    		return;
-		}
-
-        response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
-	}	
-	
-//	@RequestMapping("/recordStatistics")
-	protected void recordStatistics( HttpServletResponse response ) throws IOException
-	{
-		manager.recordStatistics();
-
-        response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
-	}
-	
-	
-	@RequestMapping(value = "/sendReminderToTrainees", method = RequestMethod.POST)
-	protected void sendReminderToTrainees( HttpServletResponse response ) throws Exception
-	{
-		manager.sendReminderToTrainees();
-
-        response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
-	}
-	
-	
 }

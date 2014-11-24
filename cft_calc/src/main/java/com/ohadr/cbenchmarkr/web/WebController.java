@@ -302,13 +302,29 @@ public class WebController
     	response.getWriter().println( jsonResponse );
     }
 
+    
     @RequestMapping(value = "/getStatistics", method = RequestMethod.GET)
     protected void getRegisteredStatistics(
             HttpServletResponse response) throws IOException 
     {
-    	Map<String, List<TimedResult>> stats = manager.getRegisteredStatistics();
-    	String jsonResponse = Utils.convertToJson( stats );
-    	response.getWriter().println( jsonResponse );
+    	PrintWriter writer = response.getWriter();
+
+    	Map<String, List<TimedResult>> stats;
+		try
+		{
+			stats = manager.getRegisteredStatistics();
+		} 
+        catch (BenchmarkrRuntimeException be)
+        {
+            log.error( "error: getStatistics failed; ", be);
+            writer.println( be.getMessage() );
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+
+        }
+
+		String jsonResponse = Utils.convertToJson( stats );
+		writer.println( jsonResponse );
     }
 
 }

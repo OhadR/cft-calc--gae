@@ -286,7 +286,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 	}
 
 	@Override
-	public Map<String, List<TimedResult>> getRegisteredStatistics()
+	public Map<String, List<TimedResult>> getRegisteredStatistics() throws BenchmarkrRuntimeException
 	{
 		return repository.getRegisteredStatistics();
 	}
@@ -295,5 +295,11 @@ public class RepositoryCacheImpl implements ICacheRepository
 	public void setUserLoginSuccess(String username) throws BenchmarkrRuntimeException
 	{
 		repository.setUserLoginSuccess( username );
+	}
+
+	@Override
+	public void handleNotSeenForaWhileUsers() throws BenchmarkrRuntimeException
+	{
+		repository.handleNotSeenForaWhileUsers();
 	}
 }

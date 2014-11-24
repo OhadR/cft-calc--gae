@@ -86,6 +86,12 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 			dateOfBirth =  (Date) entity.getProperty( DOB_PROP_NAME );
 		}
 
+		Date lastLoginDate = null;
+		if( entity.hasProperty( LAST_LOGIN_DATE_PROP_NAME ) )
+		{
+			lastLoginDate =  (Date) entity.getProperty( LAST_LOGIN_DATE_PROP_NAME );
+		}
+
 		return new BenchmarkrAuthenticationUserImpl(
 						username, 
 						authFlowsUser.getPassword(),
@@ -96,7 +102,8 @@ public class BenchmarkrAuthenticationFlowsRepositoryImpl extends
 						authFlowsUser.getLastName(),
 						authFlowsUser.getAuthorities(),
 						isMale,
-						dateOfBirth);
+						dateOfBirth,
+						lastLoginDate);
 
 	}
 

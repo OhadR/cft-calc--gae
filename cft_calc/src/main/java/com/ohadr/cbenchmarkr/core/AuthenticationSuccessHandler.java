@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.ohadr.auth_flows.interfaces.AuthenticationFlowsProcessor;
 import com.ohadr.auth_flows.types.FlowsConstatns;
+import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.crypto.service.CryptoService;
 
@@ -63,7 +64,14 @@ public class AuthenticationSuccessHandler extends MySavedRequestAwareAuthenticat
 
 		}
 
-		postLogin( username );
+		try
+		{
+			postLogin( username );
+		} 
+		catch (BenchmarkrRuntimeException e)
+		{
+			log.error("user Login Success failed for " + username + "; " + e.getMessage());
+		}
 		
 		/////////////////////////////////////////
 		// changeSessionTimeout(request);
@@ -86,8 +94,9 @@ public class AuthenticationSuccessHandler extends MySavedRequestAwareAuthenticat
 	/**
 	 * we would like to save in the DB the time of the login, so we know how long the 
 	 * user has not login to the app. in addition, we same metrics:
+	 * @throws BenchmarkrRuntimeException - if username was not found in repository. 
 	 */
-	private void postLogin( String username )
+	private void postLogin( String username ) throws BenchmarkrRuntimeException
 	{
 		manager.userLoginSuccess( username );
 		

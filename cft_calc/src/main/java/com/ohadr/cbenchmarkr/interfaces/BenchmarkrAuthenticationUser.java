@@ -8,4 +8,5 @@ public interface BenchmarkrAuthenticationUser extends AuthenticationUser
 {
 	boolean isMale();
 	Date 	getDateOfBirth();
+	Date	getLastLoginDate();
 }

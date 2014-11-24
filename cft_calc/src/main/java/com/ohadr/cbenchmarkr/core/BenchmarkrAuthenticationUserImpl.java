@@ -13,6 +13,7 @@ public class BenchmarkrAuthenticationUserImpl extends
 {
 	private boolean 	isMale;
 	private Date 		dateOfBirth;
+	private Date 		lastLoginDate;
 	
 	public BenchmarkrAuthenticationUserImpl(String username,
 			String password,
@@ -23,13 +24,15 @@ public class BenchmarkrAuthenticationUserImpl extends
 			String lastName,
 			Collection<? extends GrantedAuthority> authorities,
 			boolean isMale,
-			Date dateOfBirth) 
+			Date dateOfBirth,
+			Date lastLoginDate) 
 	{
 		super(username, password, activated, loginAttemptsLeft, passwordLastChangeDate,
 				firstName, lastName, authorities);
 		
 		this.isMale = isMale;
 		this.dateOfBirth = dateOfBirth;
+		this.lastLoginDate = lastLoginDate;
 	}
 
 	@Override
@@ -42,6 +45,12 @@ public class BenchmarkrAuthenticationUserImpl extends
 	public Date getDateOfBirth() 
 	{
 		return dateOfBirth;
+	}
+
+	@Override
+	public Date getLastLoginDate()
+	{
+		return lastLoginDate;
 	}
 
 }

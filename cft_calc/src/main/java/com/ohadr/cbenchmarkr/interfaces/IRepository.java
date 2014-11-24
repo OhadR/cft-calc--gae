@@ -73,7 +73,18 @@ public interface IRepository
 	
 	/****** TRAFFIC STATISTICS ******/
 	void recordStatistics( StatisticsData statisticsData );
-	Map<String, List<TimedResult>> getRegisteredStatistics();
+	Map<String, List<TimedResult>> 	getRegisteredStatistics() throws BenchmarkrRuntimeException;
 
-	void 		setUserLoginSuccess(String username) throws BenchmarkrRuntimeException;
+	/**
+	 * 
+	 * @param username
+	 * @throws BenchmarkrRuntimeException if username was not found in repository.
+	 */
+	void 					setUserLoginSuccess(String username) throws BenchmarkrRuntimeException;
+
+	/**
+	 * get these users that has not logged in for more than a month.
+	 * @throws BenchmarkrRuntimeException if table does not exist in repository.
+	 */
+	void					handleNotSeenForaWhileUsers() throws BenchmarkrRuntimeException;
 }
