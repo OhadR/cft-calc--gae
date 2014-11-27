@@ -12,11 +12,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -271,7 +269,6 @@ public class WebController
     		@RequestParam("dateOfBirth") String   dateOfBirthText,		//UI format: 1974-10-12
             HttpServletResponse response) throws IOException 
     {
-    	PrintWriter writer = response.getWriter();
         log.info( "creating Benchmarkr Account");
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
