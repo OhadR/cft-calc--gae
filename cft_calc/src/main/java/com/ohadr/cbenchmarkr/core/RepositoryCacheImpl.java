@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.log4j.Logger;
@@ -35,7 +34,8 @@ public class RepositoryCacheImpl implements ICacheRepository
 	 * recalc the averages, but instead i can use the already-calc'ed values. Once a day, i will re-calc 
 	 * all averages and grades.
 	 */
-	private Map<String, Integer> averageGrades = new HashMap<String, Integer>();
+	private Map<String, Integer> averageGradesForMen = new HashMap<String, Integer>();
+	private Map<String, Integer> averageGradesForWomen = new HashMap<String, Integer>();
 
 	@Autowired
 	@Qualifier("GAERepositoryImpl")
@@ -249,25 +249,20 @@ public class RepositoryCacheImpl implements ICacheRepository
 
 
 	@Override
-	public Map<String, Integer> getAveragesForWorkouts()
+	public Map<String, Integer> getAveragesForWorkouts(boolean isMen)
 	{
-		return averageGrades;
+		if( isMen )
+			return averageGradesForMen;
+		else
+			return averageGradesForWomen;
 	}
-
-
-	public void logAverages()
-	{
-		log.info("log averages");
-		for( Entry<String, Integer> pair : averageGrades.entrySet() )
-		{
-			log.info( pair.getKey() + " : " + pair.getValue() );
-		}		
-	}
+	
 
 	@Override
 	public void clearAveragesForWorkouts()
 	{
-		averageGrades.clear();
+		averageGradesForMen.clear();
+		averageGradesForWomen.clear();
 	}
 
 	@Override

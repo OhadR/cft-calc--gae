@@ -6,9 +6,10 @@ public interface ICacheRepository extends IRepository
 {
 	/**
 	 * 
+	 * @param isMen
 	 * @return maps of averages for workouts: from workout to its average
 	 */
-	Map<String, Integer> 	getAveragesForWorkouts();
+	Map<String, Integer> 	getAveragesForWorkouts(boolean isMen);
 	
 	/**
 	 * call this method when a new workout-metadata is entered to the system (not happens often!). In this 
