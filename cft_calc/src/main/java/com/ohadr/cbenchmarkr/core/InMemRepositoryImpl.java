@@ -63,6 +63,13 @@ public class InMemRepositoryImpl implements IRepository
 	}
 
 	@Override
+	public void removeWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException
+	{
+		ITrainee trainee = trainees.get( traineeId );
+		trainee.removeWorkout(workout);
+	}
+
+	@Override
 	public List<TimedResult> getWorkoutHistoryForTrainee(String traineeId,
 			String workoutName)
 	{
@@ -188,6 +195,5 @@ public class InMemRepositoryImpl implements IRepository
 	{
 		// TODO Auto-generated method stub
 	}
-
 
 }

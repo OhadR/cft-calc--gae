@@ -18,9 +18,16 @@ public interface ITrainee extends Comparable<ITrainee>
 	
 	/**
 	 * NOTE: this method is called in "in-mem" mode, when using cache. 
-	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist . 
+	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist. 
 	 */
 	void addWorkout(Workout workout) throws BenchmarkrRuntimeException;
+
+	/**
+	 * 
+	 * @param workout
+	 * @throws BenchmarkrRuntimeException - if workout does not exist for this trainee.
+	 */
+	void removeWorkout(Workout workout) throws BenchmarkrRuntimeException;
 
 	void setTotalGrade(double grade);
 	double getTotalGrade();

@@ -122,6 +122,20 @@ public class RepositoryCacheImpl implements ICacheRepository
 		trainee.addWorkout(workout);
 	}
 
+	@Override
+	public void removeWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException
+	{
+		//remove the workout both from "user" table, and from the "history" table. If @workout does not exist, exception raised:
+		repository.removeWorkoutForTrainee(traineeId, workout);
+		
+		//	issue #47: in new impl, I do not reset cache (originally it was in order to re-load all data). i update
+		//	the new workout, and keep it in cache, and when time come, i will re-calc all averages+grades. 
+		//		resetCache();
+		
+		ITrainee trainee = getTraineeFromCache( traineeId );
+		trainee.removeWorkout(workout);
+	}
+
 
 
 	@Override

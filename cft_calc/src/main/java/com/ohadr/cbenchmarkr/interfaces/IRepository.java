@@ -35,7 +35,15 @@ public interface IRepository
 	 * @throws BenchmarkrRuntimeException - if same workout in the same date already exist. 
 	 */
 	void addWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException;
-	
+
+	/**
+	 * 
+	 * @param traineeId
+	 * @param workout
+	 * @throws BenchmarkrRuntimeException - if workout does not exist.
+	 */
+	void removeWorkoutForTrainee(String traineeId, Workout workout) throws BenchmarkrRuntimeException;;
+
 	/**
 	 * 
 	 * @param trainee

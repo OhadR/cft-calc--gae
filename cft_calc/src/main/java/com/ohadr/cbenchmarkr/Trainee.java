@@ -91,6 +91,15 @@ public class Trainee implements ITrainee
 		results.put( workout.getName(), workout.getResult() );			
 	}
 
+	@Override
+	public void removeWorkout(Workout workout)
+			throws BenchmarkrRuntimeException
+	{
+		log.info("removing workout " + workout);
+		
+		results.remove( workout.getName() );			
+	}
+
 	
 	@Override
 	public double getTotalGrade()
