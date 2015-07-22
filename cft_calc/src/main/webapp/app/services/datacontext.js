@@ -16,6 +16,7 @@
             getAllWorkoutsNames: getAllWorkoutsNames,
             getAllWorkoutsMetadata: getAllWorkoutsMetadata,
             addWorkout: addWorkout,
+            removeWorkout: removeWorkout,
             addWorkoutMetadata: addWorkoutMetadata,
             getTraineeById: getTraineeById,
             getStatistics: getStatistics,
@@ -136,6 +137,26 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 
 //                data:  '{"date":1402071766642,"result":' + result + ',"name":"cindy"}',
+            }).success(function (data, status, headers, config) 
+            {
+                d.resolve( data );
+                $q.when( data );
+            }).error(function (data, status, headers, config) {
+                d.reject( data, status );
+            });
+
+            return d.promise;
+        }
+
+        function removeWorkout(workoutName)
+        {
+            var d = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/secured/removeWorkoutForTrainee',
+                data:  $.param({ name: workoutName }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             }).success(function (data, status, headers, config) 
             {
                 d.resolve( data );

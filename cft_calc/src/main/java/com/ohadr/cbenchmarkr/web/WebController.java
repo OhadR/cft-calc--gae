@@ -44,7 +44,6 @@ public class WebController
      * @param date
      * @param response
      * @throws IOException 
-     * @throws Exception
      */
     @RequestMapping(value = "/secured/addWorkoutForTrainee", method = RequestMethod.POST)
     protected void addWorkoutForTrainee(
@@ -90,6 +89,39 @@ public class WebController
 
     }
 
+    /**
+     * 
+     * @param name
+     * @param response
+     * @throws IOException 
+     */
+    @RequestMapping(value = "/secured/removeWorkoutForTrainee", method = RequestMethod.POST)
+    protected void removeWorkoutForTrainee(
+    		@RequestParam("name")    String name,
+            HttpServletResponse response) throws IOException 
+    {
+    	PrintWriter writer = response.getWriter();
+
+    	Workout workout = new Workout( name, -1 );
+        log.info( "removing workout: " + workout);
+
+        try
+        {
+        	manager.removeWorkoutForTrainee( Utils.getAuthenticatedUsername(), workout );
+        }
+        catch (BenchmarkrRuntimeException be)
+        {
+            log.error( "error adding workout for user", be);
+            writer.println( be.getMessage() );
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    		return;
+
+        }
+
+        response.setContentType("text/html"); 
+		response.setStatus(HttpServletResponse.SC_OK);
+
+    }
     
     /**
      * 

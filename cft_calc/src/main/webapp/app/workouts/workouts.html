@@ -25,6 +25,32 @@
             </div>
             
             <div class="row">
+                <div class="col-md-6">
+                  <div class="widget wblue">
+                     <div data-cc-widget-header title="Remove Workout"></div>
+
+                     <div class="widget-content user">
+						<div>
+							<label>Workout Name: </label>
+							<select data-ng-model="vm.workout.name" ng-init="" data-ng-options="w for w in vm.workoutNames | orderBy:'toString()'" ng-change='vm.onWorkoutChanged()' >
+							</select>
+						</div>
+		                <form ng-submit="vm.onRemoveWorkout()">
+                            <div class="container-fluid">
+                                <button type="submit">Remove</button>
+                            </div>
+                          
+	                    </form>
+                     </div>
+
+                     <div class="widget-foot">
+                         <div class="clearfix"></div>
+                     </div>
+                 </div>
+             </div>            
+        </div>
+        
+        <div class="row">
                 <!-- div class="col-md-6">
                     <div class="widget wgray">
                         <div data-cc-widget-header title="Edit {{vm.title}}"></div>

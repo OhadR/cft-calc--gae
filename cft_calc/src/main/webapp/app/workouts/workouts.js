@@ -20,6 +20,7 @@
         vm.onWorkoutChanged = onWorkoutChanged;
         vm.updateUser = updateUser;
         vm.onChangePassword = onChangePassword;
+        vm.onRemoveWorkout = onRemoveWorkout;
 
         $scope.config = {
   			  title: '',
@@ -178,6 +179,20 @@
             },
             function(error) {
             	 log_error( "change password failed, error: " + error );
+            });
+        }
+
+        function onRemoveWorkout()
+        {
+            //call backend:
+            datacontext.removeWorkout( vm.workout.name ).
+            then(function (loginData) 
+            {
+                log( "workout " + vm.workout.name + " was removed");
+            }, function(error) 
+            {
+            	log_error( "error: " + error );
+                vm.hasError = true;
             });
         }
 
