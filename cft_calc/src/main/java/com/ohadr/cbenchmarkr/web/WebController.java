@@ -103,7 +103,7 @@ public class WebController
     	PrintWriter writer = response.getWriter();
 
     	Workout workout = new Workout( name, -1 );
-        log.info( "removing workout: " + workout);
+        log.info( "removing workout: " + workout.getName());
 
         try
         {
@@ -111,7 +111,7 @@ public class WebController
         }
         catch (BenchmarkrRuntimeException be)
         {
-            log.error( "error adding workout for user", be);
+            log.error( "error removing workout for user", be);
             writer.println( be.getMessage() );
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     		return;
