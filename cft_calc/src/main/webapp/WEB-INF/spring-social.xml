@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:facebook="http://www.springframework.org/schema/social/facebook"
+	xmlns:social="http://www.springframework.org/schema/social"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
+ 		http://www.springframework.org/schema/social/facebook http://www.springframework.org/schema/social/spring-social-facebook.xsd
+ 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<facebook:config app-id="${facebook.clientId}"
+                 app-secret="${facebook.clientSecret}"
+                 app-namespace="socialshowcase" />
+	
+	<!--  defined in JavaConfig:
+	<social:in-memory-connection-repository/>
+		
+	<bean id="userIdSource" class="org.springframework.social.security.AuthenticationNameUserIdSource" /> 
+	<!- - <bean id="userIdSource" class="org.springframework.social.connect.web.SessionUserIdSource" /> - ->
+	-->
+
+ 	<!-- 
+ 	<bean id="connectController" class="org.springframework.social.connect.web.ConnectController" autowire="constructor">
+		<property name="connectInterceptors">
+			<list>
+				<bean class="org.springframework.social.showcase.facebook.PostToWallAfterConnectInterceptor" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="psc" class="org.springframework.social.connect.web.ProviderSignInController" autowire="constructor" />		
+ 	-->
+ 	
+	<bean id="signInAdapter" class="com.ohadr.cbenchmarkr.signin.ImplicitSignInAdapter" autowire="constructor" />
+	
+	<!-- bean id="disconnectController" class="org.springframework.social.facebook.web.DisconnectController" 
+		c:_0-ref="usersConnectionRepository" c:_1="${facebook.clientSecret}" /-->
+
+
+	<bean id="tokenBasedRememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices" 
+		p:key="ohad"
+		p:userDetailsService-ref="userDetailsService" />
+	
+	<bean id="socialAuthenticationFilter" class="org.springframework.social.security.SocialAuthenticationFilter"
+		c:_0-ref="authenticationManager"
+		c:_1-ref="userIdSource"
+		c:_2-ref="usersConnectionRepository"
+		c:_3-ref="connectionFactoryLocator"
+		p:signupUrl="/signup"
+		p:rememberMeServices-ref="tokenBasedRememberMeServices" />
+
+</beans>

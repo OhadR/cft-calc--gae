@@ -3,15 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:sec="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+							http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 						http://www.springframework.org/schema/context
 							http://www.springframework.org/schema/context/spring-context.xsd
 						http://www.springframework.org/schema/security 
-							http://www.springframework.org/schema/security/spring-security-3.1.xsd
+							http://www.springframework.org/schema/security/spring-security-3.2.xsd
 						http://www.springframework.org/schema/mvc
-							http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+							http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
 
+	<import resource="spring-social.xml" />
+	
 	<context:annotation-config />
 
 	<context:property-placeholder location="classpath:client.properties" />
@@ -19,6 +21,10 @@
 	<context:component-scan base-package="com.ohadr.cbenchmarkr" />
 	<context:component-scan base-package="com.ohadr.auth_flows" />
 	<context:component-scan base-package="com.ohadr.crypto" />
+	
+	<!--  importing ProviderSignInController. these beans were commented out in spring-social: --> 
+	<context:component-scan base-package="org.springframework.social.connect.web" />
+	
 
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
@@ -34,9 +40,7 @@
 	 
 	
 	<sec:http pattern="/login/**" security="none" />
-	<sec:http pattern="/forgotPasswordPage" security="none" />
-	<sec:http pattern="/createAccountPage" security="none" />
-	<sec:http pattern="/createAccount" security="none" />
+	<sec:http pattern="/signin/**" security="none" />
 
 	<sec:http authentication-manager-ref="authenticationManager">
 	    <!-- sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" requires-channel="https"/-->
@@ -51,7 +55,11 @@
 		<!-- sec:logout /-->
 
     	<sec:custom-filter position="LOGOUT_FILTER" ref="restLogoutFilter" />
-
+		
+		<!--  Spring Social Security authentication filter   
+		<sec:custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
+    	-->
+    	
 	</sec:http>
 
   
