@@ -26,7 +26,13 @@
             if (!auth.isUserLoggedIn) {
                 var nextPath = $location.path();
 
-                if (nextPath != '/login' && nextPath != '/forgotpassword' && nextPath != '/newuser'
+                if (nextPath == '/facebookLogin')
+                {
+					auth.isUserLoggedIn = true;
+                    $location.path('/');
+                }
+                
+                else if (nextPath != '/login' && nextPath != '/forgotpassword' && nextPath != '/newuser'
                 	&& nextPath != '/accountCreatedSuccess'
                 	&& nextPath != '/accountLocked'
                 	&& nextPath != '/accountActivated') 
