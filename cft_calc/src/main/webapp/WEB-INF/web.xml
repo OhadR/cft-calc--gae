@@ -24,7 +24,16 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring-servlet.xml</param-value>
 	</context-param>
-    
+
+	<!--
+	without this, the redirect to facebook login comes with jsessionid. this way we get rid of the jsessionid in the URL. 
+	http://stackoverflow.com/questions/19678810/jsessionid-gets-appended-to-the-url-when-running-gae-devserver
+	 -->
+	<context-param>
+	    <param-name>org.mortbay.jetty.servlet.SessionURL</param-name>
+	    <param-value>none</param-value>
+	</context-param>
+
 	<!-- if we work with Spring-security, we already have a listener -->
 	<listener>
 		<listener-class>
@@ -65,5 +74,6 @@
 	    <auth-constraint>
 	        <role-name>admin</role-name>
 	    </auth-constraint>
-	</security-constraint>    
+	</security-constraint>
+	
 </web-app>
