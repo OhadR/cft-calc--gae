@@ -15,8 +15,6 @@
             rememberMe: false
         };
         vm.loginUser = loginUser;
-        vm.fotgotPassword = fotgotPassword;
-        //vm.newUser = newUser;
 
         activate();
 
@@ -52,21 +50,6 @@
             		log_error( "login failed for user " + vm.userInfo.userName + ": " + error );
             	}            	
             });
-        }
-
-        function fotgotPassword() {
-        	//log("navigating...");
-            $location.path('/forgotpassword');
-        }
-
-        
-        /**
-         * redirects to the 'create account' page.
-         * deprecated, since i have combined the login and create-account into a single page (like GitHub, Facebook, etc)
-         */
-        function newUser() {
-        	//log("navigating...");
-            $location.path('/newuser');
         }
     }
 })();

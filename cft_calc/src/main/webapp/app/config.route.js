@@ -78,38 +78,12 @@
                      title: 'login',
                      templateUrl: 'app/authentication/login.html',
                  }
-            }, {
-                url: '/forgotpassword',
-                config: {
-                    title: 'forgot password',
-                    templateUrl: 'app/authentication/forgotpassword.html',
-                }
-            }, {
-                url: '/newuser',
-                config: {
-                    title: 'new user',
-                    templateUrl: 'app/authentication/newuser.html',
-                }
             }, 
-            {
-                url: '/accountCreatedSuccess',
-                config: {
-                    title: 'account created successfully',
-                    templateUrl: 'app/authentication/accountCreatedSuccess.html',
-                }
-            },
             {
                 url: '/accountLocked',
                 config: {
                     title: 'account locked',
                     templateUrl: 'app/authentication/accountLocked.html',
-                }
-            },
-            {
-                url: '/accountActivated',
-                config: {
-                    title: 'account activated',
-                    templateUrl: 'app/authentication/accountActivated.html',
                 }
             }
         ];

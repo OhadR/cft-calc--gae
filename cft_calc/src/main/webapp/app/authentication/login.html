@@ -7,13 +7,11 @@
                 <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your Password" required>
                 <button class="appl-button signup primary button-block" type="submit">Sign in</button>
             </p>
-            <p class="forgot-password">
-                <a ng-click="vm.fotgotPassword()">Forgot your password?</a>
             </p>
         </form>
     </div>
 </section>
-﻿<section data-ng-controller="newuser as vm">
+﻿<section data-ng-controller="login as vm">
     <div class="login">
     	<div class="row">
       
@@ -30,33 +28,14 @@
       
       
       <div class="col-md-6">
-        <form ng-submit="vm.createUser()">
-            <h1>{{vm.title}}</h1>
-            <p class="row">
-                <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Your email" required>
-            </p>
-            <p class="row">
-                <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Create a password" required>
-            </p>
-            <p class="row">
-                <input type="text" name="firstname" ng-model="vm.userInfo.firstName" placeholder="Your first name" required>
-            </p>
-            <p class="row">
-                <input type="text" name="lastname" ng-model="vm.userInfo.lastName" placeholder="Your last name" required>
-            </p>
-			<p class="row">
-				<select class="login-select" data-ng-model="vm.userInfo.gender">
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-				</select>
-            </p>
-            <p class="row">
-                <input type="date" name="dob" ng-model="vm.userInfo.dob" placeholder="dd-MM-yyyy" required />
-            </p>
-            <p class="row">
-                <button class="appl-button signup primary button-block" type="submit">Sign up for benchmarkr</button>
-            </p>
-        </form>
+		<!-- FACEBOOK SIGNIN -->
+		<form name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}"></input>
+			<input type="hidden" name="scope" value="user_friends,email,user_posts"></input>
+			<button type="submit">
+			    <img src="content/facebook/sign-in-with-facebook.png" />
+			</button>
+		</form>
       </div>
       </div>
     </div>
