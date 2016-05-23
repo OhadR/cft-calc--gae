@@ -40,7 +40,8 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
 		String providerUserId = connection.getKey().getProviderUserId();
 		SignInUtils.signin(providerUserId);
-		return extractOriginalUrl(request);
+//		return extractOriginalUrl(request);
+		return "/#/facebookLogin";
 	}
 
 	private String extractOriginalUrl(NativeWebRequest request) {
