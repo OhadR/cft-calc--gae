@@ -29,11 +29,11 @@
                 if (nextPath == '/facebookLogin')
                 {
 					auth.isUserLoggedIn = true;
+					auth.currentUser = 'moshe';//TODO
                     $location.path('/');
                 }
                 
-                else if (nextPath != '/login' && nextPath != '/forgotpassword' && nextPath != '/newuser'
-                	&& nextPath != '/accountCreatedSuccess'
+                else if (nextPath != '/login'
                 	&& nextPath != '/accountLocked'
                 	&& nextPath != '/accountActivated') 
                 {
