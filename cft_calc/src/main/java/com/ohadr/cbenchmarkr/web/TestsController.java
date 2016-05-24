@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ohadr.auth_flows.interfaces.AuthenticationFlowsProcessor;
-import com.ohadr.auth_flows.types.AuthenticationFlowsException;
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
 import com.ohadr.cbenchmarkr.Manager;
 import com.ohadr.cbenchmarkr.Workout;
@@ -25,9 +23,6 @@ public class TestsController
 	private static final String WORKOUT_1 = "workout-1";
 
 	private static Logger log = Logger.getLogger(TestsController.class);
-
-	@Autowired
-	private AuthenticationFlowsProcessor flowsProcessor;
 
 	@Autowired
     private Manager manager;
@@ -48,26 +43,10 @@ public class TestsController
 			String username = index + "@com";
 			try
 			{
-				flowsProcessor.createAccount(
-						username,
-						"password", "password", 
-						username,				//1st name
-						String.valueOf( index ), //"lastName", 
-						"path");
-				
 				manager.createBenchmarkrAccount(
 						username,
 						true, 
 						new Date(System.currentTimeMillis()));
-				
-				flowsProcessor.setEnabled( username );
-			} 
-			catch (AuthenticationFlowsException afe)
-			{
-				log.error( afe.getMessage() );
-		
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//				return;
 			} 
 			catch (BenchmarkrRuntimeException e)
 			{

@@ -2,11 +2,15 @@ package com.ohadr.cbenchmarkr.interfaces;
 
 import java.util.Date;
 
-import com.ohadr.auth_flows.interfaces.AuthenticationUser;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public interface BenchmarkrAuthenticationUser extends AuthenticationUser 
+public interface BenchmarkrAuthenticationUser extends UserDetails 
 {
 	boolean isMale();
 	Date 	getDateOfBirth();
 	Date	getLastLoginDate();
+	
+	String getFirstName();
+	String getLastName();
+
 }
