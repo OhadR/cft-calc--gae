@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -56,7 +55,7 @@ public class RepositoryCacheImpl implements ICacheRepository
 	@Override
 	public ITrainee getTrainee(String traineeId)
 	{
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -304,11 +303,5 @@ public class RepositoryCacheImpl implements ICacheRepository
 	public void setUserLoginSuccess(String username) throws BenchmarkrRuntimeException
 	{
 		repository.setUserLoginSuccess( username );
-	}
-
-	@Override
-	public void handleNotSeenForaWhileUsers() throws BenchmarkrRuntimeException
-	{
-		repository.handleNotSeenForaWhileUsers();
 	}
 }

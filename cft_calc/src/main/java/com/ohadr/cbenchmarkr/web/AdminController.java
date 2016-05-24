@@ -124,14 +124,4 @@ public class AdminController
        	manager.clearCache();
 		response.setStatus(HttpServletResponse.SC_OK);
     }
-
-	@RequestMapping("/cron/handleNotSeenForaWhileUsers")
-	protected void sendReminderToTrainee( HttpServletResponse response ) throws Exception
-	{
-		manager.handleNotSeenForaWhileUsers();
-
-        response.setContentType("text/html"); 
-		response.setStatus(HttpServletResponse.SC_OK);
-	}
-
 }

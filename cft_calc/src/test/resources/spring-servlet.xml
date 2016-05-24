@@ -44,58 +44,15 @@
 	    	    
 		<sec:anonymous />
 
-		<sec:form-login login-page="/login/login.htm"
-			authentication-success-handler-ref="authenticationSuccessHandler"
-			authentication-failure-handler-ref="authenticationFailureHandler" />
-		<sec:logout logout-success-url="/secured/trainee.jsp" />
+		<sec:form-login login-page="/login/login.htm" />
 
 	</sec:http>
 
 
 
-	<sec:authentication-manager alias="authenticationManager">
-		<sec:authentication-provider
-			user-service-ref="userDetailsService">
-			<sec:password-encoder hash="sha-256">
-				<sec:salt-source user-property="username" />
-			</sec:password-encoder>
-		</sec:authentication-provider>
-	</sec:authentication-manager>
-
-	<bean id="passwordEncoder"
-		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
-		<constructor-arg value="256" />
-	</bean>
-
-	<bean id="authenticationFailureHandler" class="com.ohadr.auth_flows.core.AuthenticationFailureHandler">
-		<constructor-arg value="/login/login.htm?login_error=1" />
-		<property name="accountLockedUrl" value="/login/accountLocked.htm" />
-	</bean>
-
-
-	<!-- decide how you wanna work: in-mem repo, or jdbc impl: -->
-	<!-- bean class="com.ohadr.auth_flows.mocks.InMemoryAuthenticationAccountRepositoryImpl" / -->
-	<bean id="userDetailsService"
-		class="com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl" />
-
-	<!--bean class="com.ohadr.auth_flows.core.jdbc.JdbcAuthenticationPolicyRepositoryImpl" / -->
-	<bean
-		class="com.ohadr.auth_flows.mocks.MockAuthenticationPolicyRepositoryImpl" />
-
-
-
-	<bean id="mailSender" class="com.ohadr.auth_flows.core.gae.GAEMailSenderImpl" />
+	<sec:authentication-manager alias="authenticationManager" />
 
 	<bean id="repository" class="com.ohadr.cbenchmarkr.core.InMemRepositoryImpl" />
 		
-	
-	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
-        <property name="velocityProperties">
-            <value>
-                resource.loader=class
-                class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-            </value>
-        </property>
-    </bean>
 	
 </beans>

@@ -2,7 +2,6 @@ package com.ohadr.cbenchmarkr.core;
 
 import java.util.*;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.apache.log4j.Logger;
 
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
@@ -96,7 +95,7 @@ public class InMemRepositoryImpl implements IRepository
 	private Map<String, List<TimedResult>> loadTraineesHistoryFromDB(
 			String traineeId)
 	{
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 
@@ -113,7 +112,7 @@ public class InMemRepositoryImpl implements IRepository
 	@Override
 	public void setAdmin(String authenticatedUsername) 
 	{
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -126,7 +125,7 @@ public class InMemRepositoryImpl implements IRepository
 	public void createBenchmarkrAccount(String traineeId, boolean isMale, Date dateOfBirth)
 			throws BenchmarkrRuntimeException
 	{
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 
@@ -188,12 +187,4 @@ public class InMemRepositoryImpl implements IRepository
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	@Override
-	public void handleNotSeenForaWhileUsers()
-	{
-		// TODO Auto-generated method stub
-	}
-
 }

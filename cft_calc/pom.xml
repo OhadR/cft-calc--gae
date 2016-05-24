@@ -22,7 +22,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<ohadr.spring.version>4.2.3.RELEASE</ohadr.spring.version>
 		<ohadr.spring.security.version>3.2.5.RELEASE</ohadr.spring.security.version>
-		<ohadr.flows.version>1.6.2-SNAPSHOT</ohadr.flows.version>
 	</properties>
 
     <dependencies>
@@ -169,13 +168,6 @@
 			<version>1.9.1</version>
 		</dependency>
         		
-		<!-- velocity (template email msg) -->
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.6.2</version>
-		</dependency>        
-
 		<!-- Pair impl-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -247,6 +239,7 @@
                 <artifactId>appengine-maven-plugin</artifactId>
                 <version>${appengine.target.version}</version>
             </plugin>
+
         </plugins>
     </build>
 

@@ -42,20 +42,15 @@
 	<sec:http pattern="/login/**" security="none" />
 	<sec:http pattern="/signin/**" security="none" />
 
-	<sec:http authentication-manager-ref="authenticationManager">
+	<sec:http>
 	    <!-- sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" requires-channel="https"/-->
 	    <sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" />
 	    <sec:intercept-url pattern="/secured/**" access="ROLE_USER,ROLE_ADMIN" />
 	    	    	    
 		<sec:anonymous />
 
-		<sec:form-login login-page="/login/login.htm"
-			authentication-success-handler-ref="RESTauthenticationSuccessHandler"
-			authentication-failure-handler-ref="authenticationFailureHandler" />
-		<!-- sec:logout /-->
+		<sec:form-login login-page="/login/login.htm" />
 
-    	<sec:custom-filter position="LOGOUT_FILTER" ref="restLogoutFilter" />
-		
 		<!--  Spring Social Security authentication filter   
 		<sec:custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
     	-->
@@ -64,57 +59,6 @@
 
   
 	
-	<sec:authentication-manager alias="authenticationManager">
-		<sec:authentication-provider
-			user-service-ref="userDetailsService">
-			<sec:password-encoder hash="sha-256">
-				<sec:salt-source user-property="username" />
-			</sec:password-encoder>
-		</sec:authentication-provider>
-	</sec:authentication-manager>
+	<sec:authentication-manager alias="authenticationManager" />
 
-	<bean id="passwordEncoder"
-		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
-		<constructor-arg value="256" />
-	</bean>
-
-	<!-- the prop 'accountLockedUrl' is irrelevant when working with REST -->
-	<bean id="authenticationFailureHandler" class="com.ohadr.auth_flows.core.AuthenticationFailureHandler" />
-
-
-	<!-- decide how you wanna work: in-mem repo, or jdbc impl: -->
-	<!-- bean class="com.ohadr.auth_flows.mocks.InMemoryAuthenticationAccountRepositoryImpl" / -->
-	<!-- bean id="userDetailsService" class="com.ohadr.auth_flows.core.gae.GAEAuthenticationAccountRepositoryImpl" /-->
-	<bean id="userDetailsService" class="com.ohadr.cbenchmarkr.core.BenchmarkrAuthenticationFlowsRepositoryImpl" />
-
-	<!--bean class="com.ohadr.auth_flows.core.jdbc.JdbcAuthenticationPolicyRepositoryImpl" / -->
-	<bean
-		class="com.ohadr.auth_flows.core.AuthenticationPolicyRepositoryFileImpl" />
-
-
-
-	<bean id="mailSender" class="com.ohadr.auth_flows.core.gae.GAEMailSenderImpl" />
-	<!-- bean id="mailSender" class="com.ohadr.auth_flows.mocks.MailSenderMock" /-->
-	
-	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
-        <property name="velocityProperties">
-            <value>
-                resource.loader=class
-                class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-            </value>
-        </property>
-    </bean>
-    
-	<bean id="restLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
-	    <constructor-arg>
-	        <bean class="com.ohadr.auth_flows.web.rest.NoRedirectLogoutSuccessHandler" />
-	    </constructor-arg>
-	    <constructor-arg>
-	        <list>
-	            <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
-	        </list>
-	    </constructor-arg>
-	</bean>	
-	
-		
 </beans>

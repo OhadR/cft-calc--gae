@@ -1,6 +1,5 @@
 package com.ohadr.cbenchmarkr.utils;
 
-import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,9 +10,6 @@ public class MailSenderWrapper
 {
 	@Autowired
 	private MailSender			mailSender;
-
-	@Autowired
-    private VelocityEngine 		velocityEngine;
 
 	
 	public void notifyAdmin(String email, 

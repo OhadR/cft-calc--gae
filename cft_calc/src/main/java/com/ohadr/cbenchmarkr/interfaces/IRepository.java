@@ -90,9 +90,4 @@ public interface IRepository
 	 */
 	void 					setUserLoginSuccess(String username) throws BenchmarkrRuntimeException;
 
-	/**
-	 * get these users that has not logged in for more than a month.
-	 * @throws BenchmarkrRuntimeException if table does not exist in repository.
-	 */
-	void					handleNotSeenForaWhileUsers() throws BenchmarkrRuntimeException;
 }

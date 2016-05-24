@@ -41,17 +41,18 @@
 	<!-- bean id="disconnectController" class="org.springframework.social.facebook.web.DisconnectController" 
 		c:_0-ref="usersConnectionRepository" c:_1="${facebook.clientSecret}" /-->
 
-
+<!--
 	<bean id="tokenBasedRememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices" 
 		p:key="ohad"
 		p:userDetailsService-ref="userDetailsService" />
-	
+	-->
 	<bean id="socialAuthenticationFilter" class="org.springframework.social.security.SocialAuthenticationFilter"
 		c:_0-ref="authenticationManager"
 		c:_1-ref="userIdSource"
 		c:_2-ref="usersConnectionRepository"
 		c:_3-ref="connectionFactoryLocator"
-		p:signupUrl="/signup"
+		p:signupUrl="/signup" />
+		<!-- 
 		p:rememberMeServices-ref="tokenBasedRememberMeServices" />
-
+ -->
 </beans>
