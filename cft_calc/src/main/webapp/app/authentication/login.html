@@ -1,21 +1,8 @@
 ﻿<section data-ng-controller="login as vm">
     <div class="login">
-        <form ng-submit="vm.loginUser()">
-            <!-- h1>{{vm.title}}</h1 -->
-            <p class="row">
-                <input type="email" name="login" ng-model="vm.userInfo.userName" placeholder="Enter you Email address" required>
-                <input type="password" name="password" ng-model="vm.userInfo.password" placeholder="Enter your Password" required>
-                <button class="appl-button signup primary button-block" type="submit">Sign in</button>
-            </p>
-            </p>
-        </form>
-    </div>
-</section>
-﻿<section data-ng-controller="login as vm">
-    <div class="login">
     	<div class="row">
       
-      <div class="col-md-6">
+      		<div class="col-md-6">
 				<div class="login signup">
 					<!-- h3>benchmarkr</h3-->
 				
@@ -24,19 +11,19 @@
 					<br>
 					</div>
 				</div>
-		</div>
+		    </div>
       
       
-      <div class="col-md-6">
-		<!-- FACEBOOK SIGNIN -->
-		<form name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
-			<input type="hidden" name="_csrf" th:value="${_csrf.token}"></input>
-			<input type="hidden" name="scope" value="user_friends,email,user_posts"></input>
-			<button type="submit">
-			    <img src="content/facebook/sign-in-with-facebook.png" />
-			</button>
-		</form>
-      </div>
-      </div>
+			<div class="col-md-6">
+				<!-- FACEBOOK SIGNIN -->
+				<form name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}"></input>
+					<input type="hidden" name="scope" value="user_friends,email,user_posts"></input>
+					<button type="submit">
+					    <img src="content/facebook/sign-in-with-facebook.png" />
+					</button>
+				</form>
+		    </div>
+        </div>
     </div>
 </section>
