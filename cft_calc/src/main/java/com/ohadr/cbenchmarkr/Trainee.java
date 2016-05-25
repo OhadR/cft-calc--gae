@@ -18,7 +18,6 @@ public class Trainee implements ITrainee
 
 	private String                      id;		//id == the name/email of the person
 	private boolean   					bMale;
-	private Date 	  					dateOfBirth;
 	
 	private String firstName;
 	private String lastName;
@@ -58,8 +57,7 @@ public class Trainee implements ITrainee
 			String lastName, 
 			Map<String, Integer> results,
 			double totalGrade, 
-			boolean isMale, 
-			Date dateOfBirth)
+			boolean isMale)
 	{
 		this.id = id;
 		this.results = results;
@@ -67,7 +65,6 @@ public class Trainee implements ITrainee
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.bMale = isMale;
-		this.dateOfBirth = dateOfBirth;
 	}
 
 	@Override
@@ -141,12 +138,6 @@ public class Trainee implements ITrainee
 	public boolean isMale()
 	{
 		return bMale;
-	}
-
-	@Override
-	public Date getDateOfBirth() 
-	{
-		return dateOfBirth;
 	}
 
 	@Override

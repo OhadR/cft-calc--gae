@@ -15,21 +15,36 @@
  */
 package com.ohadr.cbenchmarkr.signin;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.SignInAdapter;
+import org.springframework.social.facebook.api.AgeRange;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.User;
+import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.web.context.request.NativeWebRequest;
+
+import com.ohadr.cbenchmarkr.GAERepositoryImpl;
 
 public class ImplicitSignInAdapter implements SignInAdapter {
 
+	private static Logger log = Logger.getLogger(ImplicitSignInAdapter.class);
+
 	private final RequestCache requestCache;
+
+	@Autowired
+	private GAERepositoryImpl repository;  //GAEAccountRepositoryImpl  implements UserDetailsManager
 
 	@Inject
 	public ImplicitSignInAdapter(RequestCache requestCache) {
@@ -38,6 +53,9 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 	
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
+
+		getUserDataAndPersist(connection);
+		
 		String providerUserId = connection.getKey().getProviderUserId();
 		SignInUtils.signin(providerUserId);
 //		return extractOriginalUrl(request);
@@ -56,6 +74,22 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 		return saved.getRedirectUrl();
 	}
 		 
+	private void getUserDataAndPersist(Connection<?> connection)
+	{
+		Facebook facebookApi = (Facebook)connection.getApi();
+		UserOperations facebookUserOperations = facebookApi.userOperations();
+
+		User userProfile = facebookUserOperations.getUserProfile();
+
+		String gender = userProfile.getGender();
+        log.info( "creating traineeId: " + userProfile.getId() + ", isMale? " + gender  );
+
+		repository.createBenchmarkrAccount(userProfile.getId(),
+				userProfile.getFirstName(),
+				userProfile.getLastName(),
+				userProfile.getGender().equalsIgnoreCase("male") );
+	}
+	
 	private void removeAutheticationAttributes(HttpSession session) {
 		if (session == null) {
 			return;

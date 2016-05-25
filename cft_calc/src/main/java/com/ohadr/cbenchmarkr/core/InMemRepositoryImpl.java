@@ -122,15 +122,6 @@ public class InMemRepositoryImpl implements IRepository
 	}
 
 	@Override
-	public void createBenchmarkrAccount(String traineeId, boolean isMale, Date dateOfBirth)
-			throws BenchmarkrRuntimeException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-
-
-	@Override
 	public void resetRepository()
 	{
 		resetCache();
@@ -186,5 +177,12 @@ public class InMemRepositoryImpl implements IRepository
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public void createBenchmarkrAccount(String traineeId, String firstName, String lastName, boolean isMale) 
+	{
+		throw new UnsupportedOperationException();
 	}
 }

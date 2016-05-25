@@ -1,6 +1,5 @@
 package com.ohadr.cbenchmarkr.interfaces;
 
-import java.util.Date;
 import java.util.Map;
 
 import com.ohadr.cbenchmarkr.BenchmarkrRuntimeException;
@@ -37,8 +36,6 @@ public interface ITrainee extends Comparable<ITrainee>
 	String getLastName();
 
 	boolean isMale();
-	
-	Date getDateOfBirth();
 	
 	/**
 	 * 

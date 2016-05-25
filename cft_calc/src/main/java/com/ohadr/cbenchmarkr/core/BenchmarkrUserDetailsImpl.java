@@ -8,35 +8,28 @@ import java.util.Date;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 
-import com.ohadr.cbenchmarkr.interfaces.BenchmarkrAuthenticationUser;
+import com.ohadr.cbenchmarkr.interfaces.BenchmarkrUserDetails;
 
-public class BenchmarkrAuthenticationUserImpl implements BenchmarkrAuthenticationUser 
+public class BenchmarkrUserDetailsImpl implements BenchmarkrUserDetails 
 {
 	private boolean 	isMale;
-	private Date 		dateOfBirth;
 	private Date 		lastLoginDate;
 	private String firstName;
 	private String lastName;
 	private Collection<? extends GrantedAuthority> authorities;
 	private String email;
 	
-	public BenchmarkrAuthenticationUserImpl(String username,
-			String password,
-			boolean activated, 
-			int loginAttemptsLeft,
-			Date passwordLastChangeDate, 
+	public BenchmarkrUserDetailsImpl(String username,
 			String firstName, 
 			String lastName,
 			Collection<? extends GrantedAuthority> authorities,
 			boolean isMale,
-			Date dateOfBirth,
 			Date lastLoginDate) 
 	{
 		this.email = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.isMale = isMale;
-		this.dateOfBirth = dateOfBirth;
 		this.lastLoginDate = lastLoginDate;
 	}
 
@@ -47,17 +40,11 @@ public class BenchmarkrAuthenticationUserImpl implements BenchmarkrAuthenticatio
 	}
 
 	@Override
-	public Date getDateOfBirth() 
-	{
-		return dateOfBirth;
-	}
-
-	@Override
 	public Date getLastLoginDate()
 	{
 		return lastLoginDate;
 	}
-
+	
     /**
      * copied from org.springframework.security.core.userdetails.User
      * 

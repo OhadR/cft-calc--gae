@@ -230,11 +230,12 @@ public class RepositoryCacheImpl implements ICacheRepository
 
 
 	@Override
-	public synchronized void createBenchmarkrAccount(String traineeId, boolean isMale, Date dateOfBirth)
-			throws BenchmarkrRuntimeException
+	public synchronized void createBenchmarkrAccount(String traineeId, 
+			String firstName, String lastName,
+			boolean isMale)
 	{
 		//enrich the auth-flows with the "isMale" and "DOB":
-		repository.createBenchmarkrAccount(traineeId, isMale, dateOfBirth);
+		repository.createBenchmarkrAccount(traineeId, firstName, lastName, isMale);
 	}
 
 

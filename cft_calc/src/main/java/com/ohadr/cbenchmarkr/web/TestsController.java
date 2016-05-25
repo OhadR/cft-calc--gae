@@ -45,6 +45,7 @@ public class TestsController
 			{
 				manager.createBenchmarkrAccount(
 						username,
+						"fisrt", "last",
 						true, 
 						new Date(System.currentTimeMillis()));
 			} 
