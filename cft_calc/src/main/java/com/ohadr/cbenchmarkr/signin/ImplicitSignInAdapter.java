@@ -36,6 +36,7 @@ import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import com.ohadr.cbenchmarkr.GAERepositoryImpl;
+import com.ohadr.cbenchmarkr.Manager;
 
 public class ImplicitSignInAdapter implements SignInAdapter {
 
@@ -44,8 +45,8 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 	private final RequestCache requestCache;
 
 	@Autowired
-	private GAERepositoryImpl repository;  //GAEAccountRepositoryImpl  implements UserDetailsManager
-
+	private Manager manager;
+	
 	@Inject
 	public ImplicitSignInAdapter(RequestCache requestCache) {
 		this.requestCache = requestCache;
@@ -54,12 +55,12 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
 
-		getUserDataAndPersist(connection);
+		User user = getUserDataAndPersist(connection);
 		
 		String providerUserId = connection.getKey().getProviderUserId();
 		SignInUtils.signin(providerUserId);
 //		return extractOriginalUrl(request);
-		return "/#/facebookLogin";
+		return "/#/facebookLogin?name=" + user.getFirstName() + " " + user.getLastName();
 	}
 
 	private String extractOriginalUrl(NativeWebRequest request) {
@@ -74,7 +75,7 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 		return saved.getRedirectUrl();
 	}
 		 
-	private void getUserDataAndPersist(Connection<?> connection)
+	private User getUserDataAndPersist(Connection<?> connection)
 	{
 		Facebook facebookApi = (Facebook)connection.getApi();
 		UserOperations facebookUserOperations = facebookApi.userOperations();
@@ -84,10 +85,12 @@ public class ImplicitSignInAdapter implements SignInAdapter {
 		String gender = userProfile.getGender();
         log.info( "creating traineeId: " + userProfile.getId() + ", isMale? " + gender  );
 
-		repository.createBenchmarkrAccount(userProfile.getId(),
+		manager.createBenchmarkrAccount(userProfile.getId(),
 				userProfile.getFirstName(),
 				userProfile.getLastName(),
 				userProfile.getGender().equalsIgnoreCase("male") );
+		
+		return userProfile;
 	}
 	
 	private void removeAutheticationAttributes(HttpSession session) {

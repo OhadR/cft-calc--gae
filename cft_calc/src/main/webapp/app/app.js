@@ -25,11 +25,15 @@
         $rootScope.$on("$locationChangeStart", function () {
             if (!auth.isUserLoggedIn) {
                 var nextPath = $location.path();
+                var searchObject = $location.search();
 
                 if (nextPath == '/facebookLogin')
                 {
 					auth.isUserLoggedIn = true;
-					auth.currentUser = 'moshe';//TODO
+					if(searchObject != null)
+					{
+						auth.currentUser = searchObject.name;
+					}
                     $location.path('/');
                 }
                 

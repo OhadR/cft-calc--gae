@@ -234,7 +234,6 @@ public class RepositoryCacheImpl implements ICacheRepository
 			String firstName, String lastName,
 			boolean isMale)
 	{
-		//enrich the auth-flows with the "isMale" and "DOB":
 		repository.createBenchmarkrAccount(traineeId, firstName, lastName, isMale);
 	}
 
