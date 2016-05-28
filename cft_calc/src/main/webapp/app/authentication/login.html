@@ -18,7 +18,7 @@
 				<!-- FACEBOOK SIGNIN -->
 				<form name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
 					<input type="hidden" name="_csrf" th:value="${_csrf.token}"></input>
-					<input type="hidden" name="scope" value="user_friends,email,user_posts"></input>
+					<input type="hidden" name="scope" value="user_friends,email"></input>
 					<button type="submit">
 					    <img src="content/facebook/sign-in-with-facebook.png" />
 					</button>
