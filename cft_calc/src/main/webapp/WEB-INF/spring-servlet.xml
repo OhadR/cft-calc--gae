@@ -38,14 +38,12 @@
 	 <mvc:resources mapping="/secured/**" location="/secured_resources/" />
 	 -->
 	 
-	
-	<sec:http pattern="/login/**" security="none" />
-	<sec:http pattern="/signin/**" security="none" />
-
-	<sec:http>
+	<sec:http use-expressions="true">
 	    <!-- sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" requires-channel="https"/-->
-	    <sec:intercept-url pattern="/secured/admin/**" access="ROLE_ADMIN" />
-	    <sec:intercept-url pattern="/secured/**" access="ROLE_USER,ROLE_ADMIN" />
+	    <sec:intercept-url pattern="/secured/admin/**" access="hasRole('ROLE_ADMIN')" />
+	    <sec:intercept-url pattern="/secured/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/login/**" access="permitAll" />
+		<sec:intercept-url pattern="/signin/**" access="permitAll" />
 	    	    	    
 		<sec:anonymous />
 
