@@ -19,7 +19,6 @@
         //functions:
         vm.onWorkoutChanged = onWorkoutChanged;
         vm.updateUser = updateUser;
-        vm.onChangePassword = onChangePassword;
         vm.onRemoveWorkout = onRemoveWorkout;
 
         $scope.config = {
@@ -71,7 +70,7 @@
 
         function activate() 
         {
-            common.activateController( [loadWorkoutNames(), getTraineeById()], controllerId );
+            common.activateController( [loadWorkoutNames()], controllerId );
         }
 
         function loadWorkouts() {
@@ -109,34 +108,6 @@
             });
         }
         
-        function getTraineeById()
-        {
-            datacontext.getTraineeById().
-            then(function(data) {
-                vm.userInfo = data;
-            	//fix dob from timestamp to Date obj:
-                var dobDate = new Date( data.dateOfBirth );
-            	vm.userInfo.dateOfBirth = formatDate( dobDate ); 
-//            	vm.userInfo.dateOfBirth = '2011-09-29';
-            });
-        }
-        
-        function formatDate( date )
-        {
-        	var month = date.getMonth()+1;
-        	if( month < 10 )
-        	{
-        		month = '0' + month;
-        	}
-        	var day = date.getUTCDate();
-        	if( day < 10 )
-        	{
-        		day = '0' + day;
-        	}
-        	var retVal = date.getFullYear() + "-" + month + "-" + day;
-    		return retVal;
-        }
-        
         function onWorkoutChanged()
         {
         	loadWorkouts();
@@ -168,20 +139,6 @@
             });
         }
         
-        function onChangePassword()
-        {
-        	//TODO: assert newPass==retypeNewPass
-        	
-        	auth.changePassword(vm.changePassword.current, vm.changePassword.newPass ).
-        	then(function (loginData) 
-        	{
-        		log( "password changed successfully" );    
-            },
-            function(error) {
-            	 log_error( "change password failed, error: " + error );
-            });
-        }
-
         function onRemoveWorkout()
         {
             //call backend:
