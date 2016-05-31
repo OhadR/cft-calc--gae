@@ -7,23 +7,27 @@
 					<!-- h3>benchmarkr</h3-->
 				
 					<div class="app-description" style="margin-top: 25px">
-					Compare your CrossFit RX-benchmarks and PRs with other CrossFitters all around the world.<br>
-					<br>
+						Compare your CrossFit RX-benchmarks and PRs with other CrossFitters all around the world.<br>
 					</div>
 				</div>
-		    </div>
-      
-      
-			<div class="col-md-6">
 				<!-- FACEBOOK SIGNIN -->
-				<form name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
+				<form class="login signup" name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
 					<input type="hidden" name="_csrf" th:value="${_csrf.token}"></input>
 					<input type="hidden" name="scope" value="user_friends,email"></input>
 					<button type="submit">
-					    <img src="content/facebook/sign-in-with-facebook.png" />
+						<img src="content/facebook/sign-in-with-facebook.png" />
 					</button>
 				</form>
-		    </div>
+
+				<div class="login signup">
+					<!-- h3>benchmarkr</h3-->
+				
+					<div class="app-description" style="margin-top: 25px">
+						We will never post on your wall!<br>
+						<br>
+					</div>
+				</div>
+			</div>
         </div>
     </div>
 </section>
