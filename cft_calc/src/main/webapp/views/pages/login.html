@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="login-panel panel panel-default">
+
+				<div class="login signup">
+					<div class="app-description">
+						Compare your CrossFit RX-benchmarks and PRs with other CrossFitters all around the world.
+					</div>
+					<br>
+				</div>
+
+                <div class="panel-body">
+					<!-- FACEBOOK SIGNIN -->
+					<form class="login signup notes" name="fb_signin" id="fb_signin" action="signin/facebook" method="POST">
+						<input type="hidden" name="_csrf" value="${_csrf.token}"></input>
+						<input type="hidden" name="scope" value="user_friends,email"></input>
+						<button type="submit" class="facebook-button">
+							<img src="content/facebook/sign-in-with-facebook.png" />
+						</button>
+					</form>
+                </div>
+                
+				<div class="login signup">
+					<div class="notes">We will never post on your wall!</div>
+				</div>
+                
+            </div>
+        </div>
+    </div>
+</div>

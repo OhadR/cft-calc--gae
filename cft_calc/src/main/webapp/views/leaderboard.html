@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="today-datas">
+            <!-- li class="blightblue">
+                <div class="pull-left"><i class="fa fa-plane"></i></div>
+                <div class="datas-text pull-right">
+                    <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
+                </div>
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="borange">
+                <div class="pull-left"><i class="fa fa-user"></i></div>
+                <div class="datas-text pull-right">
+                    <span class="bold">{{vm.registeredUsers}}</span> Registered Users
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li class="borange">
+                <div class="pull-left"><i class="fa fa-pencil"></i></div>
+                <div class="datas-text pull-right">
+                    <span class="bold">{{vm.registeredResults}}</span> Registered Results
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li class="app_link">
+                <div class="pull-left">
+                	<a href="https://www.facebook.com/cbenchmarkr" class="project-link"><img class="app_link" src="../../content/images/Facebook_Icon_2.png" alt="Facebook page"></a>       
+                </div>
+                <div class="clearfix"></div>
+            </li-->
+
+          </ul>
+      </div>
+  </div>
+  <div class="row" ng-controller="dashboard as vm">
+      <div class="col-md-6">
+          <div class="widget wviolet">
+              <div data-cc-widget-header title="Global Leaderboard"
+                   allow-collapse="true"></div>
+			<div class="leaderboard-combo">
+				<select data-ng-model="vm.filter_gender" 
+				ng-change='vm.onGenderChanged()' >
+					<option value="Men">Men</option>
+					<option value="Women">Women</option>
+				</select>
+			</div>
+              <div class="widget-content text-center text-info">
+                  <table class="table table-condensed table-striped">
+                      <thead>
+                          <tr>
+                              <th>#</th>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th># Workouts</th>
+                              <th>Grade</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr data-ng-repeat="p in vm.people | filter: { male: (vm.filter_gender == 'Men') }">
+                              <td>{{$index+1}}</td>
+                            <td>{{p.firstName}}</td>
+                            <td>{{p.lastName}}</td>
+                            <td>{{p.numerOfWorkouts}}</td>
+                            <td>{{p.totalGrade}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="widget-foot">
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="widget wgreen">
+            <div data-cc-widget-header title="Leaderboard per-workout"
+                 allow-collapse="true"></div>
+			<div class="leaderboard-combo">
+				<select data-ng-model="vm.workout" ng-init="" 
+				ng-options="w.name for w in vm.workoutNames | orderBy:'name'" 
+				ng-change='vm.onWorkoutChanged()' >
+					<!-- option value="">choose workout...</option-->
+				</select>
+				<select data-ng-model="vm.filter_gender" 
+				ng-change='vm.onGenderChanged()' >
+					<option value="Men">Men</option>
+					<option value="Women">Women</option>
+				</select>
+			</div>
+
+            <div class="widget-content text-center text-info">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Result - {{vm.workout.name}} ({{vm.workout.units}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="p in vm.traineesPerWorkout | filter: { male: (vm.filter_gender == 'Men') }">
+                            <td>{{$index+1}}</td>
+                            <td>{{p.firstName}}</td>
+                            <td>{{p.lastName}}</td>
+                            <td>{{p.result}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="widget-foot">
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

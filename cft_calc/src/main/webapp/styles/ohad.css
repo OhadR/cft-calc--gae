@@ -1,0 +1,90 @@
+//<button class="button primary button-block" type="submit">DDD</...>
+
+.form-signup-home .button {
+border: 0;
+padding-top: 11px;
+padding-bottom: 11px;
+}
+
+.form-signup-home .button, .form-signup-home dl.form input[type="text"], .form-signup-home dl.form input[type="password"] {
+padding: 10px;
+font-size: 16px;
+border-radius: 5px;
+}
+
+.appl-button.signup, 
+.button.primary {
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: #60b044;
+background-image: -moz-linear-gradient(#8add6d, #60b044);
+background-image: -webkit-linear-gradient(#8add6d, #60b044);
+background-image: linear-gradient(#8add6d, #60b044);
+background-repeat: repeat-x;
+border-color: #5ca941;
+}
+
+.today-datas .app_link,
+.app_link
+{
+	padding: 0px;
+	height: 93px;	
+}
+
+.top_nav_link
+{
+	margin-top: 10px;
+	height: 30px;	
+}
+
+.leaderboard-combo
+{
+	margin: 5px;
+}
+
+/*override bootstrap definition, that align 'th' to the left*/ 
+th
+{
+	text-align: center;
+}
+
+.app-description
+{
+	text-align: center;
+	font-size: 30px;
+	line-height: 1.5;	
+}
+
+.notes
+{
+	text-align: center;
+	font-size: 20px;
+	line-height: 1.5;	
+}
+
+.facebook-button
+{
+	padding: 0;
+    border: 0;
+    background-color: #343434;
+}
+
+h3
+{
+/*	text-align: center;*/
+	font-size: 30px;
+}
+
+/** special treatment for signup - all fields of signin are in same row. so we changed it to 1000px. but signup should kept 450px 
+so this is a special behaviour - both classes login+signup */
+.login.signup {
+  position: relative;
+/*  margin: 40px auto;*/
+  width: 450px;
+  padding-right: 32px;
+  font-weight: 300;
+
+/*  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);*/
+  color: inherit;
+  background-color: #f5f5f5;
+}

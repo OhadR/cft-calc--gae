@@ -9,7 +9,10 @@
         </div>
         
         <div ng-show="vm.auth.isUserLoggedIn">
+            <!--  
             <div data-ng-include="'/app/layout/sidebar.html'"></div>
+            -->
+            <div data-ng-include="'/app/scripts/directives/sidebar/sidebar.html'"></div>
         </div>
 
         <div data-ng-view class="shuffle-animation"></div>
